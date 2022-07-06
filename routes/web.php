@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', function () {
-    return view('test');
-});
+Route::get('/test', [\App\Http\Controllers\BannerController::class, 'test']);
+Route::get('/admin/dashboard',[\App\Http\Controllers\AdminController::class ,'dashboard']);
+
+Route::resource('products', \App\Http\Controllers\ProductController::class);
