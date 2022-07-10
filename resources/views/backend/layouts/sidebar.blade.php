@@ -53,10 +53,8 @@
                 </ul>
             </li>
             <li>
-                <a href="pages/widgets.html">
-                    <i class="fa fa-th"></i> <span>Widgets</span>
-                    <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+                <a href="{{ route('banner.create') }}">
+                    <i class="fa fa-picture-o"></i> <span>Banner</span>
             </span>
                 </a>
             </li>
