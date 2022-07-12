@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Banner</a></li>
-            <li class="active">index</li>
+            <li class="active">Index</li>
         </ol>
     </section>
     <section class="content">
@@ -17,6 +17,11 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Banner</h3>
+                        <a href="{{ route('admin.banner.create') }}">
+                            <span title="Thêm" type="button" class="btn btn-flat btn-primary">
+                                <i class="fa fa-plus"></i>
+                            </span>
+                        </a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -30,7 +35,7 @@
                             </tr>
                             @foreach($data as $key => $item)
                             <tr>
-                                <td>{{$key +1}}</td>
+                                <td>{{$key+1}}</td>
                                 <td>
                                     @if($item->image && file_exists(public_path($item->image)))
                                         <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
@@ -39,14 +44,27 @@
                                     @endif
                                 </td>
                                 <td>{{$item->title}}</td>
-                                <td>{{$item->target}}</td>
                                 <td>
-                                    <a href="http://weblaravel.local/banner/edit/{{$item->id}}">
+                                    @if($item->type ==1 )
+                                        Banner Home
+                                    @elseif($item->type == 2)
+                                        Banner Left
+                                    @elseif($item->type == 3)
+                                        Banner Right
+                                    @elseif($item->type == 4)
+                                        Background
+                                    @else
+                                        None
+                                    @endif
+
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.banner.edit',['banner'=>$item->id]) }}">
                                         <span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary">
                                             <i class="fa fa-edit"></i>
                                         </span>
                                     </a>
-                                    <span onclick="deleteItem" title="Xóa" class="btn btn-flat btn-danger">
+                                    <span onclick="" title="Xóa" class="btn btn-flat btn-danger">
                                         <i class="fa fa-trash"></i>
                                     </span>
                                 </td>

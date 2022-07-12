@@ -98,7 +98,10 @@ class BannerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $model = Banner::findOrFail($id);
+
+        return view('backend.banner.edit',['model'=>$model]);
+
     }
 
     /**
