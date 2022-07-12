@@ -28,8 +28,9 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="" enctype="multipart/form-data">
+                    <form role="form" method="" action="{{ route('admin.banner.update',['banner'=>$model->id]) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>
@@ -45,7 +46,7 @@
                             @if($model->image && file_exists(public_path($model->image)))
                                 <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
                             @else
-                                <img src="{{ 'upload/not_found.png' }}" width="100" height="75" alt="">
+                                <img src="{{ asset('upload/not_found.png') }}" width="100" height="75" alt="">
                             @endif
 
                             <div class="form-group">
@@ -79,7 +80,7 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input  value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
                             </div>
 
@@ -89,10 +90,11 @@
                             </div>
 
                         </div>
+
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="submit" class="btn btn-primary">Lưu lại</button>
                         </div>
                     </form>
                 </div>
@@ -103,4 +105,24 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnCreate').click(function () {
+                if ($('#title').val() === ''){
+                    $('#title').notify('Bạn chưa nhập tiêu đề','error');
+                    document.getElementById('title').scrollIntoView();
+                    return false;
+                }
+
+                if ($('#description').val() === ''){
+                    $('#label-description').notify('Bạn chưa nhập mô tả','error');
+                    document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }
+            });
+        });
+    </script>
 @endsection

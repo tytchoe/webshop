@@ -57,6 +57,7 @@
                             <div class="form-group">
                                 <label>Loại</label>
                                 <select class="form-control" name="type" id="type">
+                                    <option value="">-- Chọn --</option>
                                     <option value="1">Banner trang chủ</option>
                                     <option value="2">Banner quảng cáo trái</option>
                                     <option value="3">Banner quảng cáo phải</option>
@@ -71,12 +72,12 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
                             </div>
 
                             <div class="form-group">
-                                <label>Mô tả</label>
+                                <label id="label-description">Mô tả</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
@@ -84,7 +85,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            <button type="submit" class="btn btn-primary btnCreate">Thêm</button>
                         </div>
                     </form>
                 </div>
@@ -95,4 +96,24 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnCreate').click(function () {
+                if ($('#title').val() === ''){
+                    $('#title').notify('Bạn chưa nhập tiêu đề','error');
+                    document.getElementById('title').scrollIntoView();
+                    return false;
+                }
+
+                if ($('#description').val() === ''){
+                    $('#label-description').notify('Bạn chưa nhập mô tả','error');
+                    document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }
+            });
+        });
+    </script>
 @endsection

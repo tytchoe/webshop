@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>AdminLTE 2 | Dashboard</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -90,6 +91,8 @@
 <script src="{{asset('backend')}}/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- CKeditor -->
 <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+<!-- validate -->
+<script src="{{ asset('backend/js/notify.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('backend')}}/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -99,6 +102,10 @@
 <script type="text/javascript">
     CKEDITOR.replace( 'description' );
 </script>
+
+<div>
+    @yield('js');
+</div>
 
 </body>
 </html>

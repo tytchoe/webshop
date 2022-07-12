@@ -38,9 +38,9 @@
                                 <td>{{$key+1}}</td>
                                 <td>
                                     @if($item->image && file_exists(public_path($item->image)))
-                                        <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                        <img src="{{ asset($item->image) }}" width="150" height="100" alt="">
                                     @else
-                                        <img src="{{ 'upload/not_found.png' }}" width="100" height="75" alt="">
+                                        <img src="{{ asset('upload/not_found.png') }}" width="150" height="100" alt="">
                                     @endif
                                 </td>
                                 <td>{{$item->title}}</td>
@@ -64,7 +64,7 @@
                                             <i class="fa fa-edit"></i>
                                         </span>
                                     </a>
-                                    <span onclick="" title="Xóa" class="btn btn-flat btn-danger">
+                                    <span data-id ="{{$item->id}}" title="Xóa" class="btn btn-flat btn-danger deleteItem">
                                         <i class="fa fa-trash"></i>
                                     </span>
                                 </td>
@@ -86,4 +86,28 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.btnDelete').click(function () {
+                var id = $(this).attr('data-id');
+                var me =  $(this);
+                $.ajax({
+                    url : 'admin/banner/'+id,
+                    type: 'DELETE',
+                    data: {},
+                    success: function (res) {
+                        if(res.status){
+                            $('.item-'+id).remove();
+                        }
+                    },
+                    error: function (res) {
+
+                    }
+                });
+            });
+        })
+    </script>
 @endsection
