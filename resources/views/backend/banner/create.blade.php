@@ -1,4 +1,4 @@
-@extends('backend.layouts.main');
+@extends('backend.layouts.main')
 
 @section('content')
     <section class="content-header">
@@ -23,7 +23,8 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('banner.store') }}" enctype="multipart/form-data">
+                        @csrf
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>
@@ -73,9 +74,9 @@
                                 <label>Mô tả</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
+
                         </div>
                         <!-- /.box-body -->
-
 
                         <div class="box-footer">
                             <button type="submit" class="btn btn-primary">Thêm</button>
@@ -89,5 +90,4 @@
         <!-- /.row -->
     </section>
     <!-- /.content -->
-
 @endsection
