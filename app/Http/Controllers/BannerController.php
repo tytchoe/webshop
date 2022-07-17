@@ -22,7 +22,7 @@ class BannerController extends Controller
 
         // lấy dữ liệu cách 2 lấy ms nhất và phân trang
 
-        // $data = Banner::lastest()->paginate(10);
+//         $data = Banner::lastest()->paginate(10);
 
 
         return view('backend.banner.index',['data'=>$data]);

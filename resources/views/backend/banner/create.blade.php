@@ -21,7 +21,7 @@
                     <div class="box-header with-border">
                         <h3 class="box-title">Thêm mới Banner</h3>
                         <a href="{{ route('admin.banner.index') }}">
-                            <span title="Danh sách" type="button" class="btn btn-flat btn-primary"  >
+                            <span title="Danh sách" type="button" class="btn btn-flat btn-primary pull-right"  >
                                 <i class="fa fa-list">Danh sách</i>
                             </span>
                         </a>
