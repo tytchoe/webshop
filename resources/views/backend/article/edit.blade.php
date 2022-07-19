@@ -19,11 +19,11 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.banner.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.article.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.banner.update', ['banner' => $model->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.article.update', ['article' => $model->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
@@ -49,21 +49,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option @if($model->target == '_blank') selected @endif value="_blank">_blank</option>
-                                    <option @if($model->target == '_self') selected @endif value="_self">_self</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
                                 <label>Loại</label>
                                 <select class="form-control" name="type" id="type">
                                     <option value="">-- chọn --</option>
-                                    <option @if($model->type == 1) selected @endif value="1">Banner home</option>
-                                    <option @if($model->type == 2) selected @endif value="2">Banner left</option>
-                                    <option @if($model->type == 3) selected @endif value="3">Banner right</option>
-                                    <option @if($model->type == 4) selected @endif value="4">Background</option>
+                                    <option @if($model->target == 1) selected @endif value="1">article home</option>
+                                    <option @if($model->target == 2) selected @endif value="2">article left</option>
+                                    <option @if($model->target == 3) selected @endif value="3">article right</option>
+                                    <option @if($model->target == 4) selected @endif value="4">Background</option>
                                 </select>
                             </div>
 
@@ -87,7 +79,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu lại</button>
+                            <button type="submit" class="btn btn-primary btnSave">Lưu lại</button>
                         </div>
                     </form>
                 </div>
@@ -105,7 +97,7 @@
         $( document ).ready(function() {
             CKEDITOR.replace( 'description' );
 
-            $('.btnCreate').click(function () {
+            $('.btnSave').click(function () {
                 if ($('#title').val() === '') {
                     $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
                     document.getElementById('title').scrollIntoView();

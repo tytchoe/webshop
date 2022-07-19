@@ -7,8 +7,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li class="active">Chỉnh sửa</li>
         </ol>
     </section>
 
@@ -19,17 +18,17 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.banner.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.category.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.banner.update', ['banner' => $model->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.category.update', ['category' => $model->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{ $model->title }}" required id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Tên</label>
+                                <input value="{{ $model->name }}" required id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -44,26 +43,12 @@
                             @endif
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option @if($model->target == '_blank') selected @endif value="_blank">_blank</option>
-                                    <option @if($model->target == '_self') selected @endif value="_self">_self</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">-- chọn --</option>
-                                    <option @if($model->type == 1) selected @endif value="1">Banner home</option>
-                                    <option @if($model->type == 2) selected @endif value="2">Banner left</option>
-                                    <option @if($model->type == 3) selected @endif value="3">Banner right</option>
-                                    <option @if($model->type == 4) selected @endif value="4">Background</option>
+                                <label>Chọn Danh Mục Cha</label>
+                                <select class="form-control" name="parent_id" id="parent_id">
+                                    <option value="0">-- Chọn --</option>
+                                    @foreach($data as $item)
+                                        <option {{ $item->id == $model->parent_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -76,11 +61,6 @@
                                 <label>
                                     <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
                             </div>
 
                         </div>
@@ -106,15 +86,9 @@
             CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
+                if ($('#name').val() === '') {
+                    $('#name').notify('Bạn nhập chưa nhập tên,'error');
                     document.getElementById('title').scrollIntoView();
-                    return false;
-                }
-
-                if ($('#description').val() === '') {
-                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                    document.getElementById('label-description').scrollIntoView();
                     return false;
                 }
             });

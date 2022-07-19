@@ -3,12 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm Banner
+            Thêm Bài Viết
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li class="active">Thêm Bài Viết</li>
         </ol>
     </section>
 
@@ -35,12 +34,11 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Thêm mới Banner</h3>
-                        <a href="{{ route('admin.banner.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.article.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.banner.store') }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.article.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -59,21 +57,12 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option value="_blank">_blank</option>
-                                    <option value="_self">_self</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">-- chọn --</option>
-                                    <option value="1">Banner home</option>
-                                    <option value="2">Banner left</option>
-                                    <option value="3">Banner right</option>
-                                    <option value="4">Background</option>
+                                <label>Chọn Danh Mục</label>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="0">-- Chọn --</option>
+                                    @foreach($data as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -89,8 +78,23 @@
                             </div>
 
                             <div class="form-group">
+                                <label id="label-description">Tóm tắt</label>
+                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <div class="form-group">
                                 <label id="label-description">Mô tả</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-description">Meta Title</label>
+                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-description">Meta Description</label>
+                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                         </div>
@@ -113,6 +117,7 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
+            CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
