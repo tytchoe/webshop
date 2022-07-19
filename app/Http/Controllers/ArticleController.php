@@ -132,8 +132,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $model = Article::findOrFail($id);
+        $data = Category::all();
 
-        return view('backend.article.edit', ['model' => $model]);
+        return view('backend.article.edit', ['model' => $model], ['data' => $data]);
     }
 
     /**
@@ -148,12 +149,15 @@ class ArticleController extends Controller
         // xác thực dữ liệu - validate
         $request->validate([
             'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'category_id' => 'required',
+            'summary' => 'required',
             'description' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
         ],[
             'title.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.required' => 'Bạn chưa chọn file ảnh',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+            'category_id.required' => 'Bạn cần phải chọn danh mục',
+            'summary.required' => 'Bạn cần phải nhập vào tóm tắt',
             'description.required' => 'Bạn cần phải nhập vào mô tả',
         ]);
 
@@ -168,7 +172,7 @@ class ArticleController extends Controller
             // Dat ten cho file image
             $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
             //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/Article/';  //upload/brand; upload/vendor
+            $path_upload = 'upload/article/';  //upload/brand; upload/vendor
             // Thuc hien upload file
             $file->move($path_upload,$filename);
             // Luu lai ten
@@ -176,9 +180,10 @@ class ArticleController extends Controller
         }
 
         $Article->url = $request->input('url');
+        $Article->category_id = $request->input('category_id');
 
         // Loai
-        $Article->type = $request->input('type');
+        //$Article->type = $request->input('type') ?? 0;
         //Trang thai
         $is_active = 0;
         if($request->has('is_active')) { //Kiem tra xem is_active co ton tai khong
@@ -194,9 +199,10 @@ class ArticleController extends Controller
         $Article->position = $position;
         //Mo ta
 
+        $Article->summary = $request->input('summary');
         $Article->description = $request->input('description');
-        //Luu
-        $Article->save();
+        $Article->meta_title = $request->input('meta_title');
+        $Article->meta_description = $request->input('meta_description');
 
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.article.index');
