@@ -3,16 +3,31 @@
 @section('content')
     <section class="content-header">
         <h1>
-            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Chỉnh sửa
+            Chỉnh sửa
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li class="active">Chỉnh sửa</li>
         </ol>
     </section>
 
     <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Lỗi !</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
+
         <div class="row">
             <!-- left column -->
             <div class="col-md-12">
@@ -29,13 +44,14 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{$model->title}}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">
                             </div>
+
                             @if($model->image && file_exists(public_path($model->image)))
                                 <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
                             @else
@@ -44,15 +60,15 @@
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{$model->url}}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label>Chọn Danh Mục</label>
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value="0">-- Chọn --</option>
-                                    @foreach($data as $item)
-                                        <option @if($model->parent_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @foreach($categories as $item)
+                                        <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -64,12 +80,12 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Tóm tắt</label>
+                                <label id="label-summary">Tóm tắt</label>
                                 <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
                             </div>
 
@@ -92,7 +108,7 @@
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary ">Lưu lại</button>
+                            <button type="submit" class="btn btn-primary btnCreate">Lưu</button>
                         </div>
                     </form>
                 </div>
@@ -108,21 +124,51 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
+            CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
 
-            $('.btnSave').click(function () {
+            $('.btnCreate').click(function () {
                 if ($('#title').val() === '') {
                     $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
                     document.getElementById('title').scrollIntoView();
                     return false;
                 }
 
-                if ($('#description').val() === '') {
+                if ($('#category_id').val() === 0 || $('#category_id').val() === '') {
+                    $('#category_id').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('category_id').scrollIntoView();
+                    return false;
+                }
+
+                var summary = CKEDITOR.instances["summary"].getData();
+
+                if (summary === '') {
+                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
+                    document.getElementById('label-summary').scrollIntoView();
+                    return false;
+                }
+
+                var description = CKEDITOR.instances["description"].getData();
+
+                if (description === '') {
                     $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
                     document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }
+
+                if ($('#meta_title').val() === '') {
+                    $('#meta_title').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_title').scrollIntoView();
+                    return false;
+                }
+
+                if ($('#meta_description').val() === '') {
+                    $('#meta_description').notify('Bạn chưa chọn danh mục','error');
+                    document.getElementById('meta_description').scrollIntoView();
                     return false;
                 }
             });
         });
     </script>
 @endsection
+

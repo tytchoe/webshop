@@ -7,7 +7,7 @@
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li class="active">article</li>
+            <li class="active">Danh sách</li>
         </ol>
     </section>
 
@@ -17,7 +17,6 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Danh sách article</h3>
                         <a href="{{ route('admin.article.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                     <!-- /.box-header -->
@@ -26,48 +25,33 @@
                             <tr>
                                 <th style="width: 10px">TT</th>
                                 <th>Hình ảnh</th>
-                                <th>Tên</th>
-                                <th>Loại</th>
-                                <th>Vị trí</th>
+                                <th>Tiêu đề</th>
+                                <th>Danh mục</th>
                                 <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                             @foreach($data as $key => $item)
-                                @php
-
-                                @endphp
-                            <tr class="item-{{ $item->id }}">
-                                <td>{{ $key + 1 }}</td>
-                                <td>
-                                    @if($item->image && file_exists(public_path($item->image)))
-                                        <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
-                                    @else
-                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                                    @endif
-                                </td>
-                                <td>{{ $item->title }}</td>
-                                <td>
-                                    @if($item->type == 1)
-                                        article home
-                                    @elseif($item->type == 2)
-                                        article left
-                                    @elseif($item->type ==3)
-                                        article right
-                                    @elseif($item->type == 4)
-                                        Background
-                                    @else
-                                        None
-                                    @endif
-                                </td>
-                                <td>{{ $item->position }}</td>
-                                <td>
-                                    {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.article.edit', ['article' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                                    <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
-                                </td>
-                            </tr>
+                                <tr class="item-{{ $item->id }}">
+                                    <td>{{ $key + 1 }}</td>
+                                    <td>
+                                        @if($item->image && file_exists(public_path($item->image)))
+                                            <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                        @else
+                                            <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>
+                                        {{ !empty($item->category->name) ? $item->category->name : '' }}
+                                    </td>
+                                    <td>
+                                        {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.article.edit', ['article' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
+                                        <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                                    </td>
+                                </tr>
                             @endforeach
                         </table>
                     </div>
@@ -92,13 +76,13 @@
                 var id = $(this).attr('data-id');
 
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Bạn có chắc chắn  xóa?',
+                    text: "Bạn không thể khôi phục lại.",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonText: 'Đồng ý'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

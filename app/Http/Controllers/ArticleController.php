@@ -20,7 +20,7 @@ class ArticleController extends Controller
         //$data = Article::all(); // SELECT * FROM Articles
 
         //Cách 2: Lấy dữ liệu mới nhất và phân trang - mỗi trang 10 bản ghi
-        $data = Article::latest()->paginate(3);
+        $data = Article::latest()->paginate(10);
 
 
         return view('backend.article.index', ['data' => $data]);
@@ -62,6 +62,8 @@ class ArticleController extends Controller
             'category_id.required' => 'Bạn cần phải chọn danh mục',
             'summary.required' => 'Bạn cần phải nhập vào tóm tắt',
             'description.required' => 'Bạn cần phải nhập vào mô tả',
+            'meta_title.required' => 'Bạn cần phải nhập vào meta title',
+            'meta_description.required' => 'Bạn cần phải nhập vào meta description',
         ]);
 
         $Article = new Article();
@@ -74,7 +76,7 @@ class ArticleController extends Controller
             // Dat ten cho file image
             $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
             //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/article/';  //upload/brand; upload/vendor
+            $path_upload = 'upload/Article/';  //upload/brand; upload/vendor
             // Thuc hien upload file
             $file->move($path_upload,$filename);
             // Luu lai ten
@@ -132,9 +134,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $model = Article::findOrFail($id);
-        $data = Category::all();
+        $categories = Category::all(); // select * from categories
 
-        return view('backend.article.edit', ['model' => $model], ['data' => $data]);
+        return view('backend.article.edit', ['model' => $model, 'categories' => $categories]);
     }
 
     /**
@@ -149,6 +151,7 @@ class ArticleController extends Controller
         // xác thực dữ liệu - validate
         $request->validate([
             'title' => 'required|max:255',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'category_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
@@ -156,9 +159,13 @@ class ArticleController extends Controller
             'meta_description' => 'required',
         ],[
             'title.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'image.required' => 'Bạn chưa chọn file ảnh',
+            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
             'summary.required' => 'Bạn cần phải nhập vào tóm tắt',
             'description.required' => 'Bạn cần phải nhập vào mô tả',
+            'meta_title.required' => 'Bạn cần phải nhập vào meta title',
+            'meta_description.required' => 'Bạn cần phải nhập vào meta description',
         ]);
 
         $Article = Article::findOrFail($id);
@@ -166,13 +173,12 @@ class ArticleController extends Controller
         $Article->slug = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // Kiem tra xem co image duoc chon khong
-            @unlink(public_path($Article->image));
             //get File
             $file = $request->file('image');
             // Dat ten cho file image
             $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
             //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/article/';  //upload/brand; upload/vendor
+            $path_upload = 'upload/Article/';  //upload/brand; upload/vendor
             // Thuc hien upload file
             $file->move($path_upload,$filename);
             // Luu lai ten
@@ -203,6 +209,8 @@ class ArticleController extends Controller
         $Article->description = $request->input('description');
         $Article->meta_title = $request->input('meta_title');
         $Article->meta_description = $request->input('meta_description');
+        //Luu
+        $Article->save();
 
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.article.index');
@@ -220,7 +228,7 @@ class ArticleController extends Controller
         // xóa ảnh cũ
         @unlink(public_path($Article->image));
 
-        Article::destroy($id);
+        Article::destroy($id); // DELETE FROM articles WHERE id = ?
 
         return response()->json([
             'status' => true,

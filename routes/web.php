@@ -21,6 +21,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
     Route::resource('category', \App\Http\Controllers\CateGoryController::class);
     Route::resource('article', \App\Http\Controllers\ArticleController::class);
+    Route::resource('setting', \App\Http\Controllers\SettingController::class);
 }
 );
 
