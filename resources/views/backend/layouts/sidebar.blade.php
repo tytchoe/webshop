@@ -36,6 +36,11 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.product.index') }}">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Sản Phẩm</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.article.index') }}">
                     <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Bài viết</span>
                 </a>
