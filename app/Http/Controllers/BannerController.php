@@ -19,7 +19,7 @@ class BannerController extends Controller
         //$data = Banner::all(); // SELECT * FROM banners
 
         //Cách 2: Lấy dữ liệu mới nhất và phân trang - mỗi trang 10 bản ghi
-        $data = Banner::latest()->paginate(3);
+        $data = Banner::latest()->paginate(10);
 
 
         return view('backend.banner.index', ['data' => $data]);

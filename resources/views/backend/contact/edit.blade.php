@@ -3,11 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thông tin Website
+            Chỉnh sửa
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Thông tin Website</li>
+            <li class="active">Chỉnh sửa</li>
         </ol>
     </section>
 
@@ -34,72 +34,81 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
+                        <a href="{{ route('admin.contact.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.setting.store') }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.contact.update', ['contact' => $model->id]) }}" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên Công Ty</label>
-                                <input value="{{ $setting->company }}" id="company" name="company" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Tiêu đề</label>
+                                <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Logo</label>
+                                <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">
                             </div>
 
-                            @if($setting->image && file_exists(public_path($setting->image)))
-                                <img src="{{ asset($setting->image) }}" width="100" height="75" alt="">
+                            @if($model->image && file_exists(public_path($model->image)))
+                                <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
                             @else
                                 <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
                             @endif
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Địa chỉ 1</label>
-                                <input value="{{ $setting->address }}" type="text" class="form-control" id="address" name="address" placeholder="">
+                                <label for="exampleInputPassword1">Liên kết</label>
+                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Địa chỉ 2</label>
-                                <input value="{{ $setting->address2 }}" type="text" class="form-control" id="address2" name="address2" placeholder="">
+                                <label>Chọn Danh Mục</label>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="0">-- Chọn --</option>
+                                    @foreach($categories as $item)
+                                        <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">SĐT</label>
-                                <input value="{{ $setting->phone }}" type="text" class="form-control" id="phone" name="phone" placeholder="">
+                                <label for="exampleInputPassword1">Vị trí</label>
+                                <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                </label>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Email</label>
-                                <input value="{{ $setting->email }}" type="email" class="form-control" id="email" name="email" placeholder="">
+                                <label id="label-summary">Tóm tắt</label>
+                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Mã Số Thuế</label>
-                                <input value="{{ $setting->tax }}" type="text" class="form-control" id="tax" name="tax" placeholder="">
+                                <label id="label-description">Mô tả</label>
+                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Facebook</label>
-                                <input value="{{ $setting->facebook }}" type="text" class="form-control" id="facebook" name="facebook" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Thời gian mở cửa</label>
-                                <input value="{{ $setting->open_time }}" type="text" class="form-control" id="open_time" name="open_time" placeholder="">
+                                <label id="label-description">Meta Title</label>
+                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_title }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Giới thiệu</label>
-                                <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{ $setting->content }}</textarea>
+                                <label id="label-description">Meta Description</label>
+                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_description }}</textarea>
                             </div>
 
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary btnCreate">Thêm</button>
+                            <button type="submit" class="btn btn-primary btnCreate">Lưu</button>
                         </div>
                     </form>
                 </div>

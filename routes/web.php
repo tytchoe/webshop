@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('homeindex');
+Route::get('/lien-he', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
+Route::post('/lien-he', [\App\Http\Controllers\HomeController::class, 'contactPost'])->name('contactPost');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard',[\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
@@ -21,6 +23,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
     Route::resource('category', \App\Http\Controllers\CateGoryController::class);
     Route::resource('article', \App\Http\Controllers\ArticleController::class);
+    Route::resource('contact', \App\Http\Controllers\ContactController::class);
     Route::resource('setting', \App\Http\Controllers\SettingController::class);
 }
 );

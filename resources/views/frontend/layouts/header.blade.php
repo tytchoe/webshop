@@ -1,23 +1,23 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><h2>Online Store Website<em>.</em></h2></a>
+            <a class="navbar-brand" href="{{ route('homeindex') }}"><h2>Online Store Website<em>.</em></h2></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="index.html">Home
+                        <a class="nav-link" href="{{ route('homeindex') }}">Trang chủ
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="products.html">Products</a>
+                        <a class="nav-link" href="products.html">Sản phẩm</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="checkout.html">Checkout</a>
+                        <a class="nav-link" href="checkout.html">Thanh toán</a>
                     </li>
 
                     <li class="nav-item dropdown">
@@ -31,7 +31,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact Us</a>
+                        <a class="nav-link" href="{{ route('contact') }}#form">Liên hệ</a>
                     </li>
                 </ul>
             </div>
