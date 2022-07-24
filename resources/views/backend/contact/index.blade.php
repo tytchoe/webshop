@@ -43,7 +43,7 @@
                                     <td>
                                         {{ $item->content }}
                                     </td>
-                                    <td>
+                                    <td width="100px" >
                                         <a href="{{ route('admin.contact.edit', ['contact' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
                                         <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                                     </td>
