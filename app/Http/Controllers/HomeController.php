@@ -43,5 +43,10 @@ class HomeController extends Controller
 
         return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
     }
-    //
+    //đăng nhập
+    public function login()
+    {
+        return view('backend.admin.login');
+    }
+
 }
