@@ -30,6 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('contact', \App\Http\Controllers\ContactController::class);
     Route::resource('user', \App\Http\Controllers\UserController::class);
     Route::resource('setting', \App\Http\Controllers\SettingController::class);
+    Route::resource('role', \App\Http\Controllers\RoleController::class);
 }
 );
 

@@ -3,11 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Chỉnh sửa
+            Sửa Liên Hệ
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li class="active">Chỉnh sửa</li>
+            <li class="active">Sửa Liên Hệ</li>
         </ol>
     </section>
 
@@ -38,77 +38,36 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.contact.update', ['contact' => $model->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.contact.update', ['contact' => $contact->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Tên</label>
+                                <input value="{{ $contact->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
-                            </div>
-
-                            @if($model->image && file_exists(public_path($model->image)))
-                                <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
-                            @else
-                                <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                            @endif
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="exampleInputPassword1">Số điện thoại</label>
+                                <input value="{{ $contact->phone }}"type="text" class="form-control" id="phone" name="phone" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Danh Mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($categories as $item)
-                                        <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputPassword1">Email</label>
+                                <input value="{{ $contact->email }}"type="text" class="form-control" id="email" name="email" placeholder="">
                             </div>
+
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-summary">Tóm tắt</label>
-                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-description">Meta Title</label>
-                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_title }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-description">Meta Description</label>
-                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_description }}</textarea>
+                                <label id="label-summary">Nội dung</label>
+                                <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{ $contact->content }}</textarea>
                             </div>
 
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary btnCreate">Lưu</button>
+                            <button type="submit" class="btn btn-primary btnUpdate">Sửa</button>
                         </div>
                     </form>
                 </div>
@@ -124,49 +83,22 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
-            CKEDITOR.replace( 'summary' );
-            CKEDITOR.replace( 'description' );
 
-            $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
+            $('.btnUpdate').click(function () {
+                if ($('#name').val() === '') {
+                    $('#name').notify('Bạn nhập chưa nhập tiêu đề','error');
                     document.getElementById('title').scrollIntoView();
                     return false;
                 }
 
-                if ($('#category_id').val() === 0 || $('#category_id').val() === '') {
-                    $('#category_id').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('category_id').scrollIntoView();
+                var content = CKEDITOR.instances["content"].getData();
+
+                if (content === '') {
+                    $('#label-content').notify('Bạn nhập chưa nhập tóm tắt','error');
+                    document.getElementById('label-content').scrollIntoView();
                     return false;
                 }
 
-                var summary = CKEDITOR.instances["summary"].getData();
-
-                if (summary === '') {
-                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
-                    document.getElementById('label-summary').scrollIntoView();
-                    return false;
-                }
-
-                var description = CKEDITOR.instances["description"].getData();
-
-                if (description === '') {
-                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                    document.getElementById('label-description').scrollIntoView();
-                    return false;
-                }
-
-                if ($('#meta_title').val() === '') {
-                    $('#meta_title').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('meta_title').scrollIntoView();
-                    return false;
-                }
-
-                if ($('#meta_description').val() === '') {
-                    $('#meta_description').notify('Bạn chưa chọn danh mục','error');
-                    document.getElementById('meta_description').scrollIntoView();
-                    return false;
-                }
             });
         });
     </script>

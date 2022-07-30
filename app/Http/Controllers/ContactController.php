@@ -38,56 +38,17 @@ class ContactController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
-            'target' => 'required',
-            'description' => 'required',
+            'name' => 'required|max:255',
         ],[
-            'title.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.required' => 'Bạn chưa chọn file ảnh',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
-            'target.required' => 'Bạn cần phải target',
-            'description.required' => 'Bạn cần phải nhập vào mô tả',
+            'name.required' => 'Bạn cần phải nhập vào tiêu đề',
         ]);
 
         $contact = new Contact();
-        $contact->title = $request->input('title');
-        $contact->slug = Str::slug($request->input('title')); //slug
 
-        if($request->hasFile('image')) { // Kiem tra xem co image duoc chon khong
-            //get File
-            $file = $request->file('image');
-            // Dat ten cho file image
-            $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
-            //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/contact/';  //upload/brand; upload/vendor
-            // Thuc hien upload file
-            $file->move($path_upload,$filename);
-            // Luu lai ten
-            $contact->image = $path_upload.$filename;
-        }
-
-        $contact->url = $request->input('url');
-        $contact->target = $request->input('target');
-
-        // Loai
-        $contact->type = $request->input('type') ?? 0;
-        //Trang thai
-        $is_active = 0;
-        if($request->has('is_active')) { //Kiem tra xem is_active co ton tai khong
-            $is_active = $request->input('is_active');
-        }
-        //Trang thai
-        $contact->is_active = $is_active;
-        //Vi tri
-        $position=0;
-        if($request->has('position')){
-            $position = $request->input('position');
-        }
-        $contact->position = $position;
-        //Mo ta
-
-        $contact->description = $request->input('description');
+        $contact->name = $request->input('name');
+        $contact->phone = $request->input('phone');
+        $contact->email = $request->input('email');
+        $contact->content = $request->input('content');
         //Luu
         $contact->save();
 
@@ -114,9 +75,9 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $model = Contact::findOrFail($id);
+        $contact = Contact::findOrFail($id);
 
-        return view('backend.contact.edit', ['model' => $model]);
+        return view('backend.contact.edit', ['contact' => $contact]);
     }
 
     /**
@@ -128,7 +89,22 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+        ],[
+            'name.required' => 'Bạn cần phải nhập vào tiêu đề',
+        ]);
+        $Contact = Contact::findOrFail($id);
+
+        $Contact->name = $request->input('name');
+        $Contact->phone = $request->input('phone');
+        $Contact->email = $request->input('email');
+        $Contact->content = $request->input('content');
+        //Luu
+        $Contact->save();
+
+        //Chuyen huong ve trang danh sach
+        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -139,6 +115,13 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = Contact::findOrFail($id);
+
+        $contact::destroy($id);
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Xóa thành công'
+        ]);
     }
 }

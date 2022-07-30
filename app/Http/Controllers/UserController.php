@@ -16,7 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $user = User::latest()->paginate(10);
-        return view('backend.user.index', ['user' => $user]);
+        $role = Role::all();
+        return view('backend.user.index', ['user' => $user], ['role' => $role]);
     }
 
     /**

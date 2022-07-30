@@ -44,11 +44,11 @@
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>
-                                        @if($item->role_id == 1)
-                                            Admin
-                                        @elseif($item->role_id  == 2)
-                                            Member
-                                        @endif
+                                        @foreach($role as $data => $item2)
+                                            @if($item->role_id == $item2->id) {{ $item2->name }}
+                                            @endif
+                                        @endforeach
+                                        @if($item->role_id == 0) {{ "Không" }}@endif
                                     </td>
                                     <td>
                                         {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
