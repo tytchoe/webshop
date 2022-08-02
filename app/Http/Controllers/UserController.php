@@ -133,7 +133,7 @@ class UserController extends Controller
 //            'description.required' => 'Bạn cần phải nhập vào mô tả',
         ]);
 
-        $user = new User();
+        $user = User::findOrFail($id);
         $user->name = $request->input('name');
 
         if($request->hasFile('avatar')) { // Kiem tra xem co image duoc chon khong

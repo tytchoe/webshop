@@ -69,7 +69,7 @@
 
                             <div class="form-group">
                                 <label>Chọn Danh Mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
+                                <select class="form-control" name="role_id" id="role_id">
                                     <option value="0">-- Chọn --</option>
                                     @foreach($role as $item)
                                         <option {{ $model->role_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>

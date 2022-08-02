@@ -14,14 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('homeindex');
-Route::get('/lien-he', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
+Route::get('/lien-he', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::post('/lien-he', [\App\Http\Controllers\HomeController::class, 'contactPost'])->name('contactPost');
 
-Route::get('/admin/login', [\App\Http\Controllers\HomeController::class, 'login'])->name('login');
+Route::get('admin/login', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
+Route::post('/admin/loginPost', [\App\Http\Controllers\AdminController::class, 'loginPost'])->name('admin.loginPost');
+Route::get('/admin/logout', [\App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard',[\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
@@ -31,7 +33,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('user', \App\Http\Controllers\UserController::class);
     Route::resource('setting', \App\Http\Controllers\SettingController::class);
     Route::resource('role', \App\Http\Controllers\RoleController::class);
-}
-);
+});
 
 

@@ -19,75 +19,120 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.banner.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.product.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.banner.update', ['banner' => $model->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.product.update', ['product' => $product->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{ $model->title }}" required id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputEmail1">Tên sản phẩm</label>
+                                <input value="{{ $product->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputFile">Chọn ảnh</label>
                                 <input type="file" name="image" id="image">
                             </div>
-
-                            @if($model->image && file_exists(public_path($model->image)))
-                                <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
+                            @if($product->image && file_exists(public_path($product->image)))
+                                <img src="{{ asset($product->image) }}" width="100" height="75" alt="">
                             @else
                                 <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
                             @endif
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="exampleInputEmail1">Số lượng</label>
+                                <input value="{{ $product->name }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option @if($model->target == '_blank') selected @endif value="_blank">_blank</option>
-                                    <option @if($model->target == '_self') selected @endif value="_self">_self</option>
+                                <label for="exampleInputEmail1">Giá</label>
+                                <input value="{{ $product->name }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Giá sale</label>
+                                <input value="{{ $product->name }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Liên kết</label>
+                                <input value="{{ $product->name }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Danh mục</label>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($mergeData['category'] as $item)
+                                        <option @if($product->category_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">-- chọn --</option>
-                                    <option @if($model->type == 1) selected @endif value="1">Banner home</option>
-                                    <option @if($model->type == 2) selected @endif value="2">Banner left</option>
-                                    <option @if($model->type == 3) selected @endif value="3">Banner right</option>
-                                    <option @if($model->type == 4) selected @endif value="4">Background</option>
+                                <label>Nhà cung cấp</label>
+                                <select class="form-control" name="vendor_id" id="vendor_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($mergeData['vendor'] as $item)
+                                        <option @if($product->vendor_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Thương hiệu</label>
+                                <select class="form-control" name="brand_id" id="brand_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($mergeData['brand']  as $item)
+                                        <option @if($product->brand_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Vị trí</label>
-                                <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                <input value="{{ $product->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                             </div>
 
                             <div class="checkbox">
                                 <label>
-                                    <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input @if($product->is_active == 1) checked @endif type="checkbox" name="is_active" id="is_active"> Trạng thái
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input @if($product->is_hot == 1) checked @endif type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
                                 </label>
                             </div>
 
                             <div class="form-group">
-                                <label>Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
+                                <label id="label-summary">Tóm tắt</label>
+                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $product->summary }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-description">Mô tả</label>
+                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->description }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-meta-title">Tiêu đề</label>
+                                <textarea id="metaTitle" name="metaTitle" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_title }}</textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-meta-description">Mô tả chi tiết</label>
+                                <textarea id="metaDescription" name="metaDescription" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_descprition }}</textarea>
                             </div>
 
                         </div>
                         <!-- /.box-body -->
 
                         <div class="box-footer">
-                            <button type="submit" class="btn btn-primary">Lưu lại</button>
+                            <button type="submit" class="btn btn-primary btnSave">Lưu lại</button>
                         </div>
                     </form>
                 </div>
@@ -104,19 +149,54 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             CKEDITOR.replace( 'description' );
-
-            $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
-                    document.getElementById('title').scrollIntoView();
-                    return false;
+            CKEDITOR.replace( 'summary' );
+            CKEDITOR.replace( 'meta-title' );
+            CKEDITOR.replace( 'meta-description' );
+            $('#price').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
                 }
-
-                if ($('#description').val() === '') {
-                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                    document.getElementById('label-description').scrollIntoView();
-                    return false;
+                $(this).val(price);
+            });
+            $('#sale').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
                 }
+                $(this).val(price);
+            });
+            if($('#sale').val !== '') {
+                var price = $('#sale').val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $('#sale').val(price);
+            }
+            if($('#price').val !== '') {
+                var price = $('#price').val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $('#price').val(price);
+            }
+
+            $('.btnSave').click(function () {
+                // if ($('#title').val() === '') {
+                //     $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
+                //     document.getElementById('title').scrollIntoView();
+                //     return false;
+                // }
+                //
+                // if ($('#description').val() === '') {
+                //     $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
+                //     document.getElementById('label-description').scrollIntoView();
+                //     return false;
+                // }
             });
         });
     </script>

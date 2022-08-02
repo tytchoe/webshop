@@ -45,7 +45,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                <input id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -54,26 +54,52 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="exampleInputEmail1">Số lượng</label>
+                                <input id="stock" name="stock" type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Giá</label>
+                                <input id="price" name="price" type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Giá sale</label>
+                                <input id="sale" name="sale" type="text" class="form-control" placeholder="">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="exampleInputPassword1">Liên kết</label>
                                 <input type="text" class="form-control" id="url" name="url" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Target</label>
-                                <select class="form-control" name="target" id="target">
-                                    <option value="_blank">_blank</option>
-                                    <option value="_self">_self</option>
+                                <label>Danh mục</label>
+                                <select class="form-control" name="category_id" id="category_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($category as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Loại</label>
-                                <select class="form-control" name="type" id="type">
-                                    <option value="">-- chọn --</option>
-                                    <option value="1">product home</option>
-                                    <option value="2">product left</option>
-                                    <option value="3">product right</option>
-                                    <option value="4">Background</option>
+                                <label>Nhà cung cấp</label>
+                                <select class="form-control" name="vendor_id" id="vendor_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($mergeData['vendor'] as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Thương hiệu</label>
+                                <select class="form-control" name="brand_id" id="brand_id">
+                                    <option value="0">---Chọn---</option>
+                                    @foreach($mergeData['brand']  as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -84,13 +110,33 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
                                 </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-summary">Tóm tắt</label>
+                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label id="label-description">Mô tả</label>
                                 <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-meta-title">Tiêu đề</label>
+                                <textarea id="metaTitle" name="metaTitle" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="label-meta-description">Mô tả chi tiết</label>
+                                <textarea id="metaDescription" name="metaDescription" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                         </div>
@@ -114,19 +160,53 @@
     <script type="text/javascript">
         $( document ).ready(function() {
             CKEDITOR.replace( 'description' );
-
+            CKEDITOR.replace( 'summary' );
+            CKEDITOR.replace( 'meta-title' );
+            CKEDITOR.replace( 'meta-description' );
+            $('#price').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $(this).val(price);
+            });
+            $('#sale').on('keyup',function (e) {
+                var price = $(this).val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $(this).val(price);
+            });
+            if($('#sale').val !== '') {
+                var price = $('#sale').val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $('#sale').val(price);
+            }
+            if($('#price').val !== '') {
+                var price = $('#price').val().replace(/[^0-9]/g,'');
+                if (price > 0) {
+                    price = parseInt(price.replaceAll(',',''));
+                    price = new Intl.NumberFormat('ja-JP').format(price);
+                }
+                $('#price').val(price);
+            }
             $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
-                    document.getElementById('title').scrollIntoView();
-                    return false;
-                }
-
-                if ($('#description').val() === '') {
-                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                    document.getElementById('label-description').scrollIntoView();
-                    return false;
-                }
+                // if ($('#title').val() === '') {
+                //     $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
+                //     document.getElementById('title').scrollIntoView();
+                //     return false;
+                // }
+                //
+                // if ($('#description').val() === '') {
+                //     $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
+                //     document.getElementById('label-description').scrollIntoView();
+                //     return false;
+                // }
             });
         });
     </script>

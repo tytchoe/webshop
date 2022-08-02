@@ -3,11 +3,11 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Banner
+            Sản phẩm
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li class="active">Banner</li>
+            <li class="active">Sản phẩm</li>
         </ol>
     </section>
 
@@ -50,7 +50,7 @@
                                         {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.banner.edit', ['banner' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
+                                        <a href="{{ route('admin.product.edit', ['product' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
                                         <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                                     </td>
                                 </tr>
@@ -88,7 +88,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url : '/admin/banner/'+id,
+                            url : '/admin/product/'+id,
                             type: 'DELETE',
                             data: {},
                             success: function (res) {
