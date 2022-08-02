@@ -1,16 +1,25 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
+        @if(\Illuminate\Support\Facades\Auth::check())
+        @php
+            $user = \Illuminate\Support\Facades\Auth::user();
+        @endphp
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ asset('backend') }}/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                @if($user->avatar && file_exists(public_path($user->avatar)))
+                    <img src="{{ asset($user->avatar) }}" class="img-circle" alt="">
+                @else
+                    <img src="{{ asset('upload/user-404.png') }}" class="img-circle" alt="">
+                @endif
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>{{ $user->name }}</p>
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
+        @endif
         <!-- search form -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
