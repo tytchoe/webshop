@@ -45,6 +45,16 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('admin.vendor.index') }}">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Nhà cung cấp</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.brand.index') }}">
+                    <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Thương hiệu</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('admin.product.index') }}">
                     <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Sản Phẩm</span>
                 </a>

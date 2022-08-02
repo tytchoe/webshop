@@ -28,6 +28,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
     Route::resource('category', \App\Http\Controllers\CateGoryController::class);
+    Route::resource('vendor', \App\Http\Controllers\VendorController::class);
+    Route::resource('brand', \App\Http\Controllers\BrandController::class);
     Route::resource('article', \App\Http\Controllers\ArticleController::class);
     Route::resource('contact', \App\Http\Controllers\ContactController::class);
     Route::resource('user', \App\Http\Controllers\UserController::class);
