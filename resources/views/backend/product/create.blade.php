@@ -131,12 +131,12 @@
 
                             <div class="form-group">
                                 <label id="label-meta-title">Tiêu đề</label>
-                                <textarea id="metaTitle" name="metaTitle" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                             <div class="form-group">
                                 <label id="label-meta-description">Mô tả chi tiết</label>
-                                <textarea id="metaDescription" name="metaDescription" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
 
                         </div>
@@ -196,17 +196,59 @@
                 $('#price').val(price);
             }
             $('.btnCreate').click(function () {
-                // if ($('#title').val() === '') {
-                //     $('#title').notify('Bạn nhập chưa nhập tiêu đề','error');
-                //     document.getElementById('title').scrollIntoView();
-                //     return false;
-                // }
-                //
-                // if ($('#description').val() === '') {
-                //     $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
-                //     document.getElementById('label-description').scrollIntoView();
-                //     return false;
-                // }
+                if ($('#name').val() === '') {
+                    $('#name').notify('Bạn nhập chưa nhập tên','error');
+                    document.getElementById('name').scrollIntoView();
+                    return false;
+                }
+                if ($('#stock').val() === '') {
+                    $('#stock').notify('Bạn nhập chưa nhập số lượng','error');
+                    document.getElementById('stock').scrollIntoView();
+                    return false;
+                }
+                if ($('#price').val() === '') {
+                    $('#price').notify('Bạn nhập chưa nhập giá','error');
+                    document.getElementById('price').scrollIntoView();
+                    return false;
+                }
+                if ($('#sale').val() === '') {
+                    $('#sale').notify('Bạn nhập chưa nhập giảm giá','error');
+                    document.getElementById('sale').scrollIntoView();
+                    return false;
+                }
+                if ($('#category_id').val() === '') {
+                    $('#category_id').notify('Bạn nhập chưa chọn danh mục','error');
+                    document.getElementById('category_id').scrollIntoView();
+                    return false;
+                }
+                if ($('#vendor_id').val() === '') {
+                    $('#vendor_id').notify('Bạn nhập chưa chọn nhà cung cấp','error');
+                    document.getElementById('vendor_id').scrollIntoView();
+                    return false;
+                }
+                if ($('#brand_id').val() === '') {
+                    $('#brand_id').notify('Bạn nhập chưa chọn thương hiệu','error');
+                    document.getElementById('vendor_id').scrollIntoView();
+                    return false;
+                }
+
+                if ($('#summary').val() === '') {
+                    $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
+                    document.getElementById('label-summary').scrollIntoView();
+                    return false;
+                }if ($('#description').val() === '') {
+                    $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
+                    document.getElementById('label-description').scrollIntoView();
+                    return false;
+                }if ($('#meta_title').val() === '') {
+                    $('#label-meta-title').notify('Bạn nhập chưa nhập tiêu đề','error');
+                    document.getElementById('label-meta-title').scrollIntoView();
+                    return false;
+                }if ($('#meta_description').val() === '') {
+                    $('#label-meta_description').notify('Bạn nhập chưa nhập mô tả chi tiết','error');
+                    document.getElementById('label-meta_description').scrollIntoView();
+                    return false;
+                }
             });
         });
     </script>

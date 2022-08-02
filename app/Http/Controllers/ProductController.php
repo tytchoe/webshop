@@ -56,15 +56,23 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'category_id' => 'required',
+            'vendor_id' => 'required',
+            'brand_id' => 'required',
             'summary' => 'required',
             'description' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
             'image.required' => 'Bạn chưa chọn file ảnh',
             'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
+            'vendor_id.required' => 'Bạn cần phải chọn nhà cung cấp',
+            'brand_id.required' => 'Bạn cần phải chọn thương hiệu',
             'summary.required' => 'Bạn cần phải nhập vào tóm tắt',
             'description.required' => 'Bạn cần phải nhập vào mô tả',
+            'meta_title.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'meta_description.required' => 'Bạn cần phải nhập vào mô tả chi tiết',
         ]);
 
         $product = new Product();
@@ -115,8 +123,8 @@ class ProductController extends Controller
 
         $product->summary = $request->input('summary');
         $product->description = $request->input('description');
-        $product->meta_title = $request->input('metaTilte');
-        $product->meta_description = $request->input('metaDescription');
+        $product->meta_title = $request->input('meta_title');
+        $product->meta_description = $request->input('meta_description');
         //Luu
         $product->save();
 
@@ -166,9 +174,26 @@ class ProductController extends Controller
     {
 //        dd($request);
         $request->validate([
-
+            'name' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'category_id' => 'required',
+            'vendor_id' => 'required',
+            'brand_id' => 'required',
+            'summary' => 'required',
+            'description' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
         ],[
-
+            'name.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'image.required' => 'Bạn chưa chọn file ảnh',
+            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+            'category_id.required' => 'Bạn cần phải chọn danh mục',
+            'vendor_id.required' => 'Bạn cần phải chọn nhà cung cấp',
+            'brand_id.required' => 'Bạn cần phải chọn thương hiệu',
+            'summary.required' => 'Bạn cần phải nhập vào tóm tắt',
+            'description.required' => 'Bạn cần phải nhập vào mô tả',
+            'meta_title.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'meta_description.required' => 'Bạn cần phải nhập vào mô tả chi tiết',
         ]);
 
         $product = Product::findOrFail($id);
