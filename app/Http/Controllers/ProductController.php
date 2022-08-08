@@ -16,12 +16,25 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data = Product::latest()->paginate(10);
+        $param = $request->all();
+        $filter_type = $param['filter_type'];
 
+        if(Auth::user()->role_id ==1 ){
+            if($filter_type == 0){
+                $data = Product::withTrashed()->latest()->paginate(10);
+            }elseif ($filter_type == 1){
+                $data = Product::latest()->paginate(10);
+            }elseif ($filter_type == 2){
+                $data = Product::onlyTrashed()->latest()->paginate(10);
+            }
 
-        return view('backend.product.index', ['data' => $data]);
+        }else{
+            $data = Product::latest()->paginate(10);
+        }
+
+        return view('backend.product.index', ['data' => $data, 'filter_type' => $filter_type]);
     }
 
     /**
@@ -91,6 +104,10 @@ class ProductController extends Controller
             // Luu lai ten
             $product->image = $path_upload.$filename;
         }
+
+        $product->stock = (int)$request->input('stock');
+        $product->sale = (int)Str::remove(',',$request->input('sale'));
+        $product->price = (int)Str::remove(',',$request->input('price'));
 
         $product->url = $request->input('url');
         $product->category_id = $request->input('category_id');
@@ -214,6 +231,9 @@ class ProductController extends Controller
             $product->image = $path_upload.$filename;
         }
 
+        $product->sale = (int)Str::remove(',',$request->input('sale'));
+        $product->price = (int)Str::remove(',',$request->input('price'));
+
         $product->url = $request->input('url');
         $product->category_id = $request->input('category_id');
         $product->brand_id = $request->input('brand_id');
@@ -264,6 +284,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
+
         // xóa ảnh cũ
         @unlink(public_path($product->image));
 
@@ -272,6 +293,17 @@ class ProductController extends Controller
         return response()->json([
             'status' => true,
             'msg' => 'Xóa thành công'
+        ]);
+    }
+
+    public function restore($id){
+        $product = Product::onlyTrashed()->findOrFail($id);
+
+        $product->restore(); // DELETE FROM Products WHERE id = ?
+
+        return response()->json([
+            'status' => true,
+            'msg' => 'Khôi phục thành công'
         ]);
     }
 }

@@ -45,7 +45,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="">
+                                <input value="{{ old('name') }}" id="name" name="name" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -55,22 +55,22 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số lượng</label>
-                                <input id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                <input value="{{ old('stock') }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá</label>
-                                <input id="price" name="price" type="text" class="form-control" placeholder="">
+                                <input value="{{ old('price') }}" id="price" name="price" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá sale</label>
-                                <input id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                <input value="{{ old('sale') }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Liên kết</label>
-                                <input type="text" class="form-control" id="url" name="url" placeholder="">
+                                <input value="{{ old('url') }}" type="text" class="form-control" id="url" name="url" placeholder="">
                             </div>
 
                             <div class="form-group">
@@ -78,7 +78,7 @@
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value="0">---Chọn---</option>
                                     @foreach($category as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        <option @if(old('category_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

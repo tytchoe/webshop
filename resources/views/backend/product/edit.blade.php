@@ -44,22 +44,22 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số lượng</label>
-                                <input value="{{ $product->name }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                <input value="{{ $product->stock }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá</label>
-                                <input value="{{ $product->name }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                                <input value="{{ $product->price }}" id="price" name="price" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Giá sale</label>
-                                <input value="{{ $product->name }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                <input value="{{ $product->sale }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $product->name }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <input value="{{ $product->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
                             </div>
 
                             <div class="form-group">

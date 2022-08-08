@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm category
+            Thêm brand
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -35,11 +35,11 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.category.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.brand.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.brand.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
@@ -53,13 +53,8 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Chọn Danh Mục Cha</label>
-                                <select class="form-control" name="parent_id" id="parent_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($data as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="exampleInputEmail1">Website</label>
+                                <input id="website" name="website" type="text" class="form-control" placeholder="">
                             </div>
 
                             <div class="form-group">
