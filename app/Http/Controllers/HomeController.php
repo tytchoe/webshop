@@ -5,18 +5,31 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use \Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+    public function __construct()
+    {
+        $setting = Setting::first();
+
+        View::share('setting',$setting);
+    }
+
     public function index()
     {
         return view('frontend.home');
     }
 
+    public function introduce()
+    {
+
+        return view('frontend.introduce');
+    }
+
     public function contact()
     {
-        $setting = Setting::first();
-        return view('frontend.contact',['setting'=>$setting]);
+        return view('frontend.contact');
     }
     // thêm liên hệ
     public function contactPost(Request $request)

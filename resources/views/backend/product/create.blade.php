@@ -231,20 +231,26 @@
                     document.getElementById('vendor_id').scrollIntoView();
                     return false;
                 }
-
-                if ($('#summary').val() === '') {
+                var summary = CKEDITOR.instances["summary"].getData();
+                if (summary === '') {
                     $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
                     document.getElementById('label-summary').scrollIntoView();
                     return false;
-                }if ($('#description').val() === '') {
+                }
+                var description = CKEDITOR.instances["description"].getData();
+                if (description === '') {
                     $('#label-description').notify('Bạn nhập chưa nhập mô tả','error');
                     document.getElementById('label-description').scrollIntoView();
                     return false;
-                }if ($('#meta_title').val() === '') {
+                }
+                var meta_title = CKEDITOR.instances["meta_title"].getData();
+                if (meta_title === '') {
                     $('#label-meta-title').notify('Bạn nhập chưa nhập tiêu đề','error');
                     document.getElementById('label-meta-title').scrollIntoView();
                     return false;
-                }if ($('#meta_description').val() === '') {
+                }
+                var meta_description = CKEDITOR.instances["meta_description"].getData();
+                if (meta_description === '') {
                     $('#label-meta_description').notify('Bạn nhập chưa nhập mô tả chi tiết','error');
                     document.getElementById('label-meta_description').scrollIntoView();
                     return false;

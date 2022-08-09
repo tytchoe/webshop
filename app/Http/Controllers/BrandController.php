@@ -17,7 +17,7 @@ class BrandController extends Controller
         $data = Brand::latest()->paginate(10);
 
 
-        return view('backend.category.index', ['data' => $data]);
+        return view('backend.brand.index', ['data' => $data]);
     }
 
     /**

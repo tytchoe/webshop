@@ -18,14 +18,14 @@
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Danh sách Sản phẩm</h3>
-                        @if(Auth::user()->role_id == 1)
-                        <div class="form-group" style="float: left;width: 150px;margin: 0">
-                            <select class="form-group" id="filter_type" name="filter_type">
-                                <option value="0">Tất cả</option>
-                                <option value="1">Đang sử dụng</option>
-                                <option value="2">Đã xóa</option>
-                            </select>
-                        </div>
+                        @if(\Auth::user()->role_id == 1)
+                            <div class="form-group" style="width: 150px;float: left;margin: 0">
+                                <select class="form-control" id="filter_type" name="filter_type">
+                                    <option {{ $filter_type == 1 ? 'selected' : '' }} value="1">Tất cả</option>
+                                    <option {{ $filter_type == 2 ? 'selected' : '' }} value="2">Đang Sử Dụng</option>
+                                    <option {{ $filter_type == 3 ? 'selected' : '' }} value="3">Đã Bị Xóa</option>
+                                </select>
+                            </div>
                         @endif
                         <a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
@@ -160,12 +160,10 @@
                     }
                 });
             });
-
             $('#filter_type').change(function () {
                 var filter_type = $('#filter_type').val();
-
-                window.location.href = {{ route('admin.category.index') }}? filter_type=+filter_type
-            })
+                window.location.href = "{{ route('admin.product.index') }}?filter_type="+filter_type;
+            });
         });
     </script>
 @endsection

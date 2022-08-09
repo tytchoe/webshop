@@ -17,17 +17,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-//        dd($request);
         $params = $request->all();
-//        dd($params);
         $filter_type = 2;
         if($request->has('filter_type'))  {
             $filter_type = $params['filter_type'];
         }
-
-//        dd($filter_type);
-        //Cách 1: Lấy toàn bộ dữ liệu
-        //$data = Category::all(); // SELECT * FROM Categorys
 
         // if check admin
         if (Auth::user()->role_id == 1) {

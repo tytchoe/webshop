@@ -24,7 +24,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">About</a>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="about.html">About Us</a>
+                            <a class="dropdown-item" href="{{ route('introduce') }}">Giới thiệu</a>
                             <a class="dropdown-item" href="blog.html">Blog</a>
                             <a class="dropdown-item" href="testimonials.html">Testimonials</a>
                             <a class="dropdown-item" href="terms.html">Terms</a>

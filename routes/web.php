@@ -18,6 +18,9 @@ Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('h
 Route::get('/lien-he', [\App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 Route::post('/lien-he', [\App\Http\Controllers\HomeController::class, 'contactPost'])->name('contactPost');
 
+Route::get('/gioi-thieu', [\App\Http\Controllers\HomeController::class, 'introduce'])->name('introduce');
+
+
 Route::get('admin/login', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
 Route::post('/admin/loginPost', [\App\Http\Controllers\AdminController::class, 'loginPost'])->name('admin.loginPost');
 Route::get('/admin/logout', [\App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');

@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -18,23 +19,26 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $param = $request->all();
-        $filter_type = $param['filter_type'];
+        $params = $request->all();
+        $filter_type = 2;
+        if($request->has('filter_type'))  {
+            $filter_type = $params['filter_type'];
+        }
 
-        if(Auth::user()->role_id ==1 ){
-            if($filter_type == 0){
+        // if check admin
+        if (Auth::user()->role_id == 1) {
+            if ($filter_type == 1) {
                 $data = Product::withTrashed()->latest()->paginate(10);
-            }elseif ($filter_type == 1){
+            } elseif ($filter_type == 2) {
                 $data = Product::latest()->paginate(10);
-            }elseif ($filter_type == 2){
+            } elseif ($filter_type == 3){
                 $data = Product::onlyTrashed()->latest()->paginate(10);
             }
 
-        }else{
+        } else {
             $data = Product::latest()->paginate(10);
         }
-
-        return view('backend.product.index', ['data' => $data, 'filter_type' => $filter_type]);
+        return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type]);
     }
 
     /**
@@ -283,10 +287,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-
-        // xóa ảnh cũ
-        @unlink(public_path($product->image));
 
         Product::destroy($id); // DELETE FROM Products WHERE id = ?
 
