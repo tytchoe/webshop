@@ -8,7 +8,7 @@
             <div class="col-lg-12">
                 <h3> Về chúng tôi </h3>
                 <img src="frontend/assets/images/about-fullscreen-1-1920x700.jpg" alt="">
-                <p>{{ $setting->content }}</p>
+                <p>{{ $mergeData['setting']->content }}</p>
             </div>
         </div>
 

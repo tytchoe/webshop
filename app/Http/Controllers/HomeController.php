@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -12,12 +13,17 @@ class HomeController extends Controller
     public function __construct()
     {
         $setting = Setting::first();
-
-        View::share('setting',$setting);
+        $category = Category::where('parent_id','0')->get();
+        $mergeData = [
+            'category' => $category,
+            'setting' => $setting
+        ];
+        View::share('mergeData',$mergeData);
     }
 
     public function index()
     {
+
         return view('frontend.home');
     }
 

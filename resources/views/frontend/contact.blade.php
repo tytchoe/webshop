@@ -85,16 +85,16 @@
                                     <div class="content">
                                         <ul>
                                             <li>
-                                                <h5>{{ $setting->phone }}</h5>
+                                                <h5>{{ $mergeData['setting']->phone }}</h5>
                                                 <span>SỐ ĐIỆN THOẠI</span>
                                             </li>
                                             <li>
-                                                <h5>{{ $setting->email }}</h5>
+                                                <h5>{{ $mergeData['setting']->email }}</h5>
                                                 <span>ĐỊA CHỈ EMAIL</span>
                                             </li>
                                             <li>
-                                                <h5>{{ $setting->address }}</h5>
-                                                <h5>{{ $setting->address2 }}</h5>
+                                                <h5>{{ $mergeData['setting']->address }}</h5>
+                                                <h5>{{ $mergeData['setting']->address2 }}</h5>
                                                 <span>ĐỊA CHỈ</span>
                                             </li>
                                         </ul>

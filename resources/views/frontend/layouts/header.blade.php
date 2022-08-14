@@ -12,8 +12,18 @@
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="products.html">Sản phẩm</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm
+                            <i class="icon-angle-down"></i>
+                        </a>
+
+                        <div class="dropdown-menu">
+                            @foreach($mergeData['category'] as $item)
+                                <a class="dropdown-item" href="#">{{ $item->name }}
+                                    <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
+                                </a>
+                            @endforeach
+                        </div>
                     </li>
 
                     <li class="nav-item">
