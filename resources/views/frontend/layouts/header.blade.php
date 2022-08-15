@@ -16,12 +16,14 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sản phẩm
                             <i class="icon-angle-down"></i>
                         </a>
-
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu" style="width: 300px;">
                             @foreach($mergeData['category'] as $item)
-                                <a class="dropdown-item" href="#">{{ $item->name }}
-                                    <img src="{{ asset($item->image) }}" width="100" height="75" alt="">
-                                </a>
+                                    <div class="dropdown-item">
+                                        <a class="" data-toggle="dropdown" href="#" style="width: 50%; float: left; color: #0a0a0a;">
+                                            {{ $item->name }}
+                                        </a>
+                                        <img style="width: 50%; float: right"; src="{{ asset($item->image) }}" width="100" height="75" alt="" >
+                                    </div>
                             @endforeach
                         </div>
                     </li>
