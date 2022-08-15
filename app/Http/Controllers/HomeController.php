@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Setting;
@@ -62,7 +63,19 @@ class HomeController extends Controller
 
         return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
     }
-    //đăng nhập
+    // tin tức
+    public function articles()
+    {
+        $articles = Article::where('is_active',1)->latest()->paginate(10);
+        return view('frontend.article',['articles'=>$articles]);
+    }
+
+    public function detailArticle($slug)
+    {
+        $article = Article::where('slug',$slug)->where('is_active',1)->first();
+
+        return view('frontend.article_detail',['article'=>$article]);
+    }
 
 
 }

@@ -117,7 +117,6 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
-            CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
@@ -133,9 +132,7 @@
                     return false;
                 }
 
-                var summary = CKEDITOR.instances["summary"].getData();
-
-                if (summary === '') {
+                if ($('#summary').val() === 0) {
                     $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
                     document.getElementById('label-summary').scrollIntoView();
                     return false;

@@ -46,7 +46,7 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" placeholder="Tên">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên">
                                 </div>
                             </div>
 

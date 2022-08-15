@@ -83,7 +83,7 @@ class ArticleController extends Controller
             $Article->image = $path_upload.$filename;
         }
 
-        $Article->url = $request->input('url');
+        $Article->url = 'http://weblaravel.local/tin-tuc/'.$Article->slug;
         $Article->category_id = $request->input('category_id');
 
         // Loai
@@ -173,6 +173,8 @@ class ArticleController extends Controller
         $Article->slug = Str::slug($request->input('title')); //slug
 
         if($request->hasFile('image')) { // Kiem tra xem co image duoc chon khong
+            //xóa link file cũ
+            @unlink(public_path($Article->image));
             //get File
             $file = $request->file('image');
             // Dat ten cho file image
@@ -225,8 +227,6 @@ class ArticleController extends Controller
     public function destroy($id)
     {
         $Article = Article::findOrFail($id);
-        // xóa ảnh cũ
-        @unlink(public_path($Article->image));
 
         Article::destroy($id); // DELETE FROM articles WHERE id = ?
 

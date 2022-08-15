@@ -80,7 +80,7 @@
 
                             <div class="checkbox">
                                 <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input @if($model->is_active == 1) checked @endif  value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
                             </div>
 
@@ -124,7 +124,6 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
-            CKEDITOR.replace( 'summary' );
             CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
@@ -139,10 +138,7 @@
                     document.getElementById('category_id').scrollIntoView();
                     return false;
                 }
-
-                var summary = CKEDITOR.instances["summary"].getData();
-
-                if (summary === '') {
+                if ($('#summary').val() === '') {
                     $('#label-summary').notify('Bạn nhập chưa nhập tóm tắt','error');
                     document.getElementById('label-summary').scrollIntoView();
                     return false;

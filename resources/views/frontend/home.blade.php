@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="main-button">
-                                <a href="contact.html">Contact Us</a>
+                                <a href="{{ route('contact') }}#form">Liên hệ với chúng tôi</a>
                             </div>
                         </div>
                     </div>
