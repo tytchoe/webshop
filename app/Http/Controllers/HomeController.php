@@ -6,18 +6,28 @@ use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
 
 class HomeController extends Controller
 {
+    protected $categories;
+
+    public function FindChild(int $ids,Category $cate, int $id)
+    {
+        if($cate->parent_id == $id){
+        }
+    }
     public function __construct()
     {
         $setting = Setting::first();
-        $category = Category::where('parent_id','0')->get();
+        $this->categories = Category::where('is_active','1')
+            ->where('type',1)
+            ->get();
         $mergeData = [
-            'category' => $category,
+            'categories' => $this->categories,
             'setting' => $setting
         ];
         View::share('mergeData',$mergeData);
@@ -98,6 +108,43 @@ class HomeController extends Controller
         $comment->save();
 
         return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
+    }
+
+    public function category($slug)
+    {
+//        dd($slug);
+        $category = Category::where('slug',$slug)->where('is_active',1)->first();
+
+        if($category == null){
+            dd(404);
+        }
+
+        $ids[] = $category->id;
+//        $child_categories = [];
+        foreach ($this->categories as $child){
+            if($child->parent_id == $category->id){
+                $ids[] = $child->id;
+            }
+        }
+
+        $products = Product::where('is_active',1)
+            ->wherein('category_id',$ids)
+            ->latest()
+            ->paginate(15);
+
+
+            return view('frontend.category',['category'=>$category,'products'=>$products]);
+    }
+
+    //chi tiết sản phẩm
+    public function product(Request $request,$slug,$id)
+    {
+//        dd($request);
+        $product = Product::where('is_active',1)
+            ->where('id',$id)
+            ->first();
+//        dd($product);
+        return view(    'frontend.product',['product'=>$product]);
     }
 
 }

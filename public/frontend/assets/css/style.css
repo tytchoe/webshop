@@ -1150,3 +1150,44 @@ footer p a:hover {
     background-color: #f7f7f7;
     border-radius: 5px;
 }
+.right-list-f {
+    padding: 0px;
+}
+
+.right-list-f ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.right-list-f ul li {
+    background: #ffffff;
+    -webkit-box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.right-list-f ul li a {
+    color: #333;
+    font-size: 15px;
+}
+
+.right-list-f ul li a img {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.furniture-right {
+    margin-top: 15px;
+}
+
+.furniture-right h3 {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 500;
+    text-transform: none;
+    padding: 15px 25px;
+    margin-bottom: 10px;
+    box-shadow: 0 6px 10px -5px rgba(0, 0, 0, 0.1);
+    background: #09294c;
+}
+
