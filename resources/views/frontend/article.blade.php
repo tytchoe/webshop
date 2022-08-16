@@ -19,7 +19,7 @@
                                     @endif
                                 </div>
                                 <div class="down-content">
-                                    <a href="{{ route('detail-article',['slug'=>$item->slug]) }}"><h4>{{ $item->title }}</h4></a>
+                                    <a href="{{ route('detail-article',['slug'=>$item->slug]) }}"><h4 style="height: 100px;">{{ $item->title }}</h4></a>
                                     <p>{{ substr($item->summary,0,100) }}</p>
                                     <ul class="post-info">
                                         <li><a href="#">{{ !empty($item->user->name) ? $item->user->name : '' }}</a></li>

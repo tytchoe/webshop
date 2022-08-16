@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -76,6 +77,27 @@ class HomeController extends Controller
 
         return view('frontend.article_detail',['article'=>$article]);
     }
+    public function commentPost(Request $request)
+    {
+        // validate
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email',
+            'content' => 'required',
+        ],[
+            'name.required' => 'Bạn cần phải nhập tên',
+            'email.required' => 'Bạn chưa nhập email',
+            'content.required' => 'Bạn chưa nhập nội dung'
+        ]);
 
+        $comment = new Comment();
+        $comment->name = $request->input('name');
+        $comment->email = $request->input('email');
+        $comment->content = $request->input('content');
+        $comment->article_id =
+        $comment->save();
+
+        return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
+    }
 
 }

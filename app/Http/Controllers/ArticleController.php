@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ArticleController extends Controller
@@ -14,16 +15,28 @@ class ArticleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //Cách 1: Lấy toàn bộ dữ liệu
-        //$data = Article::all(); // SELECT * FROM Articles
+        $params = $request->all();
+        $filter_type = 2;
+        if($request->has('filter_type'))  {
+            $filter_type = $params['filter_type'];
+        }
 
-        //Cách 2: Lấy dữ liệu mới nhất và phân trang - mỗi trang 10 bản ghi
-        $data = Article::latest()->paginate(10);
+        // if check admin
+        if (Auth::user()->role_id == 1) {
+            if ($filter_type == 1) {
+                $articles = Article::withTrashed()->latest()->paginate(10);
+            } elseif ($filter_type == 2) {
+                $articles = Article::latest()->paginate(10);
+            } elseif ($filter_type == 3){
+                $articles = Article::onlyTrashed()->latest()->paginate(10);
+            }
 
-
-        return view('backend.article.index', ['data' => $data]);
+        } else {
+            $articles = Article::latest()->paginate(10);
+        }
+        return view('backend.article.index', ['articles' => $articles, 'filter_type' => $filter_type]);
     }
 
     /**
@@ -82,7 +95,7 @@ class ArticleController extends Controller
             // Luu lai ten
             $Article->image = $path_upload.$filename;
         }
-
+        $Article->user_id = $request->user()->id;
         $Article->url = 'http://weblaravel.local/tin-tuc/'.$Article->slug;
         $Article->category_id = $request->input('category_id');
 
@@ -158,7 +171,7 @@ class ArticleController extends Controller
             'meta_title' => 'required',
             'meta_description' => 'required',
         ],[
-            'title.required' => 'Bạn cần phải nhập vào tiêu đề',
+            'title.required' => 'Bạn cần phải nhập vào tiêu đề, tiêu đề phải là duy nhất',
             'image.required' => 'Bạn chưa chọn file ảnh',
             'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
@@ -187,6 +200,7 @@ class ArticleController extends Controller
             $Article->image = $path_upload.$filename;
         }
 
+        $Article->user_id = $request->user()->id;
         $Article->url = $request->input('url');
         $Article->category_id = $request->input('category_id');
 

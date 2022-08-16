@@ -22,6 +22,7 @@ Route::get('/gioi-thieu', [\App\Http\Controllers\HomeController::class, 'introdu
 
 Route::get('/tin-tuc', [\App\Http\Controllers\HomeController::class, 'articles'])->name('articles');
 Route::get('/tin-tuc/{slug}', [\App\Http\Controllers\HomeController::class, 'detailArticle'])->name('detail-article');
+Route::post('/tin-tuc/{slug}', [\App\Http\Controllers\HomeController::class, 'commentPost'])->name('commentPost');
 
 
 Route::get('admin/login', [\App\Http\Controllers\AdminController::class, 'login'])->name('login');
