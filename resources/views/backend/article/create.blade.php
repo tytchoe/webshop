@@ -61,7 +61,9 @@
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value="0">-- Chọn --</option>
                                     @foreach($data as $item)
+                                        @if($item->type == 1)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

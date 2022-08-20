@@ -98,6 +98,12 @@ class CategoryController extends Controller
         }
         //Trang thai
         $Category->is_active = $is_active;
+        $type = 0;
+        if($request->has('type')) { //Kiem tra xem is_active co ton tai khong
+            $type = $request->input('type');
+        }
+        //Trang thai
+        $Category->type = $type;
         //Vi tri
         $position=0;
         if($request->has('position')){

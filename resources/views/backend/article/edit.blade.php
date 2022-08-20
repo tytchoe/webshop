@@ -68,7 +68,9 @@
                                 <select class="form-control" name="category_id" id="category_id">
                                     <option value="0">-- Chọn --</option>
                                     @foreach($categories as $item)
+                                        @if($item->type == 1)
                                         <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>

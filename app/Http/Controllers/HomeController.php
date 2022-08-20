@@ -31,7 +31,7 @@ class HomeController extends Controller
     {
         $setting = Setting::first();
         $this->categories = Category::where('is_active','1')
-            ->where('type',1)
+            ->where('type',0) //loại danh mục sản phẩm
             ->get();
         $mergeData = [
             'categories' => $this->categories,

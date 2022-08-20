@@ -78,10 +78,18 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-offset-2 col-sm-10">
+                            <div class="col-sm-offset-2 col-sm-4">
                                 <div class="checkbox">
                                     <label>
                                         <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-1 col-sm-5">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="type" id="type"> Bài viết
                                     </label>
                                 </div>
                             </div>
