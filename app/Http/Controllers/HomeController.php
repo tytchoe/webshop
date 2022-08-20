@@ -15,10 +15,17 @@ class HomeController extends Controller
 {
     protected $categories;
 
-    public function FindChild(int $ids,Category $cate, int $id)
+    public function FindChild(array $ids, int $id)
     {
-        if($cate->parent_id == $id){
+        foreach ($this->categories as $childs){
+            if($childs->parent_id == $id){
+                $ids[] = $childs->id;
+//                dd($arr);
+                $ids = $this->FindChild($ids ,$childs->id);
+//                dd($this->FindChild(9));
+            }
         }
+        return $ids;
     }
     public function __construct()
     {
@@ -121,11 +128,13 @@ class HomeController extends Controller
 
         $ids[] = $category->id;
 //        $child_categories = [];
-        foreach ($this->categories as $child){
-            if($child->parent_id == $category->id){
-                $ids[] = $child->id;
-            }
-        }
+//        foreach ($this->categories as $child){
+//            if($child->parent_id == $category->id){
+//                $ids[] = $child->id;
+//            }
+//        }
+        $ids = $this->FindChild($ids ,$category->id);
+//        dd($ids);
 
         $products = Product::where('is_active',1)
             ->wherein('category_id',$ids)
@@ -137,12 +146,15 @@ class HomeController extends Controller
     }
 
     //chi tiết sản phẩm
-    public function product(Request $request,$slug,$id)
+    public function product(Request $request,$id,$slug)
     {
 //        dd($request);
         $product = Product::where('is_active',1)
-            ->where('id',$id)
+            ->where('slug',$slug)
             ->first();
+        if($product == null){
+            dd(404);
+        }
 //        dd($product);
         return view(    'frontend.product',['product'=>$product]);
     }

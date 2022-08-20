@@ -43,29 +43,42 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
+                                <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
+                                <div class="col-sm-10">
+                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Website</label>
-                                <input id="website" name="website" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="website" name="website" placeholder="website">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
+
+                                <div class="col-sm-10">
+                                    <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                </div>
                             </div>
 
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                </label>
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
                             </div>
 
                         </div>

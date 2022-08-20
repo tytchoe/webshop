@@ -30,22 +30,20 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
 
                                 <div class="col-sm-10">
-                                    <input value="{{ $model->name }}" required type="text" class="form-control" id="name" placeholder="Tên">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $model->name }}">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
-                                <div class="col-sm-5">
+                                <div class="col-sm-10">
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
-                                <div class="col-sm-5">
-                                    @if($model->image && file_exists(public_path($model->image)))
-                                        <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
-                                    @else
-                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                                    @endif
-                                </div>
+                                @if($model->image && file_exists(public_path($model->image)))
+                                    <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
+                                @else
+                                    <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                @endif
                             </div>
 
                             <div class="form-group">
@@ -65,9 +63,10 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
                                 <div class="col-sm-10">
-                                    <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                    <input min="0" type="number" class="form-control" id="position" name="position" value="{{ $model->position }}">
                                 </div>
                             </div>
+
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
                                     <label>
@@ -75,7 +74,6 @@
                                     </label>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /.box-body -->
 

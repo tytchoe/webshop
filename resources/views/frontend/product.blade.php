@@ -8,18 +8,41 @@
             <div class="col-md-7">
                 <div class="blog-thumb">
                     @if($product->image && file_exists(public_path($product->image)))
-                        <img src="{{ asset($product->image) }}">
+                        <img src="{{ asset($product->image) }}" class="img-fluid wc-image">
                     @else
-                        <img src="{{ asset('upload/404.png') }}">
+                        <img src="{{ asset('upload/404.png') }}" class="img-fluid wc-image">
                     @endif
                 </div>
-{{--                <div>--}}
+{{--                <div class="blog-thumb">--}}
 {{--                    <img src="{{ asset($product->image) }}" >--}}
 {{--                    <img src="" alt="" class="img-fluid wc-image">--}}
 {{--                </div>--}}
 
                 <br>
+                @if($product->images)
+                    <div class="owl-banner owl-carousel">
+                        @foreach($product->images as $item)
+                        <div class="item">
+                            <img src="{{asset($product->images->url)}}" alt="">
+                            <div class="item-content">
 
+                                <div class="main-content">
+                                    <div class="meta-category">
+                                        <span> <del>$500.00</del>  $700.00 </span>
+                                    </div>
+
+                                    <a href="vacation-details.html"><h4>Lorem ipsum dolor sit amet.</h4></a>
+
+                                    <ul class="post-info">
+                                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet veniam, architecto invento audantium reprehenderit. Eius, architecto necessitatibus.</li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-sm-4 col-6">
                         <div>
@@ -66,11 +89,23 @@
             <div class="col-md-5">
                 <div class="sidebar-item recent-posts">
                     <div class="sidebar-heading">
-                        <h2>Info</h2>
+                        <h2>Thông tin</h2>
                     </div>
 
                     <div class="content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed velit eveniet quibusdam animi eos, cum! Alias, dicta. Minima repudiandae sequi iste, nostrum! Neque temporibus officiis harum esse aperiam voluptate? Quibusdam.</p>
+                        <p>{!! $product->description !!}</p>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                        <h2>Giá</h2>
+                    </div>
+
+                    <div class="content">
+                        <h3 style="color: black";> <del style="color: red"; >{{ number_format($product->price, 0, ".", ",") }} Đ</del>
+                                            {{ number_format($product->sale, 0, ".", ",") }} Đ</h3>
                     </div>
                 </div>
 
@@ -80,7 +115,7 @@
                 <div class="contact-us">
                     <div class="sidebar-item contact-form">
                         <div class="sidebar-heading">
-                            <h2>Add to Cart</h2>
+                            <h2>Thêm vào giỏ hàng</h2>
                         </div>
 
                         <div class="content">
@@ -102,8 +137,9 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <fieldset>
-                                            <label for="">Quantity</label>
-                                            <input type="text" value="1" required="">
+                                            <label for="">Số lượng</label>
+                                            <input @if($product->stock <= 0) disabled @endif type="number" value="1" max="{{ $product->stock }}" min="0" required="">
+                                            @if($product->stock <= 0) <label style="color: red"> Hết hàng </label> @endif
                                         </fieldset>
                                     </div>
                                     <div class="col-lg-12">

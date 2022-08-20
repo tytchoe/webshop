@@ -21,7 +21,7 @@ Route::post('/lien-he', [\App\Http\Controllers\HomeController::class, 'contactPo
 Route::get('/gioi-thieu', [\App\Http\Controllers\HomeController::class, 'introduce'])->name('introduce');
 
 Route::get('/danh-muc/{category}', [\App\Http\Controllers\HomeController::class, 'category'])->name('category');
-Route::get('/chi-tiet-san-pham/{product}-{id}', [\App\Http\Controllers\HomeController::class, 'product'])->name('product');
+Route::get('/chi-tiet-san-pham/{id}-{product}', [\App\Http\Controllers\HomeController::class, 'product'])->name('product');
 
 Route::get('/tin-tuc', [\App\Http\Controllers\HomeController::class, 'articles'])->name('articles');
 Route::get('/tin-tuc/{slug}', [\App\Http\Controllers\HomeController::class, 'detailArticle'])->name('detail-article');

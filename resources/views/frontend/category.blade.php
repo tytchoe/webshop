@@ -46,7 +46,7 @@
                                     <div class="down-content">
                                         <span> <del>{{ number_format($product->price, 0, ".", ",") }} Đ</del>
                                             {{ number_format($product->sale, 0, ".", ",") }} Đ</span>
-                                        <a href="{{ route('product',['product'=>$product->slug,'id'=>$product->id]) }}">
+                                        <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
                                             <h4>{{ $product->name }}</h4>
                                         </a>
                                         <p>{{ substr($product->meta_title,0,100) }}</p>
