@@ -42,61 +42,82 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input id="title" name="title" type="text" class="form-control" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Chọn Danh Mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($data as $item)
-                                        @if($item->type == 1)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
+                                    Tiêu đề
                                 </label>
+                                <div class="col-sm-10" >
+                                    <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-summary">Tóm tắt</label>
-                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
+                                <div class="col-sm-10">
+                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="Tên">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Meta Title</label>
-                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Chọn Danh Mục</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value="0">-- Chọn --</option>
+                                        @foreach($data as $item)
+                                            @if($item->type == 1)
+                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Meta Description</label>
-                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-summary">Tóm tắt</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-meta_title">META tiêu đề</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
                             </div>
 
                         </div>

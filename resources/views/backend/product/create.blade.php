@@ -44,99 +44,144 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input value="{{ old('name') }}" id="name" name="name" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Tên sản phẩm</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('name') }}" type="text" class="form-control" id="name" name="name" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
+                                <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
+                                <div class="col-sm-10">
+                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Số lượng</label>
-                                <input value="{{ old('stock') }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Số lượng</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('stock') }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Giá</label>
-                                <input value="{{ old('price') }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Giá</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('price') }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Giá sale</label>
-                                <input value="{{ old('sale') }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Giá sale</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('sale') }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ old('url') }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('url') }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Danh mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($category as $item)
-                                        <option @if(old('category_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($category as $item)
+                                            <option @if(old('category_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Nhà cung cấp</label>
-                                <select class="form-control" name="vendor_id" id="vendor_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($mergeData['vendor'] as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Nhà cung cấp</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="vendor_id" id="vendor_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($mergeData['vendor'] as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Thương hiệu</label>
-                                <select class="form-control" name="brand_id" id="brand_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($mergeData['brand']  as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Thương hiệu</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="brand_id" id="brand_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($mergeData['brand']  as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
+
+                                <div class="col-sm-10">
+                                    <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                </div>
                             </div>
 
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Trạng thái
-                                </label>
+                            <div class="col-sm-offset-2 col-sm-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
                             </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-summary">Tóm tắt</label>
-                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            <div class="col-sm-offset-1 col-sm-5">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-meta-title">Tiêu đề</label>
-                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-summary">Tóm tắt</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-meta-description">Mô tả chi tiết</label>
-                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-meta_title">META tiêu đề</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                                </div>
                             </div>
 
                         </div>

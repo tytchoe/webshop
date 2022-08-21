@@ -38,6 +38,7 @@ Route::get('/admin/logout', [\App\Http\Controllers\AdminController::class, 'logo
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
     Route::get('/dashboard',[\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('product', \App\Http\Controllers\ProductController::class);
+    Route::resource('productImages', \App\Http\Controllers\Product_imageController::class);
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
     Route::resource('category', \App\Http\Controllers\CateGoryController::class);
     Route::post('category/restore/{category}', [\App\Http\Controllers\CategoryController::class, 'restore'])->name('category.restore');
