@@ -10,18 +10,18 @@
                         <div class="all-blog-posts">
                             <div class="row">
                                 <h3>{{ $category->name }}</h3>
-                                @foreach($mergeData['categories'] as $categories)
-                                    @if($categories->parent_id == $category->id)
+                                @foreach($categories as $item)
+                                    @if($item->parent_id == $category->id)
                                         <div class="col-lg-12">
                                             <div class="right-list-f">
                                                 <ul>
-                                                    <li><a href="{{ route('category',['category'=>$categories->slug]) }}">
-                                                            @if($categories->image && file_exists(public_path($categories->image)))
-                                                                <img width="32" height="32" alt="#" src="{{ asset($categories->image) }}">
+                                                    <li><a href="{{ route('category',['category'=>$item->slug]) }}">
+                                                            @if($item->image && file_exists(public_path($item->image)))
+                                                                <img width="32" height="32" alt="#" src="{{ asset($item->image) }}">
                                                             @else
                                                                 <img width="32" height="32" alt="#" src="{{ asset('upload/404.png') }}">
                                                             @endif
-                                                            {{ $categories->name }}</a>
+                                                            {{ $item->name }}</a>
                                                     </li>
                                                 </ul>
                                             </div>

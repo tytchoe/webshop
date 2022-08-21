@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Contact;
@@ -33,17 +34,41 @@ class HomeController extends Controller
         $this->categories = Category::where('is_active','1')
             ->where('type',0) //loại danh mục sản phẩm
             ->get();
-        $mergeData = [
-            'categories' => $this->categories,
-            'setting' => $setting
-        ];
-        View::share('mergeData',$mergeData);
+        $banners = Banner::where('is_active','1')
+            ->orderBy('created_at')
+            ->orderBy('id')
+            ->get();
+        View::share('categories',$this->categories);
+        View::share('setting',$setting);
+        View::share('banners',$banners);
     }
 
     public function index()
     {
+        $list = [];
+        foreach ($this->categories as $key => $parent) {
+            if($parent->parent_id == 0) {
+                $ids =[];
+                $ids[] = $parent->id;
 
-        return view('frontend.home');
+                $ids = $this->FindChild($ids ,$parent->id);
+//                foreach ($this->categories as $child) {
+//                    if($child->parent_id == 0) {
+//                        $ids[] = $child->id;
+//                    }
+//                }
+                $list[$key]['category'] = $parent;
+
+                $list[$key]['products'] = Product::where('is_active',1)
+                    ->wherein('category_id',$ids)
+                    ->limit(3)
+                    ->orderBy('id','desc')
+                    ->get();
+            }
+
+        }
+//        dd($list);
+        return view('frontend.home',['list'=>$list]);
     }
 
     public function introduce()

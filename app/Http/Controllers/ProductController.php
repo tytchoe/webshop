@@ -56,6 +56,7 @@ class ProductController extends Controller
             'brand' => $brand
         ];
         return view('backend.product.create', ['category' => $category], ['mergeData' => $mergeData] );
+
     }
 
     /**

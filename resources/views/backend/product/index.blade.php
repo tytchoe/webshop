@@ -84,12 +84,29 @@
                     </div>
                 </div>
                 <!-- /.box -->
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Data Table With Full Features</h3>
+                    </div>
+                    <!-- /.box-header -->
             </div>
         </div>
     </section>
 @endsection
 
 @section('js')
+    <script>
+        $(function () {
+            $('#example2').DataTable({
+                'paging'      : true,
+                'lengthChange': false,
+                'searching'   : false,
+                'ordering'    : true,
+                'info'        : true,
+                'autoWidth'   : false
+            })
+        })
+    </script>
     <script type="text/javascript">
 
         $( document ).ready(function() {

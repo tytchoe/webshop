@@ -17,7 +17,7 @@
                             <i class="icon-angle-down"></i>
                         </a>
                         <div class="dropdown-menu" style="width: 300px;">
-                            @foreach($mergeData['categories'] as $item)
+                            @foreach($categories as $item)
                                 @if ($item->parent_id == 0)
                                     <div class="dropdown-item">
                                         <a href="{{ route('category',['category'=>$item->slug]) }}" style="color: #0a0a0a;">

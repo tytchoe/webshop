@@ -3,12 +3,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Thêm category
+            Thêm vendor
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Forms</a></li>
-            <li class="active">General Elements</li>
+            <li><a href="#">Vendor</a></li>
+            <li class="active">Create</li>
         </ol>
     </section>
 
@@ -39,38 +39,72 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.vendor.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
-                            </div>
-
-                            <div class="form-group">
-                                <label>Chọn Danh Mục Cha</label>
-                                <select class="form-control" name="parent_id" id="parent_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($data as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
-
-                            <div class="checkbox">
-                                <label>
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
+                                    Tiêu đề
                                 </label>
+                                <div class="col-sm-10" >
+                                    <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
+                                <div class="col-sm-10">
+                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Số điện thoại</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="website" name="website" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Địa chỉ</label>
+
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
+                                    Vị trí
+                                </label>
+                                <div class="col-sm-10" >
+                                    <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
                             </div>
 
                         </div>
@@ -93,11 +127,10 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
-            CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
-                if ($('#name').val() === '') {
-                    $('#name').notify('Bạn nhập chưa nhập tên','error');
+                if ($('#title').val() === '') {
+                    $('#title').notify('Bạn nhập chưa nhập tên','error');
                     document.getElementById('title').scrollIntoView();
                     return false;
                 }

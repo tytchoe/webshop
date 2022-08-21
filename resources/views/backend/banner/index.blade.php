@@ -28,6 +28,7 @@
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
                                 <th>Loại</th>
+                                <th>Trạng thái</th>
                                 <th>Hành động</th>
                             </tr>
                             @foreach($data as $key => $item)
@@ -56,6 +57,9 @@
                                     @else
                                         None
                                     @endif
+                                </td>
+                                <td>
+                                    {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.banner.edit', ['banner' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>

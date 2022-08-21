@@ -43,10 +43,11 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên">
+                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
+                                    Tiêu đề
+                                </label>
+                                <div class="col-sm-10" >
+                                    <input id="title" name="title" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
 
@@ -58,17 +59,43 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="website" name="website" placeholder="website">
+                                    <input type="text" class="form-control" id="url" name="url" placeholder="Tên">
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Chọn Target</label>
 
                                 <div class="col-sm-10">
+                                    <select class="form-control" name="target" id="target">
+                                        <option value="_blank">_blank</option>
+                                        <option value="_self">_self</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Loại</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="type" id="type">
+                                        <option value="">-- chọn --</option>
+                                        <option value="1">Banner home</option>
+                                        <option value="2">Banner left</option>
+                                        <option value="3">Banner right</option>
+                                        <option value="4">Background</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
+                                    Vị trí
+                                </label>
+                                <div class="col-sm-10" >
                                     <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>
@@ -78,6 +105,14 @@
                                     <label>
                                         <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                     </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                             </div>
 

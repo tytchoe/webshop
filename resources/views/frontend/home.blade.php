@@ -3,78 +3,47 @@
 @section('homecontent')
 <section class="blog-posts grid-system">
     <div class="container">
-        <div class="all-blog-posts">
-            <h2 class="text-center">Featured Products</h2>
-            <br>
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-post">
-                        <div class="blog-thumb">
-                            <img src="{{asset('frontend')}}/assets/images/product-4-720x480.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span> <del>$500.00</del>  $700.00 </span>
-                            <a href="products.html"><h4>Lorem ipsum dolor sit amet, consectetur</h4></a>
-                            <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                            <div class="post-options">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="post-tags">
-                                            <li><i class="fa fa-bullseye"></i></li>
-                                            <li><a href="product-details.html">View Product</a></li>
-                                        </ul>
+        @foreach($list as $item)
+                <div class="all-blog-posts">
+                    <a class="text-center" href="{{ route('category',['category'=>$item['category']->slug]) }}" style="color: #0a0a0a;">
+                        <h2>{{ $item['category']->name }}</h2>
+                    </a>
+                    <br>
+                    <div class="row">
+                        @foreach($item['products'] as $product)
+                            <div class="col-md-4 col-sm-6">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                        @if($product->image && file_exists(public_path($product->image)))
+                                            <img src="{{ asset($product->image) }}" class="img-fluid wc-image">
+                                        @else
+                                            <img src="{{ asset('upload/404.png') }}" class="img-fluid wc-image">
+                                        @endif
+                                    </div>
+                                    <div class="down-content">
+                                        <span> <del>{{ number_format($product->price, 0, ".", ",") }} Đ</del>
+                                            {{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                        <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
+                                            <h4>{{ $product->name }}</h4>
+                                        </a>
+                                        <p>{{ substr($product->meta_title,0,100) }}</p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-bullseye"></i></li>
+                                                        <li><a href="product-details.html">Chi tiết sản phẩm</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-post">
-                        <div class="blog-thumb">
-                            <img src="{{asset('frontend')}}/assets/images/product-5-720x480.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span> <del>$500.00</del>  $700.00 </span>
-                            <a href="products.html"><h4>Lorem ipsum dolor sit amet, consectetur</h4></a>
-                            <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                            <div class="post-options">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="post-tags">
-                                            <li><i class="fa fa-bullseye"></i></li>
-                                            <li><a href="product-details.html">View Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="blog-post">
-                        <div class="blog-thumb">
-                            <img src="{{asset('frontend')}}/assets/images/product-6-720x480.jpg" alt="">
-                        </div>
-                        <div class="down-content">
-                            <span> <del>$500.00</del>  $700.00 </span>
-                            <a href="products.html"><h4>Lorem ipsum dolor sit amet, consectetur</h4></a>
-                            <p>Nullam nibh mi, tincidunt sed sapien ut, rutrum hendrerit velit. Integer auctor a mauris sit amet eleifend.</p>
-                            <div class="post-options">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="post-tags">
-                                            <li><i class="fa fa-bullseye"></i></li>
-                                            <li><a href="product-details.html">View Product</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 </section>
 
