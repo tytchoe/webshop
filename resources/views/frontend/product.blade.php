@@ -119,7 +119,7 @@
                         </div>
 
                         <div class="content">
-                            <form id="contact" action="" method="post">
+                            <form id="contact" action="" method="">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-12">
                                         <fieldset>
@@ -144,7 +144,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <fieldset>
-                                            <button type="submit" id="form-submit" class="main-button">Add to Cart</button>
+                                            <a href="{{ route('cart')}}" >Add to Cart</a>
                                         </fieldset>
                                     </div>
                                 </div>

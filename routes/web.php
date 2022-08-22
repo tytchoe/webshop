@@ -20,6 +20,8 @@ Route::post('/lien-he', [\App\Http\Controllers\HomeController::class, 'contactPo
 
 Route::get('/gioi-thieu', [\App\Http\Controllers\HomeController::class, 'introduce'])->name('introduce');
 
+Route::get('/gio-hang', [\App\Http\Controllers\HomeController::class, 'cart'])->name('cart');
+
 Route::get('/danh-muc/{category}', [\App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('/chi-tiet-san-pham/{id}-{product}', [\App\Http\Controllers\HomeController::class, 'product'])->name('product');
 

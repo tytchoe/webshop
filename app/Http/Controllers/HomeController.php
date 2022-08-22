@@ -68,18 +68,19 @@ class HomeController extends Controller
 
         }
 //        dd($list);
-        return view('frontend.home',['list'=>$list]);
+//        return view('frontend.home',['list'=>$list]);
+        return view('frontend.home2');
     }
 
     public function introduce()
     {
 
-        return view('frontend.introduce');
+        return view('frontend.introduce2');
     }
 
     public function contact()
     {
-        return view('frontend.contact');
+        return view('frontend.contact2');
     }
     // thêm liên hệ
     public function contactPost(Request $request)
@@ -167,7 +168,7 @@ class HomeController extends Controller
             ->paginate(15);
 
 
-            return view('frontend.category',['category'=>$category,'products'=>$products]);
+            return view('frontend.category2',['category'=>$category,'products'=>$products]);
     }
 
     //chi tiết sản phẩm
@@ -184,4 +185,8 @@ class HomeController extends Controller
         return view(    'frontend.product',['product'=>$product]);
     }
 
+    public function cart(){
+        echo 'trang giỏ hàng';
+//        return view('frontend.cart');
+    }
 }
