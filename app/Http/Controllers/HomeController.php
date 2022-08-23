@@ -123,7 +123,7 @@ class HomeController extends Controller
     public function articles()
     {
         $articles = Article::where('is_active',1)->latest()->paginate(10);
-        return view('frontend.article',['articles'=>$articles]);
+        return view('frontend.article2',['articles'=>$articles]);
     }
 
     public function detailArticle($slug)

@@ -76,6 +76,7 @@
                                 <!-- DRODOWN-MEGA-MENU END -->
                             </li>
                             <li><a href="#">Delivery</a></li>
+                            <li><a href="{{ route('articles') }}">Tin tức</a></li>
                             <li><a href="{{ route('contact') }}#form">Liên hệ</a></li>
                             <li><a href="{{ route('introduce') }}#form">Về chúng tôi</a></li>
                         </ul>
