@@ -28,6 +28,18 @@ class HomeController extends Controller
         }
         return $ids;
     }
+    public function FindFather(array $ids, int $id)
+    {
+        foreach ($this->categories as $father){
+            if($father->id == $id){
+                $ids[] = $father->id;
+//                dd($arr);
+                $ids = $this->FindFather($ids ,$father->parent_id);
+//                dd($this->FindChild(9));
+            }
+        }
+        return $ids;
+    }
     public function __construct()
     {
         $setting = Setting::first();
@@ -181,8 +193,13 @@ class HomeController extends Controller
         if($product == null){
             dd(404);
         }
+        $ids = [];
+
+        $ids = $this->FindFather($ids,$product->category_id);
+//        dd($ids);
+
 //        dd($product);
-        return view(    'frontend.product',['product'=>$product]);
+        return view(    'frontend.product2',['product'=>$product,'ids'=>$ids]);
     }
 
     public function cart(){
