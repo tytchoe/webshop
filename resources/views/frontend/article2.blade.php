@@ -373,12 +373,6 @@
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT START -->
                             <div class="product-shooting-result">
-                                <form action="#">
-                                    <button class="btn compare-button">
-                                        Compare (<span class="compare-value">1</span>)
-                                        <i class="fa fa-chevron-right"></i>
-                                    </button>
-                                </form>
                                 <div class="showing-item">
                                         <span>Hiển thị 1 - 6 of 6 sản phẩm</span>
                                 </div>
@@ -397,9 +391,6 @@
                                             <a href="#" >Next<i class="fa fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
-                                    <form action="#">
-                                        <button class="btn showall-button">Show all</button>
-                                    </form>
                                 </div>
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT END -->
@@ -431,15 +422,7 @@
                                             </div>
                                             <a href="{{ $item->url }}"><i class="fa fa-comments" title="Chi tiết"></i>Xem chi tiết</a>
                                         </div>
-                                            <div class="down-content">
-
-
-                                                <ul class="post-info">
-
-
-                                                </ul>
-                                            </div>
-                                </li>
+                                    </li>
                                 @endforeach
                             </ul>
                         </div>

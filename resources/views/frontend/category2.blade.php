@@ -407,12 +407,6 @@
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT START -->
                             <div class="product-shooting-result">
-                                <form action="#">
-                                    <button class="btn compare-button">
-                                        Compare (<span class="compare-value">1</span>)
-                                        <i class="fa fa-chevron-right"></i>
-                                    </button>
-                                </form>
                                 <div class="showing-item">
                                     @if(count($products) < 6)
                                         <span>Hiển thị 1 - {{ count($products) }} of {{ count($products) }} sản phẩm</span>
@@ -435,9 +429,6 @@
                                             <a href="#" >Next<i class="fa fa-chevron-right"></i></a>
                                         </li>
                                     </ul>
-                                    <form action="#">
-                                        <button class="btn showall-button">Show all</button>
-                                    </form>
                                 </div>
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT END -->
@@ -460,14 +451,6 @@
                                                 @endif
                                             </a>
                                             <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box"></a>
-                                            <div class="overlay-content">
-                                                <ul>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                    <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                </ul>
-                                            </div>
                                         </div>
                                         <div class="product-info">
                                             <div class="customar-comments-box">

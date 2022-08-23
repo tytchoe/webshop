@@ -130,7 +130,7 @@ class HomeController extends Controller
     {
         $article = Article::where('slug',$slug)->where('is_active',1)->first();
 
-        return view('frontend.article_detail',['article'=>$article]);
+        return view('frontend.article_detail2',['article'=>$article]);
     }
     public function commentPost(Request $request)
     {
