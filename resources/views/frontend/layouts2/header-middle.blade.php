@@ -15,13 +15,10 @@
                 <!-- HEADER-RIGHT-CALLUS END -->
                 <!-- CATEGORYS-PRODUCT-SEARCH START -->
                 <div class="categorys-product-search">
-                    <form action="#" method="get" class="search-form-cat">
+                    <form action="{{ route('search') }}" method="get" class="search-form-cat">
                         <div class="search-product form-group">
-                            <select name="catsearch" class="cat-search">
-                                <option value="">Categories</option>
-                            </select>
-                            <input type="text" class="form-control search-form" name="s" placeholder="Enter your search key ... " />
-                            <button class="search-button" value="Search" name="s" type="submit">
+                            <input type="text" class="form-control search-form" name="kwd" id="kwd" placeholder="Enter your search key ... " />
+                            <button class="search-button" type="submit" >
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>

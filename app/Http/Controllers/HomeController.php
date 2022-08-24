@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
+use Illuminate\Support\Str;
 
 class HomeController extends Controller
 {
@@ -205,5 +206,22 @@ class HomeController extends Controller
     public function cart(){
         echo 'trang giỏ hàng';
 //        return view('frontend.cart');
+    }
+
+    public function search(Request $request)
+    {
+        $keyword = $request->input('kwd');
+//        dd($keyword);
+
+        $slug = Str::slug($keyword);
+
+        $products = Product::where([
+            ['slug','like','%'. $slug .'%'],
+            ['is_active',1]
+        ])->orderByDesc('id')->paginate(16);
+
+
+        return view('frontend.search',['products'=>$products]);
+
     }
 }
