@@ -162,16 +162,24 @@
                                     <a href="#"><i class="fa fa-heart"></i></a>
                                 </div>
                                 <div class="single-product-quantity">
-                                    <p class="small-title">Số lượng</p>
-                                    <div class="cart-quantity">
-                                        <div class="">
-                                            <input class="" max="{{$product->stock}}" min="0" type="number"
-                                                   name="quantity" value="0" id="quantity" >
+                                    <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="hidden" value="{{ $product->id }}" name="id">
+                                        <input type="hidden" value="{{ $product->name }}" name="name">
+                                        <input type="hidden" value="{{ $product->price }}" name="price">
+                                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                                        <p class="small-title">Số lượng</p>
+                                        <div class="cart-quantity">
+                                            <div class="">
+                                                <input class="" max="{{$product->stock}}" min="0" type="number"
+                                                       name="quantity" value="0" id="quantity" >
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="single-product-add-cart">
-                                    <a class="add-cart-text" title="Add to cart" href="#">Thêm vào giỏ hàng</a>
+                                        <br>
+                                        <div class="single-product-add-cart">
+                                            <button class="add-cart-text" title="Add to cart" >Thêm vào giỏ hàng</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>

@@ -87,11 +87,11 @@
                                         <span>Hiển thị 1 - 6 of {{ $totalResult }} sản phẩm</span>
                                     @endif
                                 </div>
-{{--                                <div class="showing-next-prev">--}}
-{{--                                    <ul class="pagination-bar">--}}
-{{--                                        {{ $products->links('vendor.pagination.custom') }}--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
+                                <div class="showing-next-prev">
+                                    <ul class="pagination-bar">
+                                        {{ $products->links('vendor.pagination.custom') }}
+                                    </ul>
+                                </div>
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT END -->
                         </div>
@@ -129,11 +129,7 @@
                                             </div>
                                             <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
                                             <div class="price-box">
-                                                @if($product->is_hot)
-                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
-                                                @else
-                                                    <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
-                                                @endif
+                                                <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
                                             </div>
                                         </div>
                                     </div>

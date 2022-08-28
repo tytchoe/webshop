@@ -67,9 +67,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
 //        dd($request);
-
         $request->validate([
             'name' => 'required|max:255',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
@@ -120,6 +118,11 @@ class ProductController extends Controller
         $product->vendor_id = $request->input('vendor_id');
         $product->user_id = $request->user()->id;
 
+        $product->material = $request->input('material');
+        $product->size = $request->input('size');
+        $product->collection = $request->input('collection');
+        $product->import = $request->input('import');
+
         // Loai
         //$product->type = $request->input('type') ?? 0;
         //Trang thai
@@ -149,6 +152,9 @@ class ProductController extends Controller
         $product->meta_description = $request->input('meta_description');
         //Luu
         $product->save();
+
+//        Product::addAllToIndex();
+        $product->addToIndex();
 
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.product.index');

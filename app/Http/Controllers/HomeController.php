@@ -9,6 +9,7 @@ use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Product;
 use App\Models\Setting;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
@@ -203,25 +204,56 @@ class HomeController extends Controller
         return view(    'frontend.product2',['product'=>$product,'ids'=>$ids]);
     }
 
-    public function cart(){
-//        echo 'trang giỏ hàng';
-        return view('frontend.cart');
-    }
-
     public function search(Request $request)
     {
+//        Product::reindex(); die;
         $keyword = $request->input('kwd');
 //        dd($keyword);
 
-        $slug = Str::slug($keyword);
+//        $slug = Str::slug($keyword);
+//
+//        $products = Product::where([
+//            ['slug','like','%'. $slug .'%'],
+//            ['is_active',1]
+//        ])->orderByDesc('id')->paginate(8);
 
-        $products = Product::where([
-            ['slug','like','%'. $slug .'%'],
-            ['is_active',1]
-        ])->orderByDesc('id')->paginate(16);
+        $products = Product::searchByQuery(['match'=> ['slug'=>$keyword]],null,null,null,null,null);
+
+        $totalResult = $products->totalHits()['value'];
+
+//        dd($products->getHits()['hits']);
+//        dd($totalResult);
 
 
-        return view('frontend.search',['products'=>$products]);
+        return view('frontend.search',['products'=>$products,'totalResult'=>$totalResult]);
 
     }
+
+    public function cartList()
+    {
+        $cartItems = \Cart::getContent();
+        // dd($cartItems);
+        return view('frontend.cart', compact('cartItems'));
+    }
+
+    public function addToCart(Request $request)
+    {
+//        dd($request->all());
+//        die;
+        \Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(
+                'image' => $request->image,
+            )
+        ]);
+        session()->flash('success', 'Product is Added to Cart Successfully !');
+
+        return redirect()->route('cart.list');
+    }
+
+
+
 }

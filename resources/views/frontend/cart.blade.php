@@ -3,6 +3,11 @@
 @section('content')
     <section class="main-content-section">
         <div class="container">
+            @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-green-400 rounded">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- BSTORE-BREADCRUMB START -->
@@ -60,44 +65,48 @@
                             <!-- TABLE BODY START -->
                             <tbody>
                             <!-- SINGLE CART_ITEM START -->
-                            <tr>
-                                <td class="cart-product">
-                                    <a href="#"><img alt="Blouse" src="img/product/cart-image1.jpg"></a>
-                                </td>
-                                <td class="cart-description">
-                                    <p class="product-name"><a href="#">Faded Short Sleeves T-shirt</a></p>
-                                    <small>SKU : demo_1</small>
-                                    <small><a href="#">Size : S, Color : Orange</a></small>
-                                </td>
-                                <td class="cart-avail"><span class="label label-success">In stock</span></td>
-                                <td class="cart-unit">
-                                    <ul class="price text-right">
-                                        <li class="price">$16.51</li>
-                                    </ul>
-                                </td>
-                                <td class="cart_quantity text-center">
-                                    <div class="cart-plus-minus-button">
-                                        <input class="cart-plus-minus" type="text" name="qtybutton" value="0">
-                                    </div>
-                                </td>
-                                <td class="cart-delete text-center">
-											<span>
-												<a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
-											</span>
-                                </td>
-                                <td class="cart-total">
-                                    <span class="price">$16.51</span>
-                                </td>
-                            </tr>
+                            @foreach ($cartItems as $item)
+                                <tr>
+                                    <td class="cart-product">
+                                        <a href="#"><img alt="Blouse" src="{{ $item->attributes->image }}"></a>
+                                    </td>
+                                    <td class="cart-description">
+                                        <p class="product-name"><a href="#">{{ $item->name }}</a></p>
+                                    </td>
+                                    <td class="cart-avail"><span class="label label-success">In stock</span></td>
+                                    <td class="cart-unit">
+                                        <ul class="price text-right">
+                                            <li class="price">{{ number_format($item->price, 0, ".", ",") }} Đ</li>
+                                        </ul>
+                                    </td>
+                                    <td class="cart_quantity text-center">
+                                        <div class="cart-plus-minus-button">
+                                            <input class="cart-plus-minus" type="text" name="qtybutton" value="{{ $item->quantity }}">
+                                        </div>
+                                    </td>
+                                    <td class="cart-delete text-center">
+                                                <span>
+                                                    <a href="#" class="cart_quantity_delete" title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                </span>
+                                    </td>
+                                    <td class="cart-total">
+                                        <span class="price">{{ number_format($item->price*$item->quantity, 0, ".", ",") }} Đ</span>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <!-- SINGLE CART_ITEM END -->
                             </tbody>
                             <!-- TABLE BODY END -->
                             <!-- TABLE FOOTER START -->
                             <tfoot>
                             <tr class="cart-total-price">
-                                <td class="cart_voucher" colspan="3" rowspan="4"></td>
-                                <td class="text-right" colspan="3">Tổng giá sản phẩm (Chưa bao gồm thuế)</td>
-                                <td id="total_product" class="price" colspan="1">$76.46</td>
+                                <td class="cart_voucher" colspan="3" rowspan="5"></td>
+                                <td class="text-right" colspan="3">Tổng giá sản phẩm</td>
+                                <td id="total_product" class="price" colspan="1">{{ number_format(Cart::getTotal(), 0, ".", ",") }} Đ</td>
+                            </tr>
+                            <tr class="cart-total-price">
+                                <td class="text-right" colspan="3">VAT(10%)</td>
+                                <td id="vat_total_product" class="price" colspan="1">{{ number_format(Cart::getTotal()*0.1, 0, ".", ",") }} Đ</td>
                             </tr>
                             <tr>
                                 <td class="text-right" colspan="3">Phí giao hàng</td>
@@ -112,7 +121,7 @@
                                     <span>Tổng giá</span>
                                 </td>
                                 <td id="total-price-container" class="price" colspan="1">
-                                    <span id="total-price">$76.46</span>
+                                    <span id="total-price">{{ number_format(Cart::getTotal()*1.1, 0, ".", ",") }} Đ</span>
                                 </td>
                             </tr>
                             </tfoot>

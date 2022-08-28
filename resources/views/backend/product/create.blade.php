@@ -128,6 +128,34 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Kích thước</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('size') }}" type="text" class="form-control" id="size" name="size" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Chất liệu</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('material') }}" type="text" class="form-control" id="material" name="material" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Bộ sưu tập</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('collection') }}" type="text" class="form-control" id="collection" name="collection" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Nhập khẩu</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('import') }}" type="text" class="form-control" id="import" name="import" placeholder="">
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>

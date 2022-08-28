@@ -251,26 +251,17 @@
                                     @foreach($list as $item)
                                         <div role="tabpanel" class="tab-pane active" id="{{ $item['category']->slug }}-tab">
                                             <div class="bg-tab-content-area tab-carousel-1">
-                                                <!-- TAB-SINGLE-ITEM START -->
                                                 @foreach($item['products'] as $product)
                                                     <div class="item">
                                                         <div class="single-product-item">
                                                             <div class="product-image">
-                                                                <a href="#">
+                                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
                                                                     @if($product->image && file_exists(public_path($product->image)))
-                                                                        <img src="{{ asset($product->image) }}" alt="product-image">
+                                                                        <img src="{{ asset($product->image) }}" alt="product-image" height="200px">
                                                                     @else
-                                                                        <img src="{{ asset('upload/404.png') }}" alt="product-image">
+                                                                        <img src="{{ asset('upload/404.png') }}" alt="product-image" height="200px">
                                                                     @endif</a>
-                                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box">new</a>
-                                                                <div class="overlay-content">
-                                                                    <ul>
-                                                                        <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-                                                                        <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-                                                                        <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-                                                                        <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-                                                                    </ul>
-                                                                </div>
+                                                                <a href="" class="new-mark-box">new</a>
                                                             </div>
                                                             <div class="product-info">
                                                                 <div class="customar-comments-box">
@@ -287,14 +278,16 @@
                                                                 </div>
                                                                 <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
                                                                 <div class="price-box">
-                                                                    <span class="price"><del>{{ number_format($product->price, 0, ".", ",") }} Đ</span>
-                                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                                                    @if($product->is_hot)
+                                                                        <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                                                    @else
+                                                                        <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 @endforeach
-                                                <!-- TAB-SINGLE-ITEM END -->
                                             </div>
                                         </div>
                                     @endforeach

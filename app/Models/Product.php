@@ -11,7 +11,9 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes,ElasticquentTrait;
 
-    public $fillable = ['name','description'];
+
+    public $fillable = ['slug','description'];
+
     // định nghĩa quan hệ giữa 2 bảng sản phầm và danh mục
     public function category()
     {
