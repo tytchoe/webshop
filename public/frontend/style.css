@@ -33,7 +33,7 @@ Version: 1.0
 	9. footer css
 		9.1 footer top
 		9.2 footer bottom
-	10. home page 2	
+	10. home page 2
 		10.1 left sidebar
 		10.2 category menu
 		10.3 category mega menu
@@ -43,15 +43,15 @@ Version: 1.0
 		10.7 client area
 		10.8 facality area
 		10.9 main content full column
-	11. About page	
+	11. About page
 		11.1 testimonials
-	12. my account page	
+	12. my account page
 	13. product page grid
-		13.1 product page left sidebar 
+		13.1 product page left sidebar
 		13.2 product page right
 		13.3 product page right shooting bar
-	14. product page List view	
-	15. Contact us page	
+	14. product page List view
+	15. Contact us page
 	16. 404 page
 	17. Sign in page
 	18. checkout registration page
@@ -59,12 +59,12 @@ Version: 1.0
 	20. cart page
 		20.1 cart page menu
 		20.2 cart page table
-	21. checkout-signin	
-	22. checkout-address	
+	21. checkout-signin
+	22. checkout-address
 	23. checkout-shipping
-	24. checkout	
-	25. single product page	
-		
+	24. checkout
+	25. single product page
+
 -------------------------------------------------------------------*/
 /*-----------------------
 1.  body
@@ -76,10 +76,10 @@ Version: 1.0
 body{
 	font-family: "arial",serif;
 	color:#6d6d6d;
-}	
+}
 h1, h2, h3, h4, h5, h6 {
     font-weight: normal;
-    margin: 0;	
+    margin: 0;
 	color:#3a3d42;
 	font-family: 'Bitter', serif;
 }
@@ -109,10 +109,10 @@ a:focus {
 img {
 	border:none;
 	max-width:100%;
-}	
+}
 /*-----------------------
 2. global css
--------------------------*/	
+-------------------------*/
 .no-padding-left{
 	padding-left:0;
 }
@@ -123,7 +123,7 @@ img {
 	overflow:hidden;
 }
 .zoom-img img{
-	
+
 	transform:scale(1);
 	-moz-transform:scale(1);
 	-webkit-transform:scale(1);
@@ -156,7 +156,7 @@ span.mobile-menu-title, .drodown-mega-menu .mega-menu-list ul li a, .new-mark-bo
 }
 /*-----------------------
 2.1 breadcrumb
--------------------------*/	
+-------------------------*/
 .bstore-breadcrumb{
 	font-family: 'Bitter', serif;
 	font-size: 15px;
@@ -185,7 +185,7 @@ span.mobile-menu-title, .drodown-mega-menu .mega-menu-list ul li a, .new-mark-bo
 }
 /*-----------------------
 2.2 left title
--------------------------*/	
+-------------------------*/
 .left-title-area{}
 h2.left-title{
 	border-top: 1px solid #b0b1b3;
@@ -212,7 +212,7 @@ h2.left-title a:hover{
 }
 /*-----------------------
 2.3 center title
--------------------------*/	
+-------------------------*/
 .center-title-area{
 	padding-left:15px;
 	padding-right:15px;
@@ -244,7 +244,7 @@ h2.center-title a:hover{
 }
 /*-----------------------
 2.4 carousel next prev icon
--------------------------*/	
+-------------------------*/
 div.owl-controls{
 	background: #fff none repeat scroll 0 0;
 	padding-left: 10px;
@@ -298,7 +298,7 @@ i.owl-next-icon{
 }
 /*-----------------------
 2.5 page-title
--------------------------*/	
+-------------------------*/
 h2.page-title{
 border-bottom: 1px solid #d6d4d4;
 color: #555454;
@@ -314,7 +314,7 @@ text-transform: uppercase;
 }
 /*-----------------------
 2.6 scroll to top
--------------------------*/	
+-------------------------*/
 .scroll-to-top{
 	bottom: 25px;
 	position: fixed;
@@ -339,7 +339,7 @@ a.bstore-scrollertop i{
 }
 /*-----------------------
 2.7 mobile-menu
--------------------------*/	
+-------------------------*/
 .mean-container .mean-nav{
 	background: #3A3D42 none repeat scroll 0 0;
 }
@@ -394,10 +394,10 @@ span.mobile-menu-title{
 }
 /*-----------------------
 3. header css
--------------------------*/	
+-------------------------*/
 /*-----------------------
 3.1 header top
--------------------------*/	
+-------------------------*/
 .header-top{
 	background:#363636;
 	font-size:11px;
@@ -406,7 +406,7 @@ span.mobile-menu-title{
 .header-left-menu{
 	display: block;
 	min-height: 35px;
-	padding:5px 0 6px 0px;	
+	padding:5px 0 6px 0px;
 	color:#fff;
 }
 .welcome-info{
@@ -515,7 +515,7 @@ span.mobile-menu-title{
 }
 /*-----------------------
 3.2 header middle
--------------------------*/	
+-------------------------*/
 .header-middle{
 	background:#EBEBEB;
 }
@@ -539,7 +539,7 @@ span.mobile-menu-title{
 }
 .search-form{
 	border:none;
-	border-left:1px solid #d7d7d7;	
+	border-left:1px solid #d7d7d7;
 	box-shadow: none;
 	border-radius:0px;
 	color: #333;
@@ -554,7 +554,7 @@ span.mobile-menu-title{
 	border: none;
 	box-shadow: none;
 	outline: 0 none;
-	border-left:1px solid #d7d7d7;	
+	border-left:1px solid #d7d7d7;
 }
 .search-product{
 	position:relative;
@@ -587,7 +587,7 @@ select {
   -webkit-appearance:none;
   -moz-appearance:none;
   -o-appearance:none;
-   appearance:none; 
+   appearance:none;
 }
 input.search-form[placeholder] { text-overflow: ellipsis; }
 input.search-form[placeholder]::-moz-placeholder { text-overflow: ellipsis; }
@@ -596,13 +596,13 @@ input.search-form[placeholder]::-webkit-input-placeholder {
    color: #464646;
 }
 input.search-form[placeholder]:-moz-placeholder {
-   color: #464646;  
+   color: #464646;
 }
 input.search-form[placeholder]::-moz-placeholder {
-   color: #464646;  
+   color: #464646;
 }
-input.search-form[placeholder]:-ms-input-placeholder {  
-   color: #464646;  
+input.search-form[placeholder]:-ms-input-placeholder {
+   color: #464646;
 }
 .cat-search option{
 	text-transform:capitalize;
@@ -669,7 +669,7 @@ input.search-form[placeholder]:-ms-input-placeholder {
 }
 /*-----------------------
 3.3 mainmenu
--------------------------*/	
+-------------------------*/
 .main-menu-area{
 	background:#3A3D42;
 	height:55px;
@@ -678,7 +678,7 @@ input.search-form[placeholder]:-ms-input-placeholder {
 .mainmenu{
 	background:#3A3D42;
 	padding-left:5px;
-	
+
 }
 .mainmenu nav{}
 .mainmenu nav ul{}
@@ -955,7 +955,7 @@ span.pro-quality a:hover{
 	background: #3a3d42 none repeat scroll 0 0;
 	color: #fff;
 	padding: 7px 0;
-	transition: all 300ms ease 0s;	
+	transition: all 300ms ease 0s;
 }
 .shipping-checkout-btn a:hover{
 	background:#FF4F4F;
@@ -963,7 +963,7 @@ span.pro-quality a:hover{
 .shipping-checkout-btn a i{}
 /*-----------------------
 4. slider area css
--------------------------*/	
+-------------------------*/
 .main-content-section{}
 .slider-progress{
 	position:absolute;
@@ -988,7 +988,7 @@ span.pro-quality a:hover{
  .slider-progress.pos_hover{
 	-webkit-animation-play-state: paused;
 	animation-play-state: paused;
- }	
+ }
 .main-slider-area{
 	margin-top:15px;
 }
@@ -1036,18 +1036,18 @@ div.nivo-controlNav a.active{
 .nivo-caption{
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
 	display: block;
-	height: 100%;	
+	height: 100%;
 }
 .slider-cap-text{
 	display: table;
 	float: left;
 	height: 100%;
 	margin-left: 60px;
-	width: 90%;	
+	width: 90%;
 }
 .d-table-cell{
 	display: table-cell;
-	vertical-align: middle;	
+	vertical-align: middle;
 }
 .slider-cap-text h2{
 	background: rgba(70, 70, 70, 0.5) none repeat scroll 0 0;
@@ -1055,7 +1055,7 @@ div.nivo-controlNav a.active{
 	display: inline-block;
 	font-size: 48px;
 	line-height: 52px;
-	padding: 10px 20px;	
+	padding: 10px 20px;
 }
 .slider-cap-text p{
 	color:#000;
@@ -1077,7 +1077,7 @@ div.nivo-controlNav a.active{
 }
 /*-----------------------
 5. product css
--------------------------*/	
+-------------------------*/
 .tow-column-product{}
 .new-product-area, .featured-products-area, .Sale-Products, .bestseller-products-area{
 	margin-top:50px;
@@ -1109,7 +1109,7 @@ div.nivo-controlNav a.active{
 	position: absolute;
 	text-transform: uppercase;
 	top: 5px;
-	z-index: 10;	
+	z-index: 10;
 }
 .overlay-content{
 	height: 100%;
@@ -1221,7 +1221,7 @@ div.nivo-controlNav a.active{
 }
 /*-----------------------
 5.1 tab product
--------------------------*/	
+-------------------------*/
 .tab-bg-product-area{
 	background: rgba(0, 0, 0, 0) url("img/product/bkg_product_tab.jpg") no-repeat scroll 0 0 / 100% 100%;
 	margin-top: 50px;
@@ -1296,7 +1296,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 }
 /*-----------------------
 5.2 image add two by one column
--------------------------*/	
+-------------------------*/
 .add-two-by-one-column{
 	overflow: hidden;
 }
@@ -1316,7 +1316,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 }
 /*-----------------------
 5.3 image add one by one column
--------------------------*/	
+-------------------------*/
 .image-add-area{
 	overflow:hidden;
 }
@@ -1328,7 +1328,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 }
 /*-----------------------
 6. latest news area
--------------------------*/	
+-------------------------*/
 .latest-news-area{
 	overflow:hidden;
 }
@@ -1392,7 +1392,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 	color: #000;
 	font-size:12px;
 	line-height:15px;
-	padding: 10px 0 0;	
+	padding: 10px 0 0;
 }
 .read-more i{
 	padding-left:6px;
@@ -1405,7 +1405,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 	border-top: 1px solid #b0b1b3;
 	display: block;
 	overflow: hidden;
-	padding: 7px 0;	
+	padding: 7px 0;
 	font-size:13px;
 }
 .latest-post-info i{
@@ -1416,7 +1416,7 @@ div.bg-tab-content-area i.owl-prev-icon:hover, div.bg-tab-content-area i.owl-nex
 }
 /*-----------------------
 7. brand client area
--------------------------*/	
+-------------------------*/
 .brand-client-area{}
 .brand-client-row{
 	margin-top:50px;
@@ -1441,7 +1441,7 @@ div.client-carousel .owl-item img {
 }
 /*-----------------------
 8. company facality
--------------------------*/	
+-------------------------*/
 .company-facality{
 	background:#EBEBEB;
 	margin-top:30px;
@@ -1464,7 +1464,7 @@ div.client-carousel .owl-item img {
 	color: #333;
 	display: inline-block;
 	height: 60px;
-	width: 60px;	
+	width: 60px;
 }
  .facality-icon i{
 	display: block;
@@ -1476,7 +1476,7 @@ div.client-carousel .owl-item img {
 .facality-text {
 	display:inline-block;
 	margin-left:10px;
-	text-align:left;	
+	text-align:left;
 }
 .facality-text h3{
 	font-size:15px;
@@ -1508,10 +1508,10 @@ div.client-carousel .owl-item img {
 }
 /*-----------------------
 9. footer css
--------------------------*/	
+-------------------------*/
 /*-----------------------
 9.1 footer top
--------------------------*/	
+-------------------------*/
 .footer-top-area{
 	background:#2D3035;
 }
@@ -1588,7 +1588,7 @@ div.client-carousel .owl-item img {
 }
 .flow-us-link{
 	overflow: hidden;
-	padding-bottom: 50px;	
+	padding-bottom: 50px;
 }
 .flow-us-link li{
 	float: left;
@@ -1634,12 +1634,12 @@ div.client-carousel .owl-item img {
 	color: #fff;
 	font-size:12px;
 	line-height:18px;
-}	
+}
 .Store-Information{}
 .Store-Information ul{}
 .Store-Information ul li{
 	display: block;
-	overflow: hidden;	
+	overflow: hidden;
 	padding-bottom:20px;
 }
 .info-lefticon{
@@ -1759,7 +1759,7 @@ div.client-carousel .owl-item img {
 	color:#fff;
 }
 /*-----------------------
-10. home page 2	
+10. home page 2
 -------------------------*/
 body.index-2 .welcome-info span, body.index-2 .current-currency strong, body.index-2 .current-lang strong, body.index-2 .languages-choose li a:hover, body.index-2 .currency-list li a:hover, body.index-2 .header-right-menu nav ul li a:hover, body.index-2 span.cross-icon:hover, body.index-2 .shipping-item-text span a.pro-cat:hover, body.index-2 span.pro-quality a:hover, body.index-2 .product-info a:hover, body.index-2 h2.left-title a:hover, body.index-2 .latest-news-area .left-title-area h2.left-title a:hover, body.index-2 .single-latest-post h2 a:hover, body.index-2 .read-more a:hover, body.index-2 .single-facality:hover .facality-text h3, body.index-2 .info-text p a:hover, body.index-2 .single-f-widget ul li a:hover, body.index-2 .copy-right address a, body.index-2 .latest-news-row h2.center-title a:hover, body.index-2 .drodown-mega-menu .mega-menu-list a:hover{
   color: #C1A300;
@@ -1780,7 +1780,7 @@ body.index-2 .main-slider-area{
 	margin-top:15px;
 }
 /*-----------------------
-10.1 left sidebar	
+10.1 left sidebar
 -------------------------*/
 body.index-2 .single-left-sidebar{
 	margin-top:50px;
@@ -1979,39 +1979,39 @@ body.index-2 .category-menu-list ul li:hover .cat-left-drop-menu-single{
 body.index-2 .sidebar-best-seller{
 	margin-bottom: 4px;
 	padding-bottom: 0;
-} 
+}
 body.index-2 .sidebar-best-seller div.owl-stage-outer{
-} 
+}
 body.index-2 div.sidebar-best-seller div.owl-stage{
 }
 body.index-2 .sidebar-best-seller div.owl-item{
-} 
+}
 body.index-2 .sidebar-best-seller .single-product-item{
 	margin-bottom: 15px;
 	margin-top: 2px;
 	overflow: hidden;
-} 
+}
 body.index-2 .sidebar-best-seller .sidebar-product-image{
 	float:left;
-} 
+}
 body.index-2 .sidebar-best-seller .product-info{
 	float:right;
 	width:63%;
-} 
+}
 body.index-2 .sidebar-best-seller .product-info a{
 	font-size:13px;
 	margin-bottom:3px;
-} 
+}
 body.index-2 .sidebar-best-seller .customar-comments-box{
 	margin-top:0;
-} 
+}
 body.index-2 .sidebar-best-seller .rating-box{
 	width:100%;
-} 
+}
 body.index-2 .rating-box i{
 	font-size:12px;
 	width:10.222px;
-} 
+}
 body.index-2 .product-info .price-box{
 	padding-top:2px;
 }
@@ -2019,9 +2019,9 @@ body.index-2 .sidebar-best-seller .product-info span.price{
 	font-size:15px;
 	line-height:20px;
 	margin-right:11px;
-} 
+}
 body.index-2 .sidebar-best-seller .product-info span.old-price{
-} 
+}
 /*-----------------------
 10.5 right product
 -------------------------*/
@@ -2137,7 +2137,7 @@ h2.about-page-title{
 	background: -o-linear-gradient(#fbfbfb, #fefefe);
 	background: -ms-linear-gradient(#fbfbfb, #fefefe);/*For IE10*/
 	background: linear-gradient(#fbfbfb, #fefefe);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fbfbfb', endColorstr='#fefefe');	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#fbfbfb', endColorstr='#fefefe');
 	border: 1px solid #fff;
 	padding: 19px 18px 11px;
 	font-size:13px;
@@ -2196,8 +2196,8 @@ span.after{
 	background: -o-linear-gradient(#f7f7f7, #ededed);
 	background: -ms-linear-gradient(#f7f7f7, #ededed);/*For IE10*/
 	background: linear-gradient(#f7f7f7, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');/*For IE7-8-9*/	
-	background-size: 100% auto;	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');/*For IE7-8-9*/
+	background-size: 100% auto;
 	color: #555454;
 	display: block;
 	font-weight:600;
@@ -2266,7 +2266,7 @@ span.after{
 13. product page grid
  -------------------------*/
  /*-----------------------
-13.1 product page left sidebar 
+13.1 product page left sidebar
  -------------------------*/
 .product-left-sidebar{
 	margin-bottom:45px;
@@ -2486,7 +2486,7 @@ ul.gategory-product li.gategory-product-list div.single-product-item .overlay-co
 	font-family: "Open Sans",sans-serif;
 	font-size: 42px;
 	line-height: 51px;
-	margin-bottom: 0;	
+	margin-bottom: 0;
 }
 .category-header-text strong{
 	font-size:13px;
@@ -2664,8 +2664,8 @@ ul.gategory-product li.gategory-product-list div.single-product-item .overlay-co
 	line-height: 22px;
 	padding: 11px 15px 10px;
 	transition: all 0.3s ease 0s;
-} 
-.compare-button strong{} 
+}
+.compare-button strong{}
 .compare-button:hover{
 	background:#3A3D42;
 	color:#fff;
@@ -2673,29 +2673,29 @@ ul.gategory-product li.gategory-product-list div.single-product-item .overlay-co
 .compare-button i{
 	left: 4px;
 	position: relative;
-} 
+}
 .showing-item{
 	float: left;
 	padding: 10px 0 0;
 	width: 26%;
-} 
+}
 .showing-item span{
 	font-size:13px;
-} 
+}
 .showing-next-prev{
 	float: left;
 	margin: 6px 11px 0 14px;
 	width: 49.4%;
-} 
+}
 ul.pagination-bar{}
 .showing-next-prev ul{
 	float:left;
 	margin-left:12px;
-} 
+}
 .showing-next-prev ul li{
 	padding:0;
 	float:left;
-} 
+}
 .showing-next-prev ul li.disabled a{
 	cursor:not-allowed;
 }
@@ -2705,7 +2705,7 @@ ul.pagination-bar{}
 	font-size: 13px;
 	line-height: 31px;
 	padding: 4px 9px 3px 8px;
-} 
+}
 .showing-next-prev ul li a:hover{
 	color:#515151;
 	background:none;
@@ -2723,13 +2723,13 @@ ul.pagination-bar{}
 	background: #d2d0d0 none repeat scroll 0 0;
 	margin-left: 1px;
 	padding:5px 1px;
-} 
+}
 .showing-next-prev ul li a i{
 	line-height: 11px;
 	margin-left: 4px;
 	margin-right: 4px;
 	overflow: hidden;
-} 
+}
 .showall-button{
 	background: #f7f7f7;
 	background: -moz-linear-gradient(#f7f7f7, #ededed);
@@ -2737,7 +2737,7 @@ ul.pagination-bar{}
 	background: -o-linear-gradient(#f7f7f7, #ededed);
 	background: -ms-linear-gradient(#f7f7f7, #ededed);/*For IE10*/
 	background: linear-gradient(#f7f7f7, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');
 	border-radius: 0;
 	color: #333;
 	float: right;
@@ -2748,9 +2748,9 @@ ul.pagination-bar{}
 	border-style: solid;
 	border-width: 1px;
 	margin-top:2px;
-} 
+}
 .showall-button:hover{
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ededed', endColorstr='#f7f7f7');	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#ededed', endColorstr='#f7f7f7');
 	background: #ededed;
 }
 /*---------------------
@@ -2893,7 +2893,7 @@ form.contact-form label{
 	background: rgba(0, 0, 0, 0) url("img/sprite.png") no-repeat scroll -230px 0;
 	border-left: 1px solid #d6d4d4;
 	height: 27px;
-	width: 262px;	
+	width: 262px;
 }
 .con-form-select:hover{
 	background-position:-230px -27px;
@@ -3072,7 +3072,7 @@ form.error-ser-form .error-ser-btn:hover{
 	line-height: 23px;
 	margin: 0 0 30px;
 	padding: 14px 18px 13px;
-} 
+}
 .box-subheading{
 	border-bottom: 1px solid #d6d4d4;
 	color: #555454;
@@ -3084,8 +3084,8 @@ form.error-ser-form .error-ser-btn:hover{
 	margin-top: 18px;
 	padding: 0 0 15px;
 	text-transform: uppercase;
-} 
-.primary-box-content{} 
+}
+.primary-box-content{}
 .primary-box-content p{
 	font-size: 13px;
 	margin:11px 0 4px;
@@ -3093,17 +3093,17 @@ form.error-ser-form .error-ser-btn:hover{
 .registered-account .primary-box-content p{
 	font-size: 13px;
 	margin: 14px 0 13px;
-} 
+}
 .primary-form-group{
 	margin-bottom: 1px;
 	overflow:hidden;
-} 
+}
 .primary-form-group label{
 	color: #333;
 	display: inline-block;
 	font-size: 13px;
 	margin-bottom: 3px;
-} 
+}
 .primary-form-group input.input-feild, .primary-form-group textarea{
 	border: 1px solid #d6d4d4;
 	border-radius: 0;
@@ -3111,7 +3111,7 @@ form.error-ser-form .error-ser-btn:hover{
 	color:#9c9b9b;
 	height: 33px;
 	padding-left: 6px;
-} 
+}
 .primary-form-group input[type=text]:focus{
 	box-shadow:none;
 }
@@ -3125,7 +3125,7 @@ form.error-ser-form .error-ser-btn:hover{
 	padding: 0;
 	transition: all 500ms ease 0s;
 	margin-bottom:7px;
-} 
+}
 .reg-btn{
 	margin:19px 0 46px;
 }
@@ -3140,27 +3140,27 @@ form.error-ser-form .error-ser-btn:hover{
 .main-btn span{
 	display: block;
 	padding: 11px 10px 9px 14px;
-} 
+}
 .submit-button a.main-btn{
 	text-decoration:none;
 	font-size: 17px;
 
-} 
+}
 .submit-button a.main-btn:hover{
 	color:#fff;
-	text-decoration:none;	
+	text-decoration:none;
 }
 .main-btn span i{
 	display: inline-block;
 	font-size: 24px;
 	margin: -4px 10px 0 0;
 	vertical-align: -2px;
-} 
-.registered-account{} 
+}
+.registered-account{}
 .registered-account a{
 	text-decoration:underline;
 	font-size:13px;
-} 
+}
 .registered-account a:hover{
 	color:#777;
 	text-decoration:none;
@@ -3191,13 +3191,13 @@ form.error-ser-form .error-ser-btn:hover{
 ------------------*/
 .personal-infomation{}
 .personal-info-box{}
-.personal-info-content{} 
+.personal-info-content{}
 .p-info-group{
 	overflow:hidden;
-} 
+}
 .personal-info-content .p-info-group{
 	margin-bottom:0;
-} 
+}
 .p-info-group label{
 	display: block;
 	line-height: 18px;
@@ -3211,7 +3211,7 @@ form.error-ser-form .error-ser-btn:hover{
 	float: left;
 	font-size: 13px;
 	margin-right: 35px;
-}  
+}
 .personal-infomation .primary-form-group input{
 	max-width:270px
 }
@@ -3224,7 +3224,7 @@ form.error-ser-form .error-ser-btn:hover{
 	margin-right: 15px;
 	width: 80px;
 	margin-bottom:10px;
-} 
+}
 .birth-day select, .birth-month select, .birth-year select{
 	width:80px;
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -3237,20 +3237,20 @@ form.error-ser-form .error-ser-btn:hover{
 	color:#777;
 	font-size:12px;
 	padding-left:5px;
-} 
+}
 .birth-day:hover, .birth-month:hover, .birth-year:hover{
 	background-position:-412px -27px;
 }
 span.radio-box{}
 .radio-box .radio-bg{}
 .input-radio{}
-.birth-day select option{} 
-.birth-month{} 
-.birth-month select{} 
-.birth-month select option{} 
-.birth-year{} 
-.birth-year select{} 
-.birth-year select option{} 
+.birth-day select option{}
+.birth-month{}
+.birth-month select{}
+.birth-month select option{}
+.birth-year{}
+.birth-year select{}
+.birth-year select option{}
 .p-info-group a{
 	font-size:13px;
 }
@@ -3373,7 +3373,7 @@ div.wishlists-chart table tr td a:hover{
 	box-shadow: none;
 	color: #777;
 	height: 33px;
-	padding-left: 6px;	
+	padding-left: 6px;
 	font-size:13px;
 	margin-bottom:20px;
 }
@@ -3459,7 +3459,7 @@ div.wishlists-chart table tr td a:hover{
 	border-left: 1px solid #d6d4d4;
 	height: 27px;
 	width: 189px;
-} 
+}
 .wish-prioriti select{
 	width:189px;
 	background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -3472,7 +3472,7 @@ div.wishlists-chart table tr td a:hover{
 	color:#777;
 	font-size:12px;
 	padding-left:5px;
-} 
+}
 .wish-prioriti:hover{
 	background-position:-303px -108px;
 }
@@ -3554,10 +3554,10 @@ ul.step li {
     border-width: 1px 1px 1px 0px;
     float: left;
     text-align: left;
-    width: 20%;
+    width: 25%;
     float: left;
     text-align: left;
-    width: 20%;
+    width: 25%;
 }
 ul.step li a, ul.step li span, ul.step li.step-current span, ul.step li.step-current-end span {
     color: #333;
@@ -3628,7 +3628,7 @@ ul.step li.step-todo {
 	background: -o-linear-gradient(#f7f7f7, #ededed);
 	background: -ms-linear-gradient(#f7f7f7, #ededed);/*For IE10*/
 	background: linear-gradient(#f7f7f7, #ededed);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');	
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f7', endColorstr='#ededed');
 }
 ul.step li.step-todo span {
     border: 1px solid #fff;
@@ -3809,8 +3809,8 @@ a.cart_quantity_delete i:hover{
 	line-height:25px;
 	font-family:"Open Sans",sans-serif;
 }
-.cart-total-price{} 
-.total-price-container{} 
+.cart-total-price{}
+.total-price-container{}
 ul.address li{
 	line-height:22px;
 }
@@ -3850,7 +3850,7 @@ ul.address li span{
 }
 .returne-continue-shop a.procedtocheckout:hover{
 	background: #3a3d42 none repeat scroll 0 0;
-	border-color: #3a3d42;	
+	border-color: #3a3d42;
 }
 .returne-continue-shop a.procedtocheckout i{
 	font-size: 25px;
@@ -3869,7 +3869,7 @@ div.create-new-account a.main-btn{
 }
 div.create-new-account .form-content p{
 	font-size: 13px;
-	margin: 0 0 5px;	
+	margin: 0 0 5px;
 }
 .forget-password p{
 	margin:10px 0 4px;
@@ -3885,7 +3885,7 @@ p.filup-below{
 	color:#333;
 	font-size:13px;
 	line-height:20px;
-} 
+}
 .felup-required{
 	color: red;
 	margin: 9px 0 16px;
@@ -3902,7 +3902,7 @@ p.filup-below{
 }
 .selected-state:hover, .selected-country:hover, .delivery-address:hover{
 	background:rgba(0, 0, 0, 0) url("img/sprite.png") no-repeat scroll -221px -27px;
-} 
+}
 .deli-address-group label{
 	margin-top:0;
 	text-transform:none;
@@ -3925,7 +3925,7 @@ textarea.addinfobox:focus, textarea.addinfobox:active{
 }
 p.assign-address{
 	margin:5px 0 7px;
-} 
+}
 .update-button{
 	margin: 20px 0 10px;
 	display:block;
@@ -3938,7 +3938,7 @@ p.assign-address{
 	font-size:13px;
 	line-height:17px;
 	padding: 5px 10px 5px 9px;
-	transition: all 500ms ease 0s;	
+	transition: all 500ms ease 0s;
 }
 .update-button a i, .add-new-address a i{
 	margin-left:4px;
@@ -3946,7 +3946,7 @@ p.assign-address{
 .update-button a:hover, .add-new-address a:hover{
 	background: #3a3d42 none repeat scroll 0 0;
 	border-color: #3a3d42;
-	color:#fff;	
+	color:#fff;
 }
 .add-new-address a.new-address-link{
 	display: inline-block;
@@ -3965,7 +3965,7 @@ p.assign-address{
 	border-radius: 0;
 	box-shadow: none;
 	color: #d6d4d4;
-	padding-left: 6px;	
+	padding-left: 6px;
 	resize:none;
 	margin-bottom:15px;
 }
@@ -3981,22 +3981,22 @@ p.assign-address{
 	padding:14px 18px;
 	margin-bottom:30px;
 	border: 1px solid #d6d4d4;
-} 
-.product-delivery-address{} 
+}
+.product-delivery-address{}
 .product-delivery-address p{
-	margin: 0 0 17px;	
-} 
+	margin: 0 0 17px;
+}
 .product-delivery-address p, table.delivery-table tr td, table.delivery-table tr td .carrey-info strong, .terms-of-service p, .terms-of-service span.agree{
 	font-size: 13px;
 }
 .product-delivery-address p, .terms-of-service p, .terms-of-service span.agree a{
 	color: #333;
 }
-.product-delivery-item{} 
+.product-delivery-item{}
 .product-delivery-single-item{
 	background: #fff none repeat scroll 0 0;
-} 
-.product-delivery-single-item .delivery-table{} 
+}
+.product-delivery-single-item .delivery-table{}
 td.delivery-option-radio{
 	width:5%;
 	text-align:center;
@@ -4035,18 +4035,18 @@ table.delivery-table tr td .carrey-info strong{
 	line-height:18px;
 }
 table.delivery-table tr td .carrey-cost{}
-.terms-of-service{} 
+.terms-of-service{}
 .terms-of-service p{
 	margin: 0 0 5px;
-} 
+}
 .terms-of-service span.agree{
 	color: #777;
 	font-weight: normal;
 	line-height: 25px;
-} 
+}
 .terms-of-service span.agree a{
 	text-decoration:underline;
- } 
+ }
 .terms-of-service span.agree a:hover{
 	text-decoration:none;
 }
@@ -4056,10 +4056,10 @@ table.delivery-table tr td .carrey-cost{}
 .four-payment-method{
 	margin-bottom:10px;
 	overflow:hidden;
-} 
+}
 .single-payment-method{
 	margin-bottom:10px;
-} 
+}
 .single-payment-method a{
 	display: block;
     border: 1px solid #d6d4d4;
@@ -4072,32 +4072,32 @@ table.delivery-table tr td .carrey-cost{}
     padding: 33px 40px 34px 99px;
     letter-spacing: -1px;
     position: relative;
-} 
+}
 .single-payment-method a:hover{
 	background:rgba(51, 46, 46, 0.05);
 }
 .single-payment-method span{
     color: #777;
-} 
+}
 .single-payment-method i{
 	color: #777;
 	font-size: 26px;
 	line-height: 25px;
 	position: absolute;
 	right: 15px;
-} 
+}
 .payment-method-one{
 	background: rgba(0, 0, 0, 0) url("img/bankwire.png") no-repeat scroll 12px 15px;
-} 
+}
 .payment-method-two{
 	background: rgba(0, 0, 0, 0) url("img/cheque.png") no-repeat scroll 12px 15px;
-} 
+}
 .payment-method-three{
 	background: rgba(0, 0, 0, 0) url("img/paypal-icon.png") no-repeat scroll 12px 15px;
-} 
+}
 .payment-method-four{
 	background: rgba(0, 0, 0, 0) url("img/Master-Card-icon.png") no-repeat scroll 12px 15px;
-} 
+}
 /*----------------------------------------
 25. single product page
 ------------------------------------------*/
@@ -4427,7 +4427,7 @@ p.small-title{
 	font-size: 12px;
 	height: 27px;
 	width: 228px;
-	margin:5px 0 5px;	
+	margin:5px 0 5px;
 	padding-left:5px;
 }
 .single-product-size select option{}
@@ -4552,7 +4552,7 @@ td.td-bg{
 }
 .tab-review-row .padding-5{
 	padding-left:15px;
-	padding-right:15px;	
+	padding-right:15px;
 }
 .tab-review-box{}
 .tab-review-row{

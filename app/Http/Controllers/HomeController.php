@@ -74,7 +74,7 @@ class HomeController extends Controller
 
                 $list[$key]['products'] = Product::where('is_active',1)
                     ->wherein('category_id',$ids)
-                    ->limit(3)
+                    ->limit(4)
                     ->orderBy('id','desc')
                     ->get();
             }
@@ -82,7 +82,7 @@ class HomeController extends Controller
         }
 //        dd($list);
 //        return view('frontend.home',['list'=>$list]);
-        return view('frontend.home2');
+        return view('frontend.home2',['list'=>$list]);
     }
 
     public function introduce()
@@ -204,8 +204,8 @@ class HomeController extends Controller
     }
 
     public function cart(){
-        echo 'trang giỏ hàng';
-//        return view('frontend.cart');
+//        echo 'trang giỏ hàng';
+        return view('frontend.cart');
     }
 
     public function search(Request $request)
