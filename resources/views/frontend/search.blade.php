@@ -35,7 +35,7 @@
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <h1>
                                 <span class="cat-name"></span>
-                                <span class="count-product">Có {{ $totalResult }} sản phẩm.</span>
+                                <span class="count-product">Có {{ $totalResult-1 }} sản phẩm.</span>
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>
@@ -87,11 +87,6 @@
                                         <span>Hiển thị 1 - 6 of {{ $totalResult }} sản phẩm</span>
                                     @endif
                                 </div>
-{{--                                <div class="showing-next-prev">--}}
-{{--                                    <ul class="pagination-bar">--}}
-{{--                                        {{ $products->links('vendor.pagination.custom') }}--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
                             </div>
                             <!-- PRODUCT-SHOOTING-RESULT END -->
                         </div>
@@ -105,14 +100,14 @@
                                 <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                         <div class="single-product-item">
                                         <div class="product-image">
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
-                                                @if($product->image && file_exists(public_path($product->image)))
-                                                    <img src="{{ asset($product->image) }}" height="200px">
+                                            <a href="{{ route('product',['id'=>$product['id'],'product'=>$product['slug']]) }}">
+                                                @if($product['image'] && file_exists(public_path($product['image'])))
+                                                    <img src="{{ asset($product['image']) }}" height="200px">
                                                 @else
                                                     <img src="{{ asset('upload/404.png') }}" height="200px">
                                                 @endif
                                             </a>
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box"></a>
+                                            <a href="{{ route('product',['id'=>$product['id'],'product'=>$product['slug']]) }}" class="new-mark-box"></a>
                                         </div>
                                         <div class="product-info">
                                             <div class="customar-comments-box">
@@ -127,12 +122,12 @@
                                                     <span>1 Review(s)</span>
                                                 </div>
                                             </div>
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
+                                            <a href="{{ route('product',['id'=>$product['id'],'product'=>$product['slug']]) }}">{{ $product['name'] }}</a>
                                             <div class="price-box">
-                                                @if($product->is_hot)
-                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                                @if($product['is_hot'])
+                                                    <span class="price">{{ number_format($product['sale'], 0, ".", ",") }} Đ</span>
                                                 @else
-                                                    <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
+                                                    <span class="price">{{ number_format($product['price'], 0, ".", ",") }} Đ</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -159,24 +154,11 @@
                                 <span>Hiển thị 1 - 6 of {{ $totalResult }} sản phẩm</span>
                             @endif
                         </div>
+
                         <div class="showing-next-prev">
                             <ul class="pagination-bar">
-                                <li class="disabled">
-                                    <a href="#" ><i class="fa fa-chevron-left"></i>Previous</a>
-                                </li>
-                                <li class="active">
-                                    <span><a class="pagi-num" href="#">1</a></span>
-                                </li>
-                                <li>
-                                    <span><a class="pagi-num" href="#">2</a></span>
-                                </li>
-                                <li>
-                                    <a href="#" >Next<i class="fa fa-chevron-right"></i></a>
-                                </li>
+                                {!! $products->appends(['kwd' => $keyword])->links('vendor.pagination.custom') !!}
                             </ul>
-                            <form action="#">
-                                <button class="btn showall-button">Show all</button>
-                            </form>
                         </div>
                     </div>
                     <!-- PRODUCT-SHOOTING-RESULT END -->

@@ -45,7 +45,9 @@ Route::post('/admin/loginPost', [\App\Http\Controllers\AdminController::class, '
 Route::get('/admin/logout', [\App\Http\Controllers\AdminController::class, 'logout'])->name('admin.logout');
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+Route::prefix('admin')->name('admin.')
+    ->middleware('auth')
+    ->group(function () {
     Route::get('/dashboard',[\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
     Route::resource('product', \App\Http\Controllers\ProductController::class);
     Route::resource('productImages', \App\Http\Controllers\Product_imageController::class);

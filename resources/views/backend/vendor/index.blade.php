@@ -26,7 +26,6 @@
                                 <th style="width: 10px">TT</th>
                                 <th>Hình ảnh</th>
                                 <th>Tên</th>
-                                <th>Danh mục cha</th>
                                 <th>Trạng thái</th>
                                 <th>Sắp sếp</th>
                                 <th>Hành động</th>
@@ -46,16 +45,13 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    {{ !empty($item->parent->name) ? $item->parent->name : 'Không' }}
-                                </td>
-                                <td>
                                     {!! $item->is_active == 1 ? '<span class="badge bg-green">ON</span>' : '<span class="badge bg-danger">OFF</span>' !!}
                                 </td>
                                 <td>
                                     {{ $item->position }}
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.category.edit', ['category' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
+                                    <a href="{{ route('admin.vendor.edit', ['vendor' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
                                     <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
                                 </td>
                             </tr>

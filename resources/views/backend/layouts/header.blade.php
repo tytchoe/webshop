@@ -10,32 +10,25 @@
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
-
         <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-
-                @if(\Illuminate\Support\Facades\Auth::check())
-                    @php
-                        $user = \Illuminate\Support\Facades\Auth::user();
-                    @endphp
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            @if(\Illuminate\Support\Facades\Auth::check())
+                @php
+                    $user = \Illuminate\Support\Facades\Auth::user();
+                @endphp
+                <ul class="nav navbar-nav">
+                    <li class="dropdown user user-menu open">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                             <span class="hidden-xs">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
-                            <li class="user-header" style="height: auto">
-
+                            <li class="user-header">
                                 @if($user->avatar && file_exists(public_path($user->avatar)))
                                     <img src="{{ asset($user->avatar) }}" class="img-circle" alt="">
                                 @else
                                     <img src="{{ asset('upload/user-404.png') }}" class="img-circle" alt="">
                                 @endif
                             </li>
-
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
@@ -47,13 +40,12 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- Control Sidebar Toggle Button -->
-                @endif
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
-            </ul>
+                <!-- Control Sidebar Toggle Button -->
+                </ul>
+            @endif
+
         </div>
+
     </nav>
 </header>
 

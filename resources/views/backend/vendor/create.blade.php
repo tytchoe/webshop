@@ -8,7 +8,7 @@
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
             <li><a href="#">Vendor</a></li>
-            <li class="active">Create</li>
+            <li class="active">Add</li>
         </ol>
     </section>
 
@@ -35,7 +35,7 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.category.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        <a href="{{ route('admin.vendor.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -44,10 +44,10 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" class="col-sm-2 control-label">
-                                    Tiêu đề
+                                    Tên nhà cung cấp
                                 </label>
                                 <div class="col-sm-10" >
-                                    <input id="title" name="title" type="text" class="form-control" placeholder="">
+                                    <input id="name" name="name" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
 
@@ -59,21 +59,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="email" name="email" placeholder="">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Số điện thoại</label>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Điện thoại</label>
 
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="phone" name="phone" placeholder="">
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
+                                <div class="col-sm-10">
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="">
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
 
@@ -81,7 +79,6 @@
                                     <input type="text" class="form-control" id="website" name="website" placeholder="">
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Địa chỉ</label>
 
@@ -91,13 +88,13 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputEmail1" class="col-sm-2 control-label">
-                                    Vị trí
-                                </label>
-                                <div class="col-sm-10" >
+                                <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
+
+                                <div class="col-sm-10">
                                     <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>
+
 
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="checkbox">
@@ -127,10 +124,11 @@
 @section('js')
     <script type="text/javascript">
         $( document ).ready(function() {
+            CKEDITOR.replace( 'description' );
 
             $('.btnCreate').click(function () {
-                if ($('#title').val() === '') {
-                    $('#title').notify('Bạn nhập chưa nhập tên','error');
+                if ($('#name').val() === '') {
+                    $('#name').notify('Bạn nhập chưa nhập tên','error');
                     document.getElementById('title').scrollIntoView();
                     return false;
                 }

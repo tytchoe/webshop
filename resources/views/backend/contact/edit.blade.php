@@ -43,24 +43,32 @@
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên</label>
-                                <input value="{{ $contact->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
+                                <label class="col-sm-2" for="exampleInputEmail1">Tên</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $contact->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Số điện thoại</label>
-                                <input value="{{ $contact->phone }}"type="text" class="form-control" id="phone" name="phone" placeholder="">
+                                <label class="col-sm-2" for="exampleInputPassword1">Số điện thoại</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $contact->phone }}"type="text" class="form-control" id="phone" name="phone" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Email</label>
-                                <input value="{{ $contact->email }}"type="text" class="form-control" id="email" name="email" placeholder="">
+                                <label class="col-sm-2" for="exampleInputPassword1">Email</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $contact->email }}"type="text" class="form-control" id="email" name="email" placeholder="">
+                                </div>
                             </div>
 
 
                             <div class="form-group">
-                                <label id="label-summary">Nội dung</label>
-                                <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{ $contact->content }}</textarea>
+                                <label class="col-sm-2" id="label-summary">Nội dung</label>
+                                <div class="col-sm-10">
+                                    <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{ $contact->content }}</textarea>
+                                </div>
                             </div>
 
                         </div>

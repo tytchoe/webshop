@@ -151,7 +151,7 @@ class HomeController extends Controller
         $comment->name = $request->input('name');
         $comment->email = $request->input('email');
         $comment->content = $request->input('content');
-        $comment->article_id =
+//        $comment->article_id =
         $comment->save();
 
         return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
@@ -206,26 +206,38 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-//        Product::reindex(); die;
+
         $keyword = $request->input('kwd');
-//        dd($keyword);
 
 //        $slug = Str::slug($keyword);
-//
+
+//        $sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
+
 //        $products = Product::where([
-//            ['slug','like','%'. $slug .'%'],
-//            ['is_active',1]
-//        ])->orderByDesc('id')->paginate(8);
+//        ['slug', 'like', '%' . $slug . '%'],
+//        ['is_active', '=', 1]
+//        ])->orderByDesc('id')->paginate(5);
 
-        $products = Product::searchByQuery(['match'=> ['slug'=>$keyword]],null,null,null,null,null);
+//        $totalResult = $products->total(); // số lượng kết quả tìm kiếm
 
-        $totalResult = $products->totalHits()['value'];
+        $page = $request->input('page', 1);
+        $paginate = 6;
 
-//        dd($products->getHits()['hits']);
+        $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $page);
+        $totalResult = $products->totalHits();
 //        dd($totalResult);
-
-
-        return view('frontend.search',['products'=>$products,'totalResult'=>$totalResult]);
+        $totalResult = $totalResult['value'];
+//        dd($totalResult);
+        // $offSet = ($page * $paginate) - $paginate;
+        $itemsForCurrentPage = $products->toArray();
+        $products = new \Illuminate\Pagination\LengthAwarePaginator($itemsForCurrentPage, $totalResult, $paginate, $page);
+        $products->setPath('tim-kiem');
+//        dd($products);
+        return view('frontend.search', [
+            'products' => $products,
+            'totalResult' => $totalResult ?? 0,
+            'keyword' => $keyword ? $keyword : ''
+        ]);
 
     }
 

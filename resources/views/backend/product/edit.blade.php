@@ -28,104 +28,182 @@
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên sản phẩm</label>
-                                <input value="{{ $product->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Tên sản phẩm</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
-                            </div>
-                            @if($product->image && file_exists(public_path($product->image)))
-                                <img src="{{ asset($product->image) }}" width="100" height="75" alt="">
-                            @else
-                                <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                            @endif
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Số lượng</label>
-                                <input value="{{ $product->stock }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Giá</label>
-                                <input value="{{ $product->price }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                                <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
+                                <div class="col-sm-4">
+                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                </div>
+                                <div class="col-sm-6">
+                                    @if($product->image && file_exists(public_path($product->image)))
+                                        <img src="{{ asset($product->image) }}" width="100" height="75" alt="">
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                    @endif
+                                </div>
                             </div>
 
+
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Giá sale</label>
-                                <input value="{{ $product->sale }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Số lượng</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->stock }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $product->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Giá</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->price }}" id="price" name="price" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Danh mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($mergeData['category'] as $item)
-                                        <option @if($product->category_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Giá sale</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->sale }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Nhà cung cấp</label>
-                                <select class="form-control" name="vendor_id" id="vendor_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($mergeData['vendor'] as $item)
-                                        <option @if($product->vendor_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Thương hiệu</label>
-                                <select class="form-control" name="brand_id" id="brand_id">
-                                    <option value="0">---Chọn---</option>
-                                    @foreach($mergeData['brand']  as $item)
-                                        <option @if($product->brand_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($mergeData['category'] as $item)
+                                            <option @if($product->category_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input value="{{ $product->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Nhà cung cấp</label>
 
-                            <div class="checkbox">
-                                <label>
-                                    <input @if($product->is_active == 1) checked @endif type="checkbox" name="is_active" id="is_active"> Trạng thái
-                                </label>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input @if($product->is_hot == 1) checked @endif type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
-                                </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="vendor_id" id="vendor_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($mergeData['vendor'] as $item)
+                                            <option @if($product->vendor_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-summary">Tóm tắt</label>
-                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $product->summary }}</textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Thương hiệu</label>
+
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="brand_id" id="brand_id">
+                                        <option value="0">---Chọn---</option>
+                                        @foreach($mergeData['brand']  as $item)
+                                            <option @if($product->brand_id == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->description }}</textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Kích thước</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->size }}" type="text" class="form-control" id="size" name="size" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Chất liệu</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->material }}" type="text" class="form-control" id="material" name="material" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Bộ sưu tập</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ $product->collection }}" type="text" class="form-control" id="collection" name="collection" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Nhập khẩu</label>
+
+                                <div class="col-sm-10">
+                                    <input value="{{ old('import') }}" type="text" class="form-control" id="import" name="import" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-meta-title">Tiêu đề</label>
-                                <textarea id="metaTitle" name="metaTitle" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_title }}</textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
+
+                                <div class="col-sm-10">
+                                    <input  value="{{ $product->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-2 col-sm-4">
+                                <div class="checkbox">
+                                    <label>
+                                        <input @if($product->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-1 col-sm-5">
+                                <div class="checkbox">
+                                    <label>
+                                        <input @if($product->is_hot == 1) checked @endif value="1" type="checkbox" name="is_hot" id="is_hot"> Sản phẩm hot / Flash Sale
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-meta-description">Mô tả chi tiết</label>
-                                <textarea id="metaDescription" name="metaDescription" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_descprition }}</textarea>
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-summary">Tóm tắt</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $product->summary }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->description }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-meta_title">META tiêu đề</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_title }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
+
+                                <div class="col-sm-10">
+                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_descprition }}</textarea>
+                                </div>
                             </div>
 
                         </div>

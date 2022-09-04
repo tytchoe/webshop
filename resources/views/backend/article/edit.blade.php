@@ -43,67 +43,89 @@
                         @method('PUT')
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tiêu đề</label>
-                                <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                <label class="col-sm-2" for="exampleInputEmail1">Tiêu đề</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Chọn ảnh</label>
-                                <input type="file" name="image" id="image">
+                                <label class="col-sm-2" for="exampleInputFile">Chọn ảnh</label>
+                                <input class="col-sm-4" type="file" name="image" id="image">
+                                <div class="col-sm-6">
+                                    @if($model->image && file_exists(public_path($model->image)))
+                                        <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                    @endif
+                                </div>
                             </div>
 
-                            @if($model->image && file_exists(public_path($model->image)))
-                                <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
-                            @else
-                                <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                            @endif
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Liên kết</label>
-                                <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
-                            </div>
+                                <label class="col-sm-2" for="exampleInputPassword1">Liên kết</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
+                                </div>
 
-                            <div class="form-group">
-                                <label>Chọn Danh Mục</label>
-                                <select class="form-control" name="category_id" id="category_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($categories as $item)
-                                        @if($item->type == 1)
-                                        <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Vị trí</label>
-                                <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
-                            </div>
+                                <label class="col-sm-2" >Chọn Danh Mục</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="category_id" id="category_id">
+                                        <option value="0">-- Chọn --</option>
+                                        @foreach($categories as $item)
+                                            @if($item->type == 1)
+                                                <option {{ $model->category_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <div class="checkbox">
-                                <label>
-                                    <input @if($model->is_active == 1) checked @endif  value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-summary">Tóm tắt</label>
-                                <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label id="label-description">Mô tả</label>
-                                <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Meta Title</label>
-                                <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_title }}</textarea>
+                                <label class="col-sm-2" for="exampleInputPassword1">Vị trí</label>
+                                <div class="col-sm-10">
+                                    <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    </label>
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label id="label-description">Meta Description</label>
-                                <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_description }}</textarea>
+                                <label class="col-sm-2" id="label-summary">Tóm tắt</label>
+                                <div class="col-sm-10">
+                                    <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2" id="label-description">Mô tả</label>
+                                <div class="col-sm-10">
+                                    <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2" id="label-description">Meta Title</label>
+                                <div class="col-sm-10">
+                                    <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_title }}</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2" id="label-description">Meta Description</label>
+                                <div class="col-sm-10">
+                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_description }}</textarea>
+                                </div>
                             </div>
 
                         </div>

@@ -36,14 +36,17 @@
 
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-4">
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
-                                @if($model->image && file_exists(public_path($model->image)))
-                                    <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
-                                @else
-                                    <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
-                                @endif
+                                <div class="col-sm-6">
+                                    @if($model->image && file_exists(public_path($model->image)))
+                                        <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                    @endif
+                                </div>
+
                             </div>
 
                             <div class="form-group">
