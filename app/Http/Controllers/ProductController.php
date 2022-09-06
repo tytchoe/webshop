@@ -12,6 +12,7 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -55,6 +56,9 @@ class ProductController extends Controller
             'vendor' => $vendor,
             'brand' => $brand
         ];
+//        $htmlShowCategory =  $this->showCategories($category,0,'');
+//        dd($htmlShowCategory);
+
         return view('backend.product.create', ['category' => $category], ['mergeData' => $mergeData] );
 
     }
@@ -180,15 +184,14 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $category = Category::all();
+        $category = Category::all()->toArray();
         $vendor = Vendor::all();
         $brand = Brand::all();
         $mergeData = [
-            'category' => $category,
             'vendor' => $vendor,
             'brand' => $brand
         ];
-        return view('backend.product.edit', ['product' => $product], ['mergeData' => $mergeData] );
+        return view('backend.product.edit', ['product' => $product,'category'=>$category], ['mergeData' => $mergeData] );
     }
 
     /**

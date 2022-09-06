@@ -138,7 +138,7 @@
                                                                             <img src="{{ asset('upload/404.png') }}" alt="product-image" height="200px">
                                                                         @endif
                                                                     </a>
-                                                                    <a href="#" class="new-mark-box">new</a>
+                                                                    <a href="#" class="new-mark-box">sale</a>
                                                                 </div>
                                                                 <div class="product-info">
                                                                     <div class="customar-comments-box">
@@ -196,59 +196,6 @@
                 <!-- ADD-TWO-BY-ONE-COLUMN END -->
             </div>
             <div class="row">
-                <!-- FEATURED-PRODUCTS-AREA START -->
-{{--                <div class="featured-products-area">--}}
-{{--                    <div class="center-title-area">--}}
-{{--                        <h2 class="center-title">Featured Products</h2>--}}
-{{--                    </div>--}}
-{{--                    <div class="col-xs-12">--}}
-{{--                        <div class="row">--}}
-{{--                            <!-- FEARTURED-CAROUSEL START -->--}}
-{{--                            <div class="feartured-carousel">--}}
-{{--                                <!-- SINGLE-PRODUCT-ITEM START -->--}}
-{{--                                <div class="item">--}}
-{{--                                    <div class="single-product-item">--}}
-{{--                                        <div class="product-image">--}}
-{{--                                            <a href="#"><img src="{{asset('frontend')}}/img/product/sale/3.jpg" alt="product-image" /></a>--}}
-{{--                                            <a href="#" class="new-mark-box">new</a>--}}
-{{--                                            <div class="overlay-content">--}}
-{{--                                                <ul>--}}
-{{--                                                    <li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>--}}
-{{--                                                    <li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>--}}
-{{--                                                    <li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>--}}
-{{--                                                    <li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>--}}
-{{--                                                </ul>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="product-info">--}}
-{{--                                            <div class="customar-comments-box">--}}
-{{--                                                <div class="rating-box">--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star"></i>--}}
-{{--                                                    <i class="fa fa-star-half-empty"></i>--}}
-{{--                                                </div>--}}
-{{--                                                <div class="review-box">--}}
-{{--                                                    <span>1 Review (s)</span>--}}
-{{--                                                </div>--}}
-{{--                                            </div>--}}
-{{--                                            <a href="single-product.html">Faded Short Sleeves T-shirt</a>--}}
-{{--                                            <div class="price-box">--}}
-{{--                                                <span class="price">$16.51</span>--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                                <!-- SINGLE-PRODUCT-ITEM END -->--}}
-{{--                            </div>--}}
-{{--                            <!-- FEARTURED-CAROUSEL END -->--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-                <!-- FEATURED-PRODUCTS-AREA END -->
-            </div>
-            <div class="row">
                 <div class="col-xs-12">
                     <!-- TAB-BG-PRODUCT-AREA START -->
                     <div class="tab-bg-product-area">
@@ -259,7 +206,7 @@
                                         <div role="tabpanel" class="tab-pane active" id="{{ $item['category']->slug }}-tab">
                                             <div class="bg-tab-content-area tab-carousel-1">
                                                 @foreach($item['products'] as $key => $product)
-                                                    @if($key <= 3)
+                                                    @if($key <= 7)
                                                         <div class="item">
                                                             <div class="single-product-item">
                                                                 <div class="product-image">

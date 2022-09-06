@@ -76,7 +76,7 @@ class HomeController extends Controller
 
                 $list[$key]['products'] = Product::where('is_active',1)
                     ->wherein('category_id',$ids)
-                    ->limit(4)
+                    ->limit(8)
                     ->orderBy('id','desc')
                     ->get();
             }
@@ -182,7 +182,7 @@ class HomeController extends Controller
         $products = Product::where('is_active',1)
             ->wherein('category_id',$ids)
             ->latest()
-            ->paginate(15);
+            ->paginate(6);
 
 
             return view('frontend.category2',['category'=>$category,'products'=>$products]);

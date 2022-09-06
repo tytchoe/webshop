@@ -40,55 +40,6 @@
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>
                         <div class="product-shooting-area">
-                            <div class="product-shooting-bar">
-                                <!-- SHOORT-BY START -->
-                                <div class="shoort-by">
-                                    <label for="productShort">Sort by</label>
-                                    <div class="short-select-option">
-                                        <select name="sortby" id="productShort">
-                                            <option value="">--</option>
-                                            <option value="">Giá: Rẻ nhất</option>
-                                            <option value="">Giá: đắt nhất</option>
-                                            <option value="">Tên sản phẩm: A to Z</option>
-                                            <option value="">Tên sản phẩm: Z to A</option>
-                                            <option value="">Còn hàng</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- SHOORT-BY END -->
-                                <!-- SHOW-PAGE START -->
-                                <div class="show-page">
-                                    <label for="perPage">Hiển thị</label>
-                                    <div class="s-page-select-option">
-                                        <select name="show" id="perPage">
-                                            <option value="">6</option>
-                                            <option value="">12</option>
-                                        </select>
-                                    </div>
-                                    <span>sản phẩm mỗi trang</span>
-                                </div>
-                                <!-- SHOW-PAGE END -->
-                                <!-- VIEW-SYSTEAM START -->
-                                <div class="view-systeam">
-                                    <label for="perPage">Xem:</label>
-                                    <ul>
-                                        <li class="active"><a href="shop-gird.html"><i class="fa fa-th-large"></i></a><br />Grid</li>
-                                        <li><a href="shop-list.html"><i class="fa fa-th-list"></i></a><br />List</li>
-                                    </ul>
-                                </div>
-                                <!-- VIEW-SYSTEAM END -->
-                            </div>
-                            <!-- PRODUCT-SHOOTING-RESULT START -->
-                            <div class="product-shooting-result">
-                                <div class="showing-item">
-                                    @if($totalResult < 6)
-                                        <span>Hiển thị 1 - {{ $totalResult }} of {{ $totalResult }} sản phẩm</span>
-                                    @else
-                                        <span>Hiển thị 1 - 6 of {{ $totalResult }} sản phẩm</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <!-- PRODUCT-SHOOTING-RESULT END -->
                         </div>
                     </div>
                     <!-- ALL GATEGORY-PRODUCT START -->
@@ -141,24 +92,14 @@
                     <!-- ALL GATEGORY-PRODUCT END -->
                     <!-- PRODUCT-SHOOTING-RESULT START -->
                     <div class="product-shooting-result product-shooting-result-border">
-                        <form action="#">
-                            <button class="btn compare-button">
-                                Compare (<strong class="compare-value">1</strong>)
-                                <i class="fa fa-chevron-right"></i>
-                            </button>
-                        </form>
-                        <div class="showing-item">
-                            @if($totalResult < 6)
-                                <span>Hiển thị 1 - {{$totalResult}} of {{$totalResult}} sản phẩm</span>
-                            @else
-                                <span>Hiển thị 1 - 6 of {{ $totalResult }} sản phẩm</span>
-                            @endif
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         </div>
-
-                        <div class="showing-next-prev">
+                        <div class="showing-next-prev col-lg-4 col-md-4 col-sm-6 col-xs-12">
                             <ul class="pagination-bar">
                                 {!! $products->appends(['kwd' => $keyword])->links('vendor.pagination.custom') !!}
                             </ul>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         </div>
                     </div>
                     <!-- PRODUCT-SHOOTING-RESULT END -->

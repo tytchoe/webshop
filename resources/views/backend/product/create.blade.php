@@ -92,13 +92,24 @@
 
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
-
                                 <div class="col-sm-10">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="0">---Chọn---</option>
-                                        @foreach($category as $item)
-                                            <option @if(old('category_id') == $item->id) selected @endif value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        @php
+                                            function showCategories($categories, $parent_id = 0, $char = '') {
+                                                foreach ($categories as $key => $item) {
+                                                    if ($item['parent_id'] == $parent_id)
+                                                    {
+                                                        echo '<option value="'.$item['id'].'">';
+                                                            echo $char . $item['name'];
+                                                        echo '</option>';
+                                                        unset($categories[$key]);
+                                                        showCategories($categories, $item['id'], $char.'|---');
+                                                    }
+                                                }
+                                            }
+                                            showCategories($category);
+                                        @endphp
                                     </select>
                                 </div>
                             </div>
