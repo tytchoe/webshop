@@ -15,9 +15,7 @@
                 <div class="header-right-menu">
                     <nav>
                         <ul class="list-inline">
-                            <li><a href="checkout.html">Check Out</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="cart.html">My Cart</a></li>
+                            <li><a href="{{ route('cart.list') }}">My Cart</a></li>
                         </ul>
                     </nav>
                 </div>

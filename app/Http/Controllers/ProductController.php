@@ -203,7 +203,7 @@ class ProductController extends Controller
 //        dd($request);
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'category_id' => 'required',
             'vendor_id' => 'required',
             'brand_id' => 'required',
@@ -213,8 +213,8 @@ class ProductController extends Controller
             'meta_description' => 'required',
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.required' => 'Bạn chưa chọn file ảnh',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
+//            'image.required' => 'Bạn chưa chọn file ảnh',
+//            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
             'vendor_id.required' => 'Bạn cần phải chọn nhà cung cấp',
             'brand_id.required' => 'Bạn cần phải chọn thương hiệu',
@@ -251,6 +251,10 @@ class ProductController extends Controller
         $product->vendor_id = $request->input('vendor_id');
         $product->user_id = $request->user()->id;
 
+        $product->material = $request->input('material');
+        $product->size = $request->input('size');
+        $product->collection = $request->input('collection');
+        $product->import = $request->input('import');
         // Loai
         //$product->type = $request->input('type') ?? 0;
         //Trang thai
@@ -282,6 +286,8 @@ class ProductController extends Controller
         //Luu
         $product->save();
 
+        $product->updateIndex();
+
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.product.index');
     }
@@ -301,6 +307,7 @@ class ProductController extends Controller
             'status' => true,
             'msg' => 'Xóa thành công'
         ]);
+
     }
 
     public function restore($id){

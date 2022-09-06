@@ -49,7 +49,7 @@
                             <li class="active"><a href="{{ route('homeindex') }}">Trang chủ</a>
                             </li>
                             <li>
-                                <a href="shop-gird.html">Danh mục</a>
+                                <a href="#">Danh mục</a>
                                 <!-- DRODOWN-MEGA-MENU START -->
                                 <div class="drodown-mega-menu">
                                     @foreach($categories as $item)
@@ -65,7 +65,6 @@
                                 </div>
                                 <!-- DRODOWN-MEGA-MENU END -->
                             </li>
-                            <li><a href="#">Delivery</a></li>
                             <li><a href="{{ route('articles') }}">Tin tức</a></li>
                             <li><a href="{{ route('contact') }}#form">Liên hệ</a></li>
                             <li><a href="{{ route('introduce') }}#form">Về chúng tôi</a></li>

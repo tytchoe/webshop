@@ -14,6 +14,21 @@
 
     <section class="content">
         <div class="row">
+            <div class="col-md-6">
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Lỗi !</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
             <!-- left column -->
             <div class="col-md-12">
                 <!-- general form elements -->
@@ -38,7 +53,7 @@
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
                                 <div class="col-sm-4">
-                                    <input style="padding: 5px;" type="file" name="image" id="image">
+                                    <input style="padding: 5px;" type="file" name="image" id="image"  >
                                 </div>
                                 <div class="col-sm-6">
                                     @if($product->image && file_exists(public_path($product->image)))
@@ -146,7 +161,7 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nhập khẩu</label>
 
                                 <div class="col-sm-10">
-                                    <input value="{{ old('import') }}" type="text" class="form-control" id="import" name="import" placeholder="">
+                                    <input value="{{ $product->import }}" type="text" class="form-control" id="import" name="import" placeholder="">
                                 </div>
                             </div>
 
@@ -202,7 +217,7 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
 
                                 <div class="col-sm-10">
-                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_descprition }}</textarea>
+                                    <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_description }}</textarea>
                                 </div>
                             </div>
 
@@ -228,8 +243,6 @@
         $( document ).ready(function() {
             CKEDITOR.replace( 'description' );
             CKEDITOR.replace( 'summary' );
-            CKEDITOR.replace( 'meta-title' );
-            CKEDITOR.replace( 'meta-description' );
             $('#price').on('keyup',function (e) {
                 var price = $(this).val().replace(/[^0-9]/g,'');
                 if (price > 0) {

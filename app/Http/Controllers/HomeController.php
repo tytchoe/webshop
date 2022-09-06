@@ -59,6 +59,7 @@ class HomeController extends Controller
 
     public function index()
     {
+        $articles = Article::where('is_active',1)->get();
         $list = [];
         foreach ($this->categories as $key => $parent) {
             if($parent->parent_id == 0) {
@@ -81,9 +82,11 @@ class HomeController extends Controller
             }
 
         }
+//        $list['articles'] = $articles;
+
 //        dd($list);
 //        return view('frontend.home',['list'=>$list]);
-        return view('frontend.home2',['list'=>$list]);
+        return view('frontend.home2',['list'=>$list,'articles'=>$articles]);
     }
 
     public function introduce()
