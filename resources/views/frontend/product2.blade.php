@@ -115,14 +115,6 @@
                         <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
                             <div class="single-product-descirption">
                                 <h2>{{ $product->name }}</h2>
-                                <div class="single-product-social-share">
-                                    <ul>
-                                        <li><a href="#" class="twi-link"><i class="fa fa-twitter"></i>Tweet</a></li>
-                                        <li><a href="#" class="fb-link"><i class="fa fa-facebook"></i>Share</a></li>
-                                        <li><a href="#" class="g-plus-link"><i class="fa fa-google-plus"></i>Google+</a></li>
-                                        <li><a href="#" class="pin-link"><i class="fa fa-pinterest"></i>Pinterest</a></li>
-                                    </ul>
-                                </div>
                                 <div class="single-product-review-box">
                                     <div class="rating-box">
                                         <i class="fa fa-star"></i>
@@ -150,16 +142,11 @@
                                     <p>{!! $product->description !!}</p>
                                     <div class="product-in-stock">
                                         @if($product->stock >0)
-                                            <p>{{ number_format($product->stock, 0, ".", ",") }} Sản phẩm<span>Còn hàng</span></p>
+                                            <p><span>Còn hàng</span></p>
                                         @else
-                                            <p>0 Sản phẩm<span>Tạm hết hàng</span></p>
+                                            <p><span>Tạm hết hàng</span></p>
                                         @endif
                                     </div>
-                                </div>
-                                <div class="single-product-info">
-                                    <a href="#"><i class="fa fa-envelope"></i></a>
-                                    <a href="#"><i class="fa fa-print"></i></a>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
                                 </div>
                                 <div class="single-product-quantity">
                                     <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
@@ -168,16 +155,25 @@
                                         <input type="hidden" value="{{ $product->name }}" name="name">
                                         <input type="hidden" value="{{ $product->price }}" name="price">
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
-                                        <p class="small-title">Số lượng</p>
-                                        <div class="cart-quantity">
-                                            <div class="">
-                                                <input class="" max="{{$product->stock}}" min="0" type="number"
-                                                       name="quantity" value="0" id="quantity" >
+                                        <div>
+                                            <h3 class="col-sm-6">Số lượng</h3>
+                                            <div class="cart-quantity col-sm-6">
+                                                <div class="">
+                                                    <input class="" max="{{$product->stock}}" min="0" type="number"
+                                                           name="quantity" value="0" id="quantity" >
+                                                </div>
                                             </div>
                                         </div>
                                         <br>
-                                        <div class="single-product-add-cart">
+                                        <br>
+                                        <br>
+                                        <div class="single-product-add-cart col-sm-3">
+
+                                        </div>
+                                        <div class="single-product-add-cart col-sm-6">
                                             <button class="add-cart-text" title="Add to cart" >Thêm vào giỏ hàng</button>
+                                        </div><div class="single-product-add-cart col-sm-3">
+
                                         </div>
                                     </form>
                                 </div>
@@ -208,11 +204,15 @@
                                                 <tbody>
                                                 <tr class="odd">
                                                     <td>Chất liệu</td>
-                                                    <td>Cotton</td>
+                                                    <td>{{ $product->material }}</td>
                                                 </tr>
                                                 <tr class="even">
-                                                    <td class="td-bg">Kiểu</td>
-                                                    <td class="td-bg">Casual</td>
+                                                    <td class="td-bg">Kích cỡ</td>
+                                                    <td class="td-bg">{{ $product->size }}</td>
+                                                </tr>
+                                                <tr class="even">
+                                                    <td class="td-bg">Bộ sưu tập</td>
+                                                    <td class="td-bg">{{ $product->collection }}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>

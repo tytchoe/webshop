@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!-- SHOPPING-CART START -->
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-right shopingcartarea">
                 <div class="shopping-cart-out pull-right">
                     <div class="shopping-cart">
                         <a class="shop-link" href="{{ route('cart.list') }}" title="View my shopping cart">
@@ -42,29 +42,32 @@
             </div>
             <!-- SHOPPING-CART END -->
             <!-- MAINMENU START -->
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 no-padding-right menuarea">
+            <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 no-padding-right menuarea">
                 <div class="mainmenu">
                     <nav>
                         <ul class="list-inline mega-menu">
                             <li class="active"><a href="{{ route('homeindex') }}">Trang chủ</a>
                             </li>
-                            <li>
-                                <a href="#">Danh mục</a>
-                                <!-- DRODOWN-MEGA-MENU START -->
-                                <div class="drodown-mega-menu">
-                                    @foreach($categories as $item)
-                                        @if ($item->parent_id == 0)
-                                            <div class="left-mega col-xs-6">
-                                                <div class="mega-menu-list">
-                                                    <a class="mega-menu-title" href="{{ route('category',['category'=>$item->slug]) }}">
-                                                        {{ $item->name }}</a>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <!-- DRODOWN-MEGA-MENU END -->
-                            </li>
+                            @foreach($categories as $item)
+                                @if ($item->parent_id == 0)
+                                    <li>
+                                        <a class="mega-menu-title" href="{{ route('category',['category'=>$item->slug]) }}">
+                                            {{ $item->name }}</a>
+                                        <div class="drodown-mega-menu">
+                                            @foreach($categories as $children)
+                                                @if($children->parent_id == $item->id)
+                                                    <div class="left-mega col-xs-6">
+                                                        <div class="mega-menu-list">
+                                                            <a class="mega-menu-title" href="{{ route('category',['category'=>$children->slug]) }}">
+                                                                {{ $children->name }}</a>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                @endif
+                            @endforeach
                             <li><a href="{{ route('articles') }}">Tin tức</a></li>
                             <li><a href="{{ route('contact') }}#form">Liên hệ</a></li>
                             <li><a href="{{ route('introduce') }}#form">Về chúng tôi</a></li>

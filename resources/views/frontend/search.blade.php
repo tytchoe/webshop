@@ -35,7 +35,7 @@
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <h1>
                                 <span class="cat-name"></span>
-                                <span class="count-product">Có {{ $totalResult-1 }} sản phẩm.</span>
+                                <span class="count-product">Có {{ $totalResult-1  }} sản phẩm phù hợp với từ khóa {{ $keyword }}.</span>
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>

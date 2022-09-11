@@ -48,24 +48,27 @@
                         <ul class="list-inline mega-menu">
                             <li class="active"><a href="{{ route('homeindex') }}">Trang chủ</a>
                             </li>
-                            <li>
-                                <a href="shop-gird.html">Danh mục</a>
-                                <!-- DRODOWN-MEGA-MENU START -->
-                                <div class="drodown-mega-menu">
-                                    @foreach($categories as $item)
-                                        @if ($item->parent_id == 0)
-                                            <div class="left-mega col-xs-6">
-                                                <div class="mega-menu-list">
-                                                    <a class="mega-menu-title" href="{{ route('category',['category'=>$item->slug]) }}">
-                                                        {{ $item->name }}</a>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    @endforeach
-                                </div>
-                                <!-- DRODOWN-MEGA-MENU END -->
                             </li>
-                            <li><a href="#">Delivery</a></li>
+                            @foreach($categories as $item)
+                                @if ($item->parent_id == 0)
+                                    <li>
+                                        <a class="mega-menu-title" href="{{ route('category',['category'=>$item->slug]) }}">
+                                            {{ $item->name }}</a>
+                                        <div class="drodown-mega-menu">
+                                            @foreach($categories as $children)
+                                                @if($children->parent_id == $item->id)
+                                                    <div class="left-mega col-xs-6">
+                                                        <div class="mega-menu-list">
+                                                            <a class="mega-menu-title" href="{{ route('category',['category'=>$children->slug]) }}">
+                                                                {{ $children->name }}</a>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </li>
+                                @endif
+                            @endforeach
                             <li><a href="{{ route('articles') }}">Tin tức</a></li>
                             <li><a href="{{ route('contact') }}#form">Liên hệ</a></li>
                             <li><a href="{{ route('introduce') }}#form">Về chúng tôi</a></li>

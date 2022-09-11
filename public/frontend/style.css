@@ -689,9 +689,9 @@ input.search-form[placeholder]:-ms-input-placeholder {
 	color: #fff;
 	display: block;
 	font-family: 'Bitter', serif;
-	font-size: 14px;
-	line-height: 55px;
-	padding: 0 20px;
+	font-size: 10px;
+	line-height: 50px;
+	padding: 0 10px;
 	text-transform: uppercase;
 	transition: all 300ms ease 0s;
 }

@@ -26,7 +26,6 @@
                                     {{ $category->name }}
                                 </a>
                             </span>
-
                     </div>
                     <!-- BSTORE-BREADCRUMB END -->
                 </div>
@@ -215,7 +214,7 @@
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <h1>
                                 <span class="cat-name">{{ $category->name }}</span>
-                                <span class="count-product">Có {{ count($products) }} sản phẩm.</span>
+                                <span class="count-product">Có {{ $count }} sản phẩm.</span>
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>

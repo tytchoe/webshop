@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Banner;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Contact;
@@ -52,9 +53,14 @@ class HomeController extends Controller
             ->orderBy('created_at')
             ->orderBy('id')
             ->get();
+        $brands = Brand::where('is_active','1')
+            ->orderBy('created_at')
+            ->orderBy('id')
+            ->get();
         View::share('categories',$this->categories);
         View::share('setting',$setting);
         View::share('banners',$banners);
+        View::share('brands',$brands);
     }
 
     public function index()
@@ -183,9 +189,13 @@ class HomeController extends Controller
             ->wherein('category_id',$ids)
             ->latest()
             ->paginate(6);
+        $all = Product::where('is_active',1)
+            ->wherein('category_id',$ids)
+            ->get();
+//        dd($all);
+        $count = count($all);
 
-
-            return view('frontend.category2',['category'=>$category,'products'=>$products]);
+            return view('frontend.category2',['category'=>$category,'products'=>$products,'count'=>$count]);
     }
 
     //chi tiết sản phẩm
@@ -222,14 +232,17 @@ class HomeController extends Controller
 //        ])->orderByDesc('id')->paginate(5);
 
 //        $totalResult = $products->total(); // số lượng kết quả tìm kiếm
-
-        $page = $request->input('page', 1);
-        $paginate = 6;
-
-        $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $page);
-        $totalResult = $products->totalHits();
+        $all = Product::searchByQuery(['match' => ['name' => $keyword]]);
+//        dd($all);
+        $totalResult = $all->totalHits();
 //        dd($totalResult);
         $totalResult = $totalResult['value'];
+
+        $page = $request->input('page', 1);
+        $paginate = 7;
+
+        $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $page);
+
 //        dd($totalResult);
         // $offSet = ($page * $paginate) - $paginate;
         $itemsForCurrentPage = $products->toArray();
