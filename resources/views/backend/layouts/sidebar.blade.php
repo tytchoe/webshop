@@ -79,11 +79,11 @@
                     <i class="fa fa-picture-o" aria-hidden="true"></i> <span>QL Thành viên</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.role.index') }}">
-                    <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Chức vụ</span>
-                </a>
-            </li>
+{{--            <li>--}}
+{{--                <a href="{{ route('admin.role.index') }}">--}}
+{{--                    <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Chức vụ</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
             <li>
                 <a href="{{ route('admin.setting.index') }}">
                     <i class="fa fa-picture-o" aria-hidden="true"></i> <span>Cấu hình Website</span>

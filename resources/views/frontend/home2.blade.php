@@ -13,24 +13,28 @@
                                 <div class="slider-wrapper">
                                     <div id="mainSlider" class="nivoSlider">
                                         @foreach($banners as $key => $banner)
-                                            @if($banner->image && file_exists(public_path($banner->image)))
-                                                <img src="{{ asset($banner->image) }}" alt="main slider" title="#htmlcaption{{$key}}" >
-                                            @else
-                                                <img src="{{ asset('upload/404.png') }}"alt="main slider" title="#htmlcaption{{$key}}">
+                                            @if($banner->type == 1)
+                                                @if($banner->image && file_exists(public_path($banner->image)))
+                                                    <img src="{{ asset($banner->image) }}" alt="main slider" title="#htmlcaption{{$key}}" >
+                                                @else
+                                                    <img src="{{ asset('upload/404.png') }}"alt="main slider" title="#htmlcaption{{$key}}">
+                                                @endif
                                             @endif
                                         @endforeach
                                     </div>
                                     @foreach($banners as $key => $banner)
-                                        <div id="htmlcaption{{$key}}" class="nivo-html-caption slider-caption">
-                                            <div class="slider-progress"></div>
-                                            <div class="slider-cap-text slider-text1">
-                                                <div class="d-table-cell">
-                                                    <h2 class="animated bounceInDown">{{ $banner->title }}</h2>
-                                                    <p class="animated bounceInUp">{!! $banner->description !!}</p>
-                                                    <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="{{ $banner->url }}">Xem thêm <i class="fa fa-caret-right"></i></a>
+                                        @if($banner->type == 1)
+                                            <div id="htmlcaption{{$key}}" class="nivo-html-caption slider-caption">
+                                                <div class="slider-progress"></div>
+                                                <div class="slider-cap-text slider-text1">
+                                                    <div class="d-table-cell">
+                                                        <h2 class="animated bounceInDown">{{ $banner->title }}</h2>
+                                                        <p class="animated bounceInUp">{!! $banner->description !!}</p>
+                                                        <a class="wow zoomInDown" data-wow-duration="1s" data-wow-delay="1s" href="{{ $banner->url }}">Xem thêm <i class="fa fa-caret-right"></i></a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     @endforeach
                                 </div>
                             </div>
@@ -40,7 +44,15 @@
                     <!-- SLIDER-RIGHT START -->
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="slider-right zoom-img m-top">
-                            <a href="#"><img class="img-responsive" src="{{asset('frontend')}}/img/product/cms11.jpg" alt="sidebar left" /></a>
+                            @foreach($banners as $key => $banner)
+                                @if($banner->type == 3)
+                                    @if($banner->image && file_exists(public_path($banner->image)))
+                                        <img src="{{ asset($banner->image) }}" alt="left slider"  >
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}"alt="left slider"  >
+                                    @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <!-- SLIDER-RIGHT END -->
@@ -78,13 +90,6 @@
                                                                 </div>
                                                                 <div class="product-info">
                                                                     <div class="customar-comments-box">
-                                                                        <div class="rating-box">
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star-half-empty"></i>
-                                                                            <i class="fa fa-star-half-empty"></i>
-                                                                        </div>
                                                                         <div class="review-box">
                                                                             <span>1 Review (s)</span>
                                                                         </div>
@@ -142,13 +147,6 @@
                                                                 </div>
                                                                 <div class="product-info">
                                                                     <div class="customar-comments-box">
-                                                                        <div class="rating-box">
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star-half-empty"></i>
-                                                                            <i class="fa fa-star-half-empty"></i>
-                                                                        </div>
                                                                         <div class="review-box">
                                                                             <span>1 Review (s)</span>
                                                                         </div>
@@ -203,46 +201,38 @@
                                 <div class="tab-content bg-tab-content">
                                     <!-- TABS ONE START-->
                                     @foreach($list as $item)
-                                        <div role="tabpanel" class="tab-pane active" id="{{ $item['category']->slug }}-tab">
+                                        <div role="tabpanel" @if($item === reset($list)) class="tab-pane active" @else  class="tab-pane" @endif
+                                        id="{{ $item['category']->slug }}-tab">
                                             <div class="bg-tab-content-area tab-carousel-1">
                                                 @foreach($item['products'] as $key => $product)
-                                                    @if($key <= 7)
-                                                        <div class="item">
-                                                            <div class="single-product-item">
-                                                                <div class="product-image">
-                                                                    <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
-                                                                        @if($product->image && file_exists(public_path($product->image)))
-                                                                            <img src="{{ asset($product->image) }}" alt="product-image" height="200px">
-                                                                        @else
-                                                                            <img src="{{ asset('upload/404.png') }}" alt="product-image" height="200px">
-                                                                        @endif</a>
-                                                                    <a href="" class="new-mark-box">new</a>
+                                                    <div class="item">
+                                                        <div class="single-product-item">
+                                                            <div class="product-image">
+                                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
+                                                                    @if($product->image && file_exists(public_path($product->image)))
+                                                                        <img src="{{ asset($product->image) }}" alt="product-image" height="200px">
+                                                                    @else
+                                                                        <img src="{{ asset('upload/404.png') }}" alt="product-image" height="200px">
+                                                                    @endif</a>
+                                                                <a href="" class="new-mark-box">new</a>
+                                                            </div>
+                                                            <div class="product-info">
+                                                                <div class="customar-comments-box">
+                                                                    <div class="review-box">
+                                                                        <span>1 Review(s)</span>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="product-info">
-                                                                    <div class="customar-comments-box">
-                                                                        <div class="rating-box">
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star"></i>
-                                                                            <i class="fa fa-star-half-empty"></i>
-                                                                        </div>
-                                                                        <div class="review-box">
-                                                                            <span>1 Review(s)</span>
-                                                                        </div>
-                                                                    </div>
-                                                                    <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
-                                                                    <div class="price-box">
-                                                                        @if($product->is_hot)
-                                                                            <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
-                                                                        @else
-                                                                            <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
-                                                                        @endif
-                                                                    </div>
+                                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
+                                                                <div class="price-box">
+                                                                    @if($product->is_hot)
+                                                                        <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                                                    @else
+                                                                        <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    @endif
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>

@@ -63,9 +63,21 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option value="0">-- Chọn --</option>
-                                        @foreach($data as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        @php
+                                            function showCategories($categories, $parent_id = 0, $char = '') {
+                                                foreach ($categories as $key => $item) {
+                                                    if ($item['parent_id'] == $parent_id)
+                                                    {
+                                                        echo '<option value="'.$item['id'].'">';
+                                                            echo $char . $item['name'];
+                                                        echo '</option>';
+                                                        unset($categories[$key]);
+                                                        showCategories($categories, $item['id'], $char.'|---');
+                                                    }
+                                                }
+                                            }
+                                            showCategories($data);
+                                        @endphp
                                     </select>
                                 </div>
                             </div>

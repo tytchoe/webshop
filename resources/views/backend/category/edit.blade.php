@@ -22,7 +22,7 @@
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
-                    <form role="form" method="post" action="{{ route('admin.category.update', ['category' => $model->id]) }}" enctype="multipart/form-data">
+                    <form role="form" method="post" action="{{ route('admin.category.update', ['category' => $category->id]) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="box-body">
@@ -30,7 +30,7 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="name" name="name" value="{{ $model->name }}">
+                                    <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}">
                                 </div>
                             </div>
 
@@ -40,8 +40,8 @@
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
                                 <div class="col-sm-6">
-                                    @if($model->image && file_exists(public_path($model->image)))
-                                        <img src="{{ asset($model->image) }}" width="100" height="75" alt="">
+                                    @if($category->image && file_exists(public_path($category->image)))
+                                        <img src="{{ asset($category->image) }}" width="100" height="75" alt="">
                                     @else
                                         <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
                                     @endif
@@ -55,9 +55,21 @@
                                 <div class="col-sm-10">
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option value="0">-- Chọn --</option>
-                                        @foreach($data as $item)
-                                            <option {{ $item->id == $model->parent_id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
+                                        @php
+                                            function showCategories($categories, $parent_id = 0, $char = '' , $id ) {
+                                                foreach ($categories as $key => $item) {
+                                                    if ($item['parent_id'] == $parent_id)
+                                                    {
+                                                        echo '<option '.($item['id'] == $id ? 'selected' :' ').' value="'.$item['id'].'">';
+                                                            echo $char . $item['name'];
+                                                        echo '</option>';
+                                                        unset($categories[$key]);
+                                                        showCategories($categories, $item['id'], $char.'|---',$id);
+                                                    }
+                                                }
+                                            }
+                                            showCategories($data,0,'',$category->parent_id);
+                                        @endphp
                                     </select>
                                 </div>
                             </div>
@@ -66,21 +78,21 @@
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
                                 <div class="col-sm-10">
-                                    <input min="0" type="number" class="form-control" id="position" name="position" value="{{ $model->position }}">
+                                    <input min="0" type="number" class="form-control" id="position" name="position" value="{{ $category->position }}">
                                 </div>
                             </div>
 
                             <div class="col-sm-offset-2 col-sm-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                        <input @if($category->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                     </label>
                                 </div>
                             </div>
                             <div class="col-sm-offset-1 col-sm-5">
                                 <div class="checkbox">
                                     <label>
-                                        <input @if($model->type == 1) checked @endif value="1" type="checkbox" name="type" id="type"> Bài viết
+                                        <input @if($category->type == 1) checked @endif value="1" type="checkbox" name="type" id="type"> Bài viết
                                     </label>
                                 </div>
                             </div>

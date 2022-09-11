@@ -93,42 +93,23 @@
                     <!-- FOOTER-TOP-RIGHT-1 END -->
                     <div class="footer-top-right-2">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <!-- FOTTER-MENU-WIDGET START -->
-                                <div class="fotter-menu-widget">
-                                    <div class="single-f-widget">
-                                        <h2>Categories</h2>
-                                        <ul>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Women </a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>Men</a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>clothing</a></li>
-                                            <li><a href="shop-gird.html"><i class="fa fa-angle-double-right"></i>kids</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- FOTTER-MENU-WIDGET END -->
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <!-- FOTTER-MENU-WIDGET START -->
-                                <div class="fotter-menu-widget">
-                                    <div class="single-f-widget">
-                                        <h2>Information</h2>
-                                        <ul>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Specials</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>New products</a></li>
-                                            <li><a href="#"><i class="fa fa-angle-double-right"></i>Best sellers</a></li>
-                                            <li><a href="contact-us.html"><i class="fa fa-angle-double-right"></i>Contact Us</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- FOTTER-MENU-WIDGET END -->
-                            </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <!-- PAYMENT-METHOD START -->
-                                <div class="payment-method">
-                                    <img class="img-responsive pull-right" src="{{asset('frontend')}}/img/payment.png" alt="payment-method" />
+                                <!-- FOTTER-MENU-WIDGET START -->
+                                <div class="fotter-menu-widget">
+                                    <div class="single-f-widget">
+                                        <h2>Danh mục</h2>
+                                        <div>
+                                            @foreach($categories as $item)
+                                                @if ($item->parent_id == 0)
+                                                        <a class="mega-menu-title" style="color: white; padding-left: 20px" href="{{ route('category',['category'=>$item->slug]) }}">
+                                                            {{ $item->name }}</a>
+
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
                                 </div>
-                                <!-- PAYMENT-METHOD END -->
+                                <!-- FOTTER-MENU-WIDGET END -->
                             </div>
                         </div>
                     </div>

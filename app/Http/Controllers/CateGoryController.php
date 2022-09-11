@@ -137,10 +137,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $model = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
         $data = Category::all(); // select * from categories
 
-        return view('backend.category.edit', ['model' => $model, 'data' => $data]);
+        return view('backend.category.edit', ['category' => $category, 'data' => $data]);
     }
 
     /**

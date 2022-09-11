@@ -38,7 +38,7 @@
                                 <th>Tên</th>
                                 <th>Danh mục</th>
                                 <th>Giá gốc</th>
-                                <th>Giá hiện tại</th>
+                                <th>Giá giảm</th>
                                 <th>Số lượng</th>
                                 <th>Trạng thái</th>
                                 <th>Hành động</th>
