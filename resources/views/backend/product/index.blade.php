@@ -16,22 +16,43 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
+                    <h3 class="box-title">Danh sách Sản phẩm</h3>
                     <div class="box-header with-border">
-                        <h3 class="box-title">Danh sách Sản phẩm</h3>
                         @if(\Auth::user()->role_id == 1)
                             <div class="form-group" style="width: 150px;float: left;margin: 0">
                                 <select class="form-control" id="filter_type" name="filter_type">
-                                    <option {{ $filter_type == 1 ? 'selected' : '' }} value="1">Tất cả</option>
-                                    <option {{ $filter_type == 2 ? 'selected' : '' }} value="2">Đang Sử Dụng</option>
-                                    <option {{ $filter_type == 3 ? 'selected' : '' }} value="3">Đã Bị Xóa</option>
+                                    <option {{ $filter_type == '' ? 'selected' : '' }} value="">Tất cả</option>
+                                    <option {{ $filter_type == 'null' ? 'selected' : '' }} value="null">Đang Sử Dụng</option>
+                                    <option {{ $filter_type == 'not null' ? 'selected' : '' }} value="not null">Đã Bị Xóa</option>
                                 </select>
                             </div>
                         @endif
+                            <input style="width: 150px; height: 34px;margin: 0px" type='text' id='searchByName' name="searchByName" placeholder='Enter name'>
+                            <select  name="searchByParent_id" id='searchByParent_id'  multiple
+                                    style="width: 300px;float: left;margin: 0"
+                                    data-search="true" data-silent-initial-value-set="true"  >
+                                @php
+                                    function showCategories($categories, $parent_id = 0, $char = '') {
+                                        foreach ($categories as $key => $item) {
+                                            if ($item['parent_id'] == $parent_id)
+                                            {
+                                                echo '<option value="'.$item['id'].'">';
+                                                    echo $char . $item['name'];
+                                                echo '</option>';
+                                                unset($categories[$key]);
+                                                showCategories($categories, $item['id'], $char.'|---');
+                                            }
+                                        }
+                                    }
+                                    showCategories($categories);
+                                @endphp
+                            </select>
+                        <button class="btn btn-primary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
                         <a href="{{ route('admin.product.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered table-data">
+                        <table class="table table-bordered table-data" id="product-table">
                             <tr>
                                 <th style="width: 10px">TT</th>
                                 <th>Hình ảnh</th>
@@ -79,38 +100,25 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            {{ $data->links() }}
+                            {{ $data->appends(request()->except('page'))->links('vendor.pagination.custom') }}
                         </ul>
                     </div>
                 </div>
                 <!-- /.box -->
-                <div class="box">
-                    <div class="box-header">
-                        <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
-                    <!-- /.box-header -->
-            </div>
         </div>
     </section>
 @endsection
 
 @section('js')
-    <script>
-        $(function () {
-            $('#example2').DataTable({
-                'paging'      : true,
-                'lengthChange': false,
-                'searching'   : false,
-                'ordering'    : true,
-                'info'        : true,
-                'autoWidth'   : false
-            })
-        })
-    </script>
+    <script src="{{ asset('backend/js/virtual-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('backend/js/virtual-select.min.css') }}" />
+
     <script type="text/javascript">
+        VirtualSelect.init({
+            ele: '#searchByParent_id'
+        });
 
         $( document ).ready(function() {
-
             $('.deleteItem').click(function () {
                 var id = $(this).attr('data-id');
 
@@ -177,10 +185,32 @@
                     }
                 });
             });
-            $('#filter_type').change(function () {
-                var filter_type = $('#filter_type').val();
-                window.location.href = "{{ route('admin.product.index') }}?filter_type="+filter_type;
-            });
+            {{--$('#filter_type').change(function () {--}}
+            {{--    var deleted_at = $('#filter_type').val();--}}
+            {{--    var category_id = $('#searchByParent_id').val();--}}
+            {{--    var name = $('#searchByName').val();--}}
+            {{--    var param = '?deleted_at='+deleted_at;--}}
+            {{--    if(name){--}}
+            {{--        param = param+"&name="+name;--}}
+            {{--    }--}}
+            {{--    if(category_id){--}}
+            {{--        param = param+"&category_id="+category_id;--}}
+            {{--    }--}}
+            {{--    window.location.href = "{{ route('admin.product.index') }}"+param;--}}
+            {{--});--}}
+            $('.btn-search').click(function () {
+                var deleted_at = $('#filter_type').val();
+                var category_id = $('#searchByParent_id').val();
+                var name = $('#searchByName').val();
+                var param = '?deleted_at='+deleted_at;
+                if(name){
+                    param = param+"&name="+name;
+                }
+                if(category_id){
+                    param = param+"&category_id="+category_id;
+                }
+                window.location.href = "{{ route('admin.product.index') }}"+param;});
+
         });
     </script>
 @endsection

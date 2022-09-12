@@ -72,7 +72,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            {{ $data->links() }}
+                            {{ $data->links('vendor.pagination.custom') }}
                         </ul>
                     </div>
                 </div>

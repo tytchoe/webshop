@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Elasticquent\ElasticquentServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        eloquentFilter\ServiceProvider::class,
 
     ],
 
@@ -233,6 +235,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
+        'EloquentFilter' => eloquentFilter\Facade\EloquentFilter::class,
+
 
     ],
 

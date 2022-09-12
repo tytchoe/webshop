@@ -23,19 +23,24 @@ class CategoryController extends Controller
             $filter_type = $params['filter_type'];
         }
 
+
+
         // if check admin
         if (Auth::user()->role_id == 1) {
             if ($filter_type == 1) {
-                $data = Category::withTrashed()->latest()->paginate(10);
+                $data = Category::withTrashed()->sortable()->latest()->paginate(10);
             } elseif ($filter_type == 2) {
-                $data = Category::latest()->paginate(10);
+                $data = Category::sortable()->latest()->paginate(10);
             } elseif ($filter_type == 3){
-                $data = Category::onlyTrashed()->latest()->paginate(10);
+                $data = Category::onlyTrashed()->sortable()->latest()->paginate(10);
             }
 
         } else {
-            $data = Category::latest()->paginate(10);
+            $data = Category::sortable()->latest()->paginate(10);
         }
+
+
+
         return view('backend.category.index', ['data' => $data, 'filter_type' => $filter_type]);
     }
 
@@ -213,10 +218,17 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $Category = Category::findOrFail($id);
+        $category = Category::findOrFail($id);
 
         $checkExitsProduct = Product::where('category_id',$id)->first();
+        $checkChildrenCategory = Category::where('parent_id',$id)->first();
 
+        if($checkChildrenCategory != null){
+            return response()->json([
+                'status' => false,
+                'msg' => 'Xóa thất bại vì có tồn tại danh mục con của nó!!!'
+            ]);
+        }
         if($checkExitsProduct != null){
             return response()->json([
                 'status' => false,

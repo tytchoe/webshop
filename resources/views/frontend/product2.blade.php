@@ -115,31 +115,12 @@
                         <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
                             <div class="single-product-descirption">
                                 <h2>{{ $product->name }}</h2>
-                                <div class="single-product-review-box">
-                                    <div class="rating-box">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star-half-empty"></i>
-                                    </div>
-                                    <div class="read-reviews">
-                                        <a href="#">Read reviews (1)</a>
-                                    </div>
-                                    <div class="write-review">
-                                        <a href="#">Write a review</a>
-                                    </div>
-                                </div>
-                                <div class="single-product-condition">
-{{--                                    <p>Reference: <span>demo_1</span></p>--}}
-                                    <p>Tình trạng: <span>New product</span></p>
-                                </div>
+
                                 <div class="single-product-price">
                                     <h2><del>{{ number_format($product->price, 0, ".", ",") }} Đ</del></h2>
                                     <h2>{{ number_format($product->sale, 0, ".", ",") }} Đ</h2>
                                 </div>
                                 <div class="single-product-desc">
-                                    <p>{!! $product->description !!}</p>
                                     <div class="product-in-stock">
                                         @if($product->stock >0)
                                             <p><span>Còn hàng</span></p>

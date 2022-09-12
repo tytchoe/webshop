@@ -48,7 +48,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            {{ $contact->links() }}
+                            {{ $contact->links('vendor.pagination.custom') }}
                         </ul>
                     </div>
                 </div>

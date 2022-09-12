@@ -26,18 +26,19 @@
                                 </select>
                             </div>
                         @endif
+
                         <a href="{{ route('admin.category.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                     <!-- /.box-header -->
-                    <div class="box-body">
-                        <table class="table table-bordered">
+
+                        <table class="table table-bordered " id="category-table">
                             <tr>
                                 <th style="width: 10px">TT</th>
                                 <th>Hình ảnh</th>
-                                <th>Tên</th>
-                                <th>Danh mục cha</th>
+                                <th>@sortablelink('name')</th>
+                                <th>@sortablelink('parent_id')</th>
                                 <th>Trạng thái</th>
-                                <th>Sắp sếp</th>
+                                <th>@sortablelink('position')</th>
                                 <th>Hành động</th>
                             </tr>
                             @foreach($data as $key => $item)
@@ -80,7 +81,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
                         <ul class="pagination pagination-sm no-margin pull-right">
-                            {{ $data->links() }}
+                            {{ $data->links('vendor.pagination.custom') }}
                         </ul>
                     </div>
                 </div>
@@ -114,6 +115,12 @@
                             success: function (res) {
                                 if(res.status) {
                                     $('.item-'+id).remove();
+                                }else{
+                                    Swal.fire(
+                                        'Thông báo !',
+                                        res.msg,
+                                        'error'
+                                    )
                                 }
                             },
                             error: function (res) {
@@ -166,6 +173,9 @@
                 var filter_type = $('#filter_type').val();
                 window.location.href = "{{ route('admin.category.index') }}?filter_type="+filter_type;
             });
+
         });
+
+
     </script>
 @endsection

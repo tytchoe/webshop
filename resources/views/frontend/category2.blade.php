@@ -53,87 +53,48 @@
                                 </div>
                         @endif
                     @endforeach
-                        <!-- SINGLE SIDEBAR ENABLED FILTERS START -->
                         <div class="product-single-sidebar">
-                            <span class="sidebar-title">ENABLED FILTERS:</span>
-                            <ul class="filtering-menu">
-                                <li>
-                                    Categories: Dresses
-                                    <a href="#"><i class="fa fa-remove"></i></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR ENABLED FILTERS END -->
-                        <!-- SINGLE SIDEBAR CATEGORIES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Categories</span>
+                            <span class="sidebar-title">Giá</span>
                             <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="categories"/>
+                                        <input type="checkbox" name="price" />
                                         <span></span>
                                     </label>
-                                    <a href="#">Tops<span> (12)</span></a>
+                                    <a href="#">Dưới 10 triệu</a>
                                 </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR CATEGORIES END -->
-                        <!-- SINGLE SIDEBAR AVAILABILITY START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Availability</span>
-                            <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="availability"/>
+                                        <input type="checkbox" name="price"/>
                                         <span></span>
                                     </label>
-                                    <a href="#">In stock<span> (13)</span></a>
+                                    <a href="#">Từ 10 - 20 triệu</a>
                                 </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR AVAILABILITY END -->
-                        <!-- SINGLE SIDEBAR CONDITION START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Condition</span>
-                            <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="condition"/>
+                                        <input type="checkbox" name="price"/>
                                         <span></span>
                                     </label>
-                                    <a href="#">new<span> (13)</span></a>
+                                    <a href="#">Từ 20 - 50 triệu</a>
                                 </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR CONDITION END -->
-                        <!-- SINGLE SIDEBAR MANUFACTURER START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Manufacturer</span>
-                            <ul>
                                 <li>
                                     <label class="cheker">
-                                        <input type="checkbox" name="manufacturer"/>
+                                        <input type="checkbox" name="price"/>
                                         <span></span>
                                     </label>
-                                    <a href="#">Fashion Manufacturer<span> (13)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR MANUFACTURER END -->
-                        <!-- SINGLE SIDEBAR PRICE START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Price</span>
-                            <ul>
-                                <li>
-                                    <label><strong>Range:</strong><input type="text" id="slidevalue" /></label>
+                                    <a href="#">Từ 50 - 100 triệu</a>
                                 </li>
                                 <li>
-                                    <div id="price-range"></div>
+                                    <label class="cheker">
+                                        <input type="checkbox" name="price"/>
+                                        <span></span>
+                                    </label>
+                                    <a href="#">Trên 100 triệu</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="product-single-sidebar">
-                            <span class="sidebar-title">Compositions</span>
+                            <span class="sidebar-title">Chất liệu</span>
                             <ul>
                                 <li>
                                     <label class="cheker">
@@ -142,35 +103,6 @@
                                     </label>
                                     <a href="#">Cotton<span>(8)</span></a>
                                 </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR COMPOSITIONS END -->
-                        <!-- SINGLE SIDEBAR STYLES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Styles</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="styles"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Casual<span>(5)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR STYLES END -->
-                        <!-- SINGLE SIDEBAR PROPERTIES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Properties</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Colorful Dress<span>(4)</span></a>
-                                </li>
-
                             </ul>
                         </div>
                         <!-- SINGLE SIDEBAR PROPERTIES END -->
@@ -223,42 +155,30 @@
                     <div class="all-gategory-product">
                         <div class="row">
                             <ul class="gategory-product">
-                            @foreach($products as $product)
-                                <!-- SINGLE ITEM START -->
-                                <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="single-product-item">
-                                        <div class="product-image">
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
-                                                @if($product->image && file_exists(public_path($product->image)))
-                                                    <img src="{{ asset($product->image) }}" height="200px">
-                                                @else
-                                                    <img src="{{ asset('upload/404.png') }}" height="200px">
-                                                @endif
-                                            </a>
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box"></a>
-                                        </div>
-                                        <div class="product-info">
-                                            <div class="customar-comments-box">
-                                                <div class="rating-box">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-empty"></i>
-                                                </div>
-                                                <div class="review-box">
-                                                    <span>1 Review(s)</span>
+                                @foreach($products as $product)
+                                    <!-- SINGLE ITEM START -->
+                                    <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="single-product-item" style="height: 300px">
+                                            <div class="product-image">
+                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
+                                                    @if($product->image && file_exists(public_path($product->image)))
+                                                        <img src="{{ asset($product->image) }}" height="200px" >
+                                                    @else
+                                                        <img src="{{ asset('upload/404.png') }}" height="200px">
+                                                    @endif
+                                                </a>
+                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box"></a>
+                                            </div>
+                                            <div class="product-info">
+                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
+                                                <div class="price-box">
+                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
                                                 </div>
                                             </div>
-                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
-                                            <div class="price-box">
-                                                <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
-                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                                <!-- SINGLE ITEM END -->
-                            @endforeach
+                                    </li>
+                                    <!-- SINGLE ITEM END -->
+                                @endforeach
                             </ul>
                         </div>
                     </div>

@@ -21,25 +21,49 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $params = $request->all();
-        $filter_type = 2;
-        if($request->has('filter_type'))  {
-            $filter_type = $params['filter_type'];
+//        dd($params);
+        $filter_type = "null";
+        $data = Product::query();
+        if($request->has('deleted_at'))  {
+            $filter_type = $params['deleted_at'];
         }
-
-        // if check admin
         if (Auth::user()->role_id == 1) {
-            if ($filter_type == 1) {
-                $data = Product::withTrashed()->latest()->paginate(10);
-            } elseif ($filter_type == 2) {
-                $data = Product::latest()->paginate(10);
-            } elseif ($filter_type == 3){
-                $data = Product::onlyTrashed()->latest()->paginate(10);
-            }
+            if ($filter_type == "") {
+                $data = Product::withTrashed();
 
+            } elseif ($filter_type == "null") {
+
+            } elseif ($filter_type == "not null"){
+                $data = Product::onlyTrashed();
+//                dd($data->toSql());
+            }
         } else {
-            $data = Product::latest()->paginate(10);
+
         }
-        return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type]);
+        if ($request->has('name')) {
+            $name = $params['name'];
+//            dd($name);+
+            $data->where('slug', 'like' ,'%'.$name.'%');
+        }
+        if($request->has('category_id')){
+            $category_id = explode(',',$request->input('category_id'));
+//            dd($category_id);
+            $data->whereIn('category_id', $category_id);
+//            dd($data->toSql());
+        }
+//        dd($data->toSql());
+
+
+        $data = $data->latest()->paginate(10);
+//        dd($request->all());
+
+//        dd($data);
+        // if check admin
+
+
+        $categories = Category::all();
+
+        return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type,'categories'=>$categories]);
     }
 
     /**
