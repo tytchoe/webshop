@@ -4,21 +4,21 @@
             <div class="col-sm-12">
                 <!-- LOGO START -->
                 <div class="logo">
-                    <a href="index.html"><img src="{{asset('frontend')}}/img/logo.png" alt="bstore logo" /></a>
+                    <a href="{{ route('homeindex') }}"><img src="{{asset('frontend')}}/img/logo.png" alt="bstore logo" /></a>
                 </div>
                 <!-- LOGO END -->
                 <!-- HEADER-RIGHT-CALLUS START -->
                 <div class="header-right-callus">
-                    <h3>call us free</h3>
-                    <span>0123-456-789</span>
+                    <h3>Gọi cho chúng tôi</h3>
+                    <span>{{ $setting->phone }}</span>
                 </div>
                 <!-- HEADER-RIGHT-CALLUS END -->
                 <!-- CATEGORYS-PRODUCT-SEARCH START -->
                 <div class="categorys-product-search">
-                    <form action="#" method="get" class="search-form-cat">
+                    <form action="{{ route('search') }}" method="get" class="search-form-cat">
                         <div class="search-product form-group">
-                            <input type="text" class="form-control search-form" name="s" placeholder="Enter your search key ... " />
-                            <button class="search-button" value="Search" name="s" type="submit">
+                            <input type="text" class="form-control search-form" name="kwd" id="kwd" placeholder="Enter your search key ... " />
+                            <button class="search-button" type="submit" >
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>

@@ -133,8 +133,14 @@ class HomeController extends Controller
     // tin tức
     public function articles()
     {
+        $article_category = Category::where('is_active','1')
+            ->where('type',1)
+            ->where('parent_id',0)//loại danh mục sản phẩm
+            ->first();
+//        dd($article_category);
         $articles = Article::where('is_active',1)->latest()->paginate(10);
-        return view('frontend.article2',['articles'=>$articles]);
+        $count = count(Article::where('is_active',1)->get());
+        return view('frontend.article2',['articles'=>$articles,'article_category'=>$article_category,'count'=>$count]);
     }
 
     public function detailArticle($slug)
@@ -166,36 +172,39 @@ class HomeController extends Controller
         return redirect()->route('contact')->with('msgContact','Gửi liên hệ thành công!');
     }
 
-    public function category($slug)
+    public function category(Request $request,$slug)
     {
-//        dd($slug);
+        $sort = '';
+        if($request->sort != null){
+            $sort = $request->sort;
+        }
         $category = Category::where('slug',$slug)->where('is_active',1)->first();
-
         if($category == null){
             dd(404);
         }
-
         $ids[] = $category->id;
-//        $child_categories = [];
-//        foreach ($this->categories as $child){
-//            if($child->parent_id == $category->id){
-//                $ids[] = $child->id;
-//            }
-//        }
         $ids = $this->FindChild($ids ,$category->id);
-//        dd($ids);
-
-        $products = Product::where('is_active',1)
-            ->wherein('category_id',$ids)
-            ->latest()
+        $products = Product::query();
+        $products->where('is_active',1)
+            ->wherein('category_id',$ids);
+        if($sort!= ''){
+            if ($sort == 'priceAsc'){
+                $products->orderBy('price');
+            }elseif ($sort == 'priceDesc'){
+                $products->orderByDesc('price');
+            }elseif ($sort == 'nameAsc'){
+                $products->orderBy('name');
+            }elseif ($sort == 'nameDesc'){
+                $products->orderByDesc('price');
+            }
+        }
+        $products = $products->latest()
             ->paginate(6);
         $all = Product::where('is_active',1)
             ->wherein('category_id',$ids)
             ->get();
-//        dd($all);
         $count = count($all);
-
-            return view('frontend.category2',['category'=>$category,'products'=>$products,'count'=>$count]);
+            return view('frontend.category2',['category'=>$category,'products'=>$products,'count'=>$count,'sort'=>$sort]);
     }
 
     //chi tiết sản phẩm

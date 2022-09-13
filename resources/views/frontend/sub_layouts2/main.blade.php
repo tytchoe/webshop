@@ -95,25 +95,25 @@
 <!-- Add your site or application content here -->
 
 <!-- HEADER-TOP START -->
-@include('frontend.layouts2.header-top');
+@include('frontend.sub_layouts2.header-top');
 <!-- HEADER-TOP END -->
 <!-- HEADER-MIDDLE START -->
-@include('frontend.layouts2.header-middle');
+@include('frontend.sub_layouts2.header-middle');
 <!-- HEADER-MIDDLE END -->
 <!-- MAIN-MENU-AREA START -->
-@include('frontend.layouts2.main-menu');
+@include('frontend.sub_layouts2.main-menu');
 <!-- MAIN-MENU-AREA END -->
 <!-- MAIN-CONTENT-SECTION START -->
 @yield('content')
 <!-- LATEST-NEWS-AREA END -->
 <!-- BRAND-CLIENT-AREA START -->
-@include('frontend.layouts2.brand-client')
+@include('frontend.sub_layouts2.brand-client')
 <!-- BRAND-CLIENT-AREA END -->
 <!-- COMPANY-FACALITY START -->
-@include('frontend.layouts2.company');
+@include('frontend.sub_layouts2.company');
 <!-- COMPANY-FACALITY END -->
 <!-- FOOTER-TOP-AREA START -->
-@include('frontend.layouts2.footer');
+@include('frontend.sub_layouts2.footer');
 <!-- FOOTER-TOP-AREA END -->
 <!-- COPYRIGHT-AREA START -->
 <footer class="copyright-area">
@@ -162,6 +162,9 @@
 <script>
     new WOW().init();
 </script>
+
+
+@yield('js');
 
 <!-- Google Map js -->
 <script src="https://maps.googleapis.com/maps/api/js"></script>

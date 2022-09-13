@@ -18,10 +18,23 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function FindChild(array $ids, int $id)
+    {
+        $categories = Category::all();
+        foreach ($categories as $childs){
+            if($childs->parent_id == $id){
+                $ids[] = $childs->id;
+//                dd($arr);
+                $ids = $this->FindChild($ids ,$childs->id);
+//                dd($this->FindChild(9));
+            }
+        }
+        return $ids;
+    }
+
     public function index(Request $request)
     {
         $params = $request->all();
-//        dd($params);
         $filter_type = "null";
         $data = Product::query();
         if($request->has('deleted_at'))  {
@@ -30,37 +43,27 @@ class ProductController extends Controller
         if (Auth::user()->role_id == 1) {
             if ($filter_type == "") {
                 $data = Product::withTrashed();
-
             } elseif ($filter_type == "null") {
-
             } elseif ($filter_type == "not null"){
                 $data = Product::onlyTrashed();
-//                dd($data->toSql());
             }
         } else {
-
         }
         if ($request->has('name')) {
             $name = $params['name'];
 //            dd($name);+
             $data->where('slug', 'like' ,'%'.$name.'%');
+            $data->where('name', 'like' ,'%'.$name.'%');
         }
         if($request->has('category_id')){
             $category_id = explode(',',$request->input('category_id'));
-//            dd($category_id);
+            foreach ($category_id as $id){
+                $category_id = $this->FindChild($category_id ,$id);
+            }
             $data->whereIn('category_id', $category_id);
-//            dd($data->toSql());
         }
-//        dd($data->toSql());
-
-
         $data = $data->latest()->paginate(10);
-//        dd($request->all());
-
-//        dd($data);
         // if check admin
-
-
         $categories = Category::all();
 
         return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type,'categories'=>$categories]);

@@ -206,10 +206,11 @@
                 if(name){
                     param = param+"&name="+name;
                 }
-                if(category_id){
+                if(category_id != ""){
                     param = param+"&category_id="+category_id;
                 }
-                window.location.href = "{{ route('admin.product.index') }}"+param;});
+                window.location.href = "{{ route('admin.product.index') }}"+param;
+            });
 
         });
     </script>

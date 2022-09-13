@@ -1,4 +1,4 @@
-@extends('frontend.layouts2.main')
+@extends('frontend.sub_layouts2.main')
 
 @section('content')
     <section class="main-content-section">
@@ -29,257 +29,35 @@
                             <span class="sidebar-title">ENABLED FILTERS:</span>
                             <ul class="filtering-menu">
                                 <li>
-                                    Categories: Dresses
-                                    <a href="#"><i class="fa fa-remove"></i></a>
                                 </li>
-                                <li>
-                                    Avaiale: In stock
-                                    <a href="#"><i class="fa fa-remove"></i></a>
-                                </li>
-                                <li>
-                                    Categories: Dresses
-                                    <a href="#"><i class="fa fa-remove"></i></a>
-                                </li>
+
                             </ul>
                         </div>
                         <!-- SINGLE SIDEBAR ENABLED FILTERS END -->
                         <!-- SINGLE SIDEBAR CATEGORIES START -->
                         <div class="product-single-sidebar">
-                            <span class="sidebar-title">Categories</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="categories"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Tops<span> (12)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="categories"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Dresses<span> (13)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR CATEGORIES END -->
-                        <!-- SINGLE SIDEBAR AVAILABILITY START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Availability</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="availability"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">In stock<span> (13)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR AVAILABILITY END -->
-                        <!-- SINGLE SIDEBAR CONDITION START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Condition</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="condition"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">new<span> (13)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR CONDITION END -->
-                        <!-- SINGLE SIDEBAR MANUFACTURER START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Manufacturer</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="manufacturer"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Fashion Manufacturer<span> (13)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR MANUFACTURER END -->
-                        <!-- SINGLE SIDEBAR PRICE START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Price</span>
-                            <ul>
-                                <li>
-                                    <label><strong>Range:</strong><input type="text" id="slidevalue" /></label>
-                                </li>
-                                <li>
-                                    <div id="price-range"></div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR PRICE END -->
-                        <!-- SINGLE SIDEBAR SIZE START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Size</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="Size"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">S<span> (10)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="Size"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">m<span> (10)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="Size"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">l<span> (10)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR SIZE END -->
-                        <!-- SINGLE SIDEBAR COLOR START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Color</span>
-                            <ul class="product-color-var">
-                                <li>
-                                    <i class="fa fa-square color-beige"></i>
-                                    <a href="#">Beige<span> (1)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-white"></i>
-                                    <a href="#">white<span> (2)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-black"></i>
-                                    <a href="#">black<span> (2)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-orange"></i>
-                                    <a href="#">orange<span> (5)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-blue"></i>
-                                    <a href="#">blue<span> (8)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-green"></i>
-                                    <a href="#">green<span> (3)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-yellow"></i>
-                                    <a href="#">yellow<span> (4)</span></a>
-                                </li>
-                                <li>
-                                    <i class="fa fa-square color-pink"></i>
-                                    <a href="#">pink<span> (6)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR COLOR END -->
-                        <!-- SINGLE SIDEBAR COMPOSITIONS START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Compositions</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="compositions"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Cotton<span>(8)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="compositions"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#"> Polyester<span>(3)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="compositions"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#"> Viscose<span>(2)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR COMPOSITIONS END -->
-                        <!-- SINGLE SIDEBAR STYLES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Styles</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="styles"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Casual<span>(5)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="styles"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Dressy<span>(1)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="styles"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Girly<span>(7)</span></a>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR STYLES END -->
-                        <!-- SINGLE SIDEBAR PROPERTIES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Properties</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Colorful Dress<span>(4)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Maxi Dress <span>(1)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Midi Dress<span>(2)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Short Dress<span>(2)</span></a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="properties"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#"> Short Sleeve<span>(4)</span></a>
+                            <span class="sidebar-title">Danh mục</span>
+                            <ul style="height: 50px">
+                                <li style="position: absolute; height: 100%; width: 100%">
+                                    <select  name="searchByParent_id" id='searchByParent_id'  multiple
+                                             style="width: 300px;float: left;margin: 0"
+                                             data-search="true" data-silent-initial-value-set="true"  >
+                                        @php
+                                            function showCategories($categories, $parent_id = 0, $char = '') {
+                                                foreach ($categories as $key => $item) {
+                                                    if ($item['parent_id'] == $parent_id)
+                                                    {
+                                                        echo '<option value="'.$item['id'].'">';
+                                                            echo $char . $item['name'];
+                                                        echo '</option>';
+                                                        unset($categories[$key]);
+                                                        showCategories($categories, $item['id'], $char.'|---');
+                                                    }
+                                                }
+                                            }
+                                            showCategories($categories);
+                                        @endphp
+                                    </select>
                                 </li>
                             </ul>
                         </div>
@@ -291,14 +69,6 @@
                         <h2 class="left-title">Tags </h2>
                         <div class="category-tag">
                             <a href="#">fashion</a>
-                            <a href="#">handbags</a>
-                            <a href="#">women</a>
-                            <a href="#">men</a>
-                            <a href="#">kids</a>
-                            <a href="#">New</a>
-                            <a href="#">Accessories</a>
-                            <a href="#">clothing</a>
-                            <a href="#">New</a>
                         </div>
                     </div>
                     <!-- SINGLE SIDEBAR TAG END -->
@@ -308,12 +78,12 @@
                         <!-- PRODUCT-CATEGORY-HEADER START -->
                         <div class="product-category-header">
                             <div class="category-header-image">
-{{--                                @if($category->image && file_exists(public_path($category->image)))--}}
-{{--                                    <img width="100%" height="250" alt="#" src="{{ asset($category->image) }}">--}}
-{{--                                @else--}}
-{{--                                    <img width="100%" height="250" alt="#" src="{{ asset('upload/404.png') }}">--}}
-{{--                                @endif--}}
-                                                                <img src="{{ asset('upload/404.png') }}" alt="category-header" />
+                            @if($article_category->image && file_exists(public_path($article_category->image)))
+                                <img src="{{ asset($article_category->image) }}" alt="single-product-image" height="250px" width="100%">
+                            @else
+                                <img src="{{ asset('upload/404.png') }}" alt="single-product-image" height="250px" width="100%">
+                            @endif
+{{--                                                                <img src="{{ asset('upload/404.png') }}" alt="category-header" />--}}
                                 <div class="category-header-text">
                                     <h2>Tin tức</h2>
                                     <strong >Bạn sẽ tìm thấy tất cả đồ  tại đây.</strong>
@@ -328,72 +98,14 @@
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <h1>
                                 <span class="cat-name">tin tức</span>
-                                <span class="count-product">Có  sản phẩm.</span>
+                                <span class="count-product">Có {{ $count }} bài viết.</span>
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>
                         <div class="product-shooting-area">
                             <div class="product-shooting-bar">
-                                <!-- SHOORT-BY START -->
-                                <div class="shoort-by">
-                                    <label for="productShort">Sort by</label>
-                                    <div class="short-select-option">
-                                        <select name="sortby" id="productShort">
-                                            <option value="">--</option>
-                                            <option value="">Giá: Rẻ nhất</option>
-                                            <option value="">Giá: đắt nhất</option>
-                                            <option value="">Tên sản phẩm: A to Z</option>
-                                            <option value="">Tên sản phẩm: Z to A</option>
-                                            <option value="">Còn hàng</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- SHOORT-BY END -->
-                                <!-- SHOW-PAGE START -->
-                                <div class="show-page">
-                                    <label for="perPage">Hiển thị</label>
-                                    <div class="s-page-select-option">
-                                        <select name="show" id="perPage">
-                                            <option value="">6</option>
-                                            <option value="">12</option>
-                                        </select>
-                                    </div>
-                                    <span>sản phẩm mỗi trang</span>
-                                </div>
-                                <!-- SHOW-PAGE END -->
-                                <!-- VIEW-SYSTEAM START -->
-                                <div class="view-systeam">
-                                    <label for="perPage">Xem:</label>
-                                    <ul>
-                                        <li class="active"><a href="shop-gird.html"><i class="fa fa-th-large"></i></a><br />Grid</li>
-                                        <li><a href="shop-list.html"><i class="fa fa-th-list"></i></a><br />List</li>
-                                    </ul>
-                                </div>
-                                <!-- VIEW-SYSTEAM END -->
+
                             </div>
-                            <!-- PRODUCT-SHOOTING-RESULT START -->
-                            <div class="product-shooting-result">
-                                <div class="showing-item">
-                                        <span>Hiển thị 1 - 6 of 6 sản phẩm</span>
-                                </div>
-                                <div class="showing-next-prev">
-                                    <ul class="pagination-bar">
-                                        <li class="disabled">
-                                            <a href="#" ><i class="fa fa-chevron-left"></i>Previous</a>
-                                        </li>
-                                        <li class="active">
-                                            <span><a class="pagi-num" href="#">1</a></span>
-                                        </li>
-                                        <li>
-                                            <span><a class="pagi-num" href="#">2</a></span>
-                                        </li>
-                                        <li>
-                                            <a href="#" >Next<i class="fa fa-chevron-right"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- PRODUCT-SHOOTING-RESULT END -->
                         </div>
                     </div>
                     <!-- ALL GATEGORY-PRODUCT START -->
@@ -430,37 +142,18 @@
                     <!-- ALL GATEGORY-PRODUCT END -->
                     <!-- PRODUCT-SHOOTING-RESULT START -->
                     <div class="product-shooting-result product-shooting-result-border">
-                        <form action="#">
-                            <button class="btn compare-button">
-                                Compare (<strong class="compare-value">1</strong>)
-                                <i class="fa fa-chevron-right"></i>
-                            </button>
-                        </form>
-                        <div class="showing-item">
-                            @if(count($articles) < 6)
-                                <span>Hiển thị 1 - {{ count($articles) }} of {{ count($articles) }} bài viết</span>
-                            @else
-                                <span>Hiển thị 1 - 6 of {{ count($articles) }} bài viết</span>
-                            @endif
-                        </div>
                         <div class="showing-next-prev">
                             <ul class="pagination-bar">
-                                <li class="disabled">
-                                    <a href="#" ><i class="fa fa-chevron-left"></i>Previous</a>
-                                </li>
-                                <li class="active">
-                                    <span><a class="pagi-num" href="#">1</a></span>
-                                </li>
-                                <li>
-                                    <span><a class="pagi-num" href="#">2</a></span>
-                                </li>
-                                <li>
-                                    <a href="#" >Next<i class="fa fa-chevron-right"></i></a>
-                                </li>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                </div>
+                                <div class="showing-next-prev col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <ul class="pagination-bar">
+                                        {!! $articles->links('vendor.pagination.custom') !!}
+                                    </ul>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                </div>
                             </ul>
-                            <form action="#">
-                                <button class="btn showall-button">Show all</button>
-                            </form>
                         </div>
                     </div>
                     <!-- PRODUCT-SHOOTING-RESULT END -->
@@ -471,4 +164,12 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('backend/js/virtual-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('backend/js/virtual-select.min.css') }}" />
+
+    <script type="text/javascript">
+        VirtualSelect.init({
+            ele: '#searchByParent_id'
+        });
+    </script>
 @endsection

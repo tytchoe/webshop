@@ -1,4 +1,4 @@
-@extends('frontend.layouts2.main')
+@extends('frontend.sub_layouts2.main')
 
 @section('content')
     <section class="main-content-section">

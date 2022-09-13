@@ -50,62 +50,41 @@
                                             </li>
                                         </ul>
                                     </div>
+                                    <br>
                                 </div>
-                        @endif
-                    @endforeach
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Giá</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="price" />
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Dưới 10 triệu</a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="price"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Từ 10 - 20 triệu</a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="price"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Từ 20 - 50 triệu</a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="price"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Từ 50 - 100 triệu</a>
-                                </li>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="price"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Trên 100 triệu</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Chất liệu</span>
-                            <ul>
-                                <li>
-                                    <label class="cheker">
-                                        <input type="checkbox" name="compositions"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="#">Cotton<span>(8)</span></a>
-                                </li>
-                            </ul>
-                        </div>
+                            @endif
+                        @endforeach
                         <!-- SINGLE SIDEBAR PROPERTIES END -->
+                    </div>
+                    <br>
+                    <div class="product-left-sidebar" >
+                        <span class="sidebar-title">Giá</span>
+                        <ul>
+                            <li style="position: absolute; height: 100%; width: 100%">
+                                <select  name="searchByPrice" id='searchByPrice'  multiple
+                                         style="width: 300px;float: left;margin: 0"
+                                         data-search="true" data-silent-initial-value-set="true"  >
+                                    <option value="">Dưới 10 triệu</option>
+                                    <option value="">Từ 10 - 20 triệu</option>
+                                    <option value="">Từ 20 - 50 triệu</option>
+                                    <option value="">Từ 50 - 100 triệu</option>
+                                    <option value="">Trên 100 triệu</option>
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+                    <br>
+                    <div class="product-left-sidebar">
+                        <span class="sidebar-title">Chất liệu</span>
+                        <ul>
+                            <li>
+                                <label class="checked">
+                                    <input type="checkbox" name="compositions"/>
+                                    <span></span>
+                                </label>
+                                <a href="">Cotton<span>(8)</span></a>
+                            </li>
+                        </ul>
                     </div>
                     <!-- PRODUCT-LEFT-SIDEBAR END -->
                     <!-- SINGLE SIDEBAR TAG START -->
@@ -117,7 +96,7 @@
                     </div>
                     <!-- SINGLE SIDEBAR TAG END -->
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="dataTable">
                     <div class="right-all-product">
                         <!-- PRODUCT-CATEGORY-HEADER START -->
                         <div class="product-category-header">
@@ -144,63 +123,58 @@
                         <!-- PRODUCT-CATEGORY-HEADER END -->
                         <div class="product-category-title">
                             <!-- PRODUCT-CATEGORY-TITLE START -->
+                            <div class="short-select-option">
+                                <select name="sortby" id="sortby">
+                                    <option @if($sort == "") selected @endif value ="" >Mặc định</option>
+                                    <option @if($sort == "priceAsc") selected @endif value="priceAsc">Giá: Tăng dần</option>
+                                    <option @if($sort == "priceDesc") selected @endif value="priceDesc">Giá: Giảm dần</option>
+                                    <option @if($sort == "nameAsc") selected @endif value="nameAsc">Tên sản phẩm: A to Z</option>
+                                    <option @if($sort == "nameDesc") selected @endif value="nameDesc">Tên sản phẩm: Z to A</option>
+                                </select>
+                            </div>
                             <h1>
                                 <span class="cat-name">{{ $category->name }}</span>
-                                <span class="count-product">Có {{ $count }} sản phẩm.</span>
+                                @if($count > 0)
+                                    <span class="count-product">Có {{ $count }} sản phẩm.</span>
+                                @else
+                                    <span class="count-product">Không có sản phẩm.</span>
+                                @endif
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
                         </div>
                     </div>
                     <!-- ALL GATEGORY-PRODUCT START -->
-                    <div class="all-gategory-product">
-                        <div class="row">
-                            <ul class="gategory-product">
-                                @foreach($products as $product)
-                                    <!-- SINGLE ITEM START -->
-                                    <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                                        <div class="single-product-item" style="height: 300px">
-                                            <div class="product-image">
-                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
-                                                    @if($product->image && file_exists(public_path($product->image)))
-                                                        <img src="{{ asset($product->image) }}" height="200px" >
-                                                    @else
-                                                        <img src="{{ asset('upload/404.png') }}" height="200px">
-                                                    @endif
-                                                </a>
-                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" class="new-mark-box"></a>
-                                            </div>
-                                            <div class="product-info">
-                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
-                                                <div class="price-box">
-                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <!-- SINGLE ITEM END -->
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="" id="productsList">
+                        @include('frontend.datatable.productsList')
                     </div>
-                    <!-- ALL GATEGORY-PRODUCT END -->
-                    <!-- PRODUCT-SHOOTING-RESULT START -->
-                    <div class="product-shooting-result product-shooting-result-border">
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        </div>
-                        <div class="showing-next-prev col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                            <ul class="pagination-bar">
-                                {!! $products->links('vendor.pagination.custom') !!}
-                            </ul>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        </div>
+                    <div class="ajax-load text-center" style="display: none">
+                        <iframe  src="https://giphy.com/embed/sSgvbe1m3n93G" width="120" height="120" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/juan-gabriel-sSgvbe1m3n93G"></a></p>
                     </div>
                     <!-- PRODUCT-SHOOTING-RESULT END -->
                 </div>
             </div>
         </div>
+        {{ csrf_field() }}
     </section>
 @endsection
 
 @section('js')
+    <script src="{{ asset('backend/js/virtual-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('backend/js/virtual-select.min.css') }}" />
+
+    <script type="text/javascript">
+        VirtualSelect.init({
+            ele: '#searchByPrice'
+        });
+    </script>
+
+    <script>
+        $('#sortby').change(function () {
+            var sort = $('#sortby').val();
+
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort;
+        });
+    </script>
+
+
 @endsection
