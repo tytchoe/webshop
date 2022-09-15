@@ -27,12 +27,13 @@
                                 </select>
                             </div>
                         @endif
-                            <input style="width: 150px; height: 34px;margin: 0px" type='text' id='searchByName' name="searchByName" placeholder='Enter name'>
+                            <input style="width: 150px; height: 34px;margin: 0px" value="{{ $name }}" type='text' id='searchByName' name="searchByName" placeholder='Enter name'>
                             <select  name="searchByParent_id" id='searchByParent_id'  multiple
                                     style="width: 300px;float: left;margin: 0"
                                     data-search="true" data-silent-initial-value-set="true"  >
                                 @php
-                                    function showCategories($categories, $parent_id = 0, $char = '') {
+                                    function showCategories($categories , $parent_id = 0, $char = '') {
+
                                         foreach ($categories as $key => $item) {
                                             if ($item['parent_id'] == $parent_id)
                                             {

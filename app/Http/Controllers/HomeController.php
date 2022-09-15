@@ -178,6 +178,8 @@ class HomeController extends Controller
         if($request->sort != null){
             $sort = $request->sort;
         }
+        $price = '';
+
         $category = Category::where('slug',$slug)->where('is_active',1)->first();
         if($category == null){
             dd(404);
@@ -187,6 +189,13 @@ class HomeController extends Controller
         $products = Product::query();
         $products->where('is_active',1)
             ->wherein('category_id',$ids);
+        if($request->searchByPrice != null){
+            $price = explode(',',$request->searchByPrice);
+//            dd($price);
+            if($price[0] === 1){
+                $products->where('price','<',10000000);
+            }
+        }
         if($sort!= ''){
             if ($sort == 'priceAsc'){
                 $products->orderBy('price');
@@ -198,11 +207,9 @@ class HomeController extends Controller
                 $products->orderByDesc('price');
             }
         }
+        $all = $products->latest()->get();
         $products = $products->latest()
             ->paginate(6);
-        $all = Product::where('is_active',1)
-            ->wherein('category_id',$ids)
-            ->get();
         $count = count($all);
             return view('frontend.category2',['category'=>$category,'products'=>$products,'count'=>$count,'sort'=>$sort]);
     }
@@ -261,7 +268,7 @@ class HomeController extends Controller
         $totalResult = $totalResult['value'];
 
         $page = $request->input('page', 1);
-        $paginate = 7;
+        $paginate = 6;
 
         $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $page);
 

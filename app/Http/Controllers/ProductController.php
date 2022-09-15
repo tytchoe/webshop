@@ -36,6 +36,8 @@ class ProductController extends Controller
     {
         $params = $request->all();
         $filter_type = "null";
+        $name = "";
+        $category_id = 0;
         $data = Product::query();
         if($request->has('deleted_at'))  {
             $filter_type = $params['deleted_at'];
@@ -57,16 +59,18 @@ class ProductController extends Controller
         }
         if($request->has('category_id')){
             $category_id = explode(',',$request->input('category_id'));
+//            dd($category_id);
+            $ids = $category_id;
             foreach ($category_id as $id){
-                $category_id = $this->FindChild($category_id ,$id);
+                $ids = $this->FindChild($category_id ,$id);
             }
-            $data->whereIn('category_id', $category_id);
+            $data->whereIn('category_id', $ids);
         }
         $data = $data->latest()->paginate(10);
         // if check admin
         $categories = Category::all();
-
-        return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type,'categories'=>$categories]);
+//        dd($category_id);
+        return view('backend.Product.index', ['data' => $data ,  'filter_type' => $filter_type,'categories'=>$categories,'name'=>$name,'category_id'=>$category_id]);
     }
 
     /**

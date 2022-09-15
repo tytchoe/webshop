@@ -57,43 +57,48 @@
                         <!-- SINGLE SIDEBAR PROPERTIES END -->
                     </div>
                     <br>
-                    <div class="product-left-sidebar" >
-                        <span class="sidebar-title">Giá</span>
-                        <ul>
-                            <li style="position: absolute; height: 100%; width: 100%">
-                                <select  name="searchByPrice" id='searchByPrice'  multiple
-                                         style="width: 300px;float: left;margin: 0"
-                                         data-search="true" data-silent-initial-value-set="true"  >
-                                    <option value="">Dưới 10 triệu</option>
-                                    <option value="">Từ 10 - 20 triệu</option>
-                                    <option value="">Từ 20 - 50 triệu</option>
-                                    <option value="">Từ 50 - 100 triệu</option>
-                                    <option value="">Trên 100 triệu</option>
-                                </select>
-                            </li>
-                        </ul>
-                    </div>
-                    <br>
-                    <div class="product-left-sidebar">
-                        <span class="sidebar-title">Chất liệu</span>
-                        <ul>
-                            <li>
-                                <label class="checked">
-                                    <input type="checkbox" name="compositions"/>
-                                    <span></span>
-                                </label>
-                                <a href="">Cotton<span>(8)</span></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- PRODUCT-LEFT-SIDEBAR END -->
-                    <!-- SINGLE SIDEBAR TAG START -->
-                    <div class="product-left-sidebar">
-                        <h2 class="left-title">Tags </h2>
-                        <div class="category-tag">
-                            <a href="#">fashion</a>
+                    <form>
+                        <div class="product-left-sidebar" >
+                            <span class="sidebar-title">Giá</span>
+                            <ul>
+                                <li style="position: absolute; height: 100%; width: 100%">
+                                    <select  name="searchByPrice" id='searchByPrice'  multiple
+                                             style="width: 300px;float: left;margin: 0"
+                                             data-search="true" data-silent-initial-value-set="true"  >
+                                        <option value="10000000">Dưới 10 triệu</option>
+                                        <option value="10000000-20000000">Từ 10 - 20 triệu</option>
+                                        <option value="2-5">Từ 20 - 50 triệu</option>
+                                        <option value="5-10">Từ 50 - 100 triệu</option>
+                                        <option value="10">Trên 100 triệu</option>
+                                    </select>
+                                </li>
+                            </ul>
                         </div>
-                    </div>
+                        <br>
+                        <div class="product-left-sidebar">
+                            <span class="sidebar-title">Chất liệu</span>
+                            <ul>
+                                <li>
+                                    <label class="checked">
+                                        <input type="checkbox" name="compositions"/>
+                                        <span></span>
+                                    </label>
+                                    <a href="">Cotton<span>(8)</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- PRODUCT-LEFT-SIDEBAR END -->
+                        <!-- SINGLE SIDEBAR TAG START -->
+                        <div class="product-left-sidebar">
+                            <h2 class="left-title">Tags </h2>
+                            <div class="category-tag">
+                                <a href="#">fashion</a>
+                            </div>
+                        </div>
+                        <button class="btn-primary filter" style="width: 50px; height: 50px" type="submit" >
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </form>
                     <!-- SINGLE SIDEBAR TAG END -->
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="dataTable">
@@ -173,6 +178,13 @@
             var sort = $('#sortby').val();
 
             window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort;
+        });
+    </script>
+    <script>
+        $('.filter').click(function () {
+            var price = $('#searchByPrice').val();
+
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?searchByPrice="+price;
         });
     </script>
 

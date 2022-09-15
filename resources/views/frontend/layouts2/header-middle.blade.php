@@ -18,7 +18,7 @@
                     <form action="{{ route('search') }}" method="get" class="search-form-cat">
                         <div class="search-product form-group">
                             <input type="text" class="form-control search-form" name="kwd" id="kwd" placeholder="Enter your search key ... " />
-                            <button class="search-button" type="submit" >
+                            <button class="search-button" type="" >
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
