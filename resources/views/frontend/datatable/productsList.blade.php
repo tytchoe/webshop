@@ -18,7 +18,11 @@
                         <div class="product-info">
                             <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">{{ $product->name }}</a>
                             <div class="price-box">
-                                <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                @if($product->is_hot)
+                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                @else
+                                    <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -210,7 +210,7 @@ class HomeController extends Controller
     //chi tiết sản phẩm
     public function product(Request $request,$id,$slug)
     {
-//        dd($request);
+        $product_recently_viewed_id = 0;
         $product = Product::where('is_active',1)
             ->where('slug',$slug)
             ->first();
@@ -218,12 +218,25 @@ class HomeController extends Controller
             dd(404);
         }
         $ids = [];
-
         $ids = $this->FindFather($ids,$product->category_id);
-//        dd($ids);
-
-//        dd($product);
-        return view(    'frontend.product2',['product'=>$product,'ids'=>$ids]);
+        $product_related = Product::where('is_active',1)
+            ->whereIn('category_id',$ids)
+            ->orderBy('category_id')
+            ->limit(10)
+            ->get();
+//        dd(session()->get('products.recently_viewed'));
+        if(session()->has('products.recently_viewed')){
+            $product_recently_viewed_id = session()->get('products.recently_viewed');
+        }
+        $product_recently_viewed_id = array_unique($product_recently_viewed_id);
+        unset($product_recently_viewed_id[array_search($product->id,$product_recently_viewed_id)]);
+//        dd($product_recently_viewed_id);
+        $product_recently_viewed = Product::where('is_active',1)
+            ->whereIn('id',$product_recently_viewed_id)
+            ->limit(5)
+            ->get();
+        session()->push('products.recently_viewed',$product->getKey());
+        return view(    'frontend.product2',['product'=>$product,'ids'=>$ids,'product_recently_viewed'=>$product_recently_viewed,'product_related'=>$product_related]);
     }
 
     public function search(Request $request)
@@ -275,8 +288,6 @@ class HomeController extends Controller
 
     public function addToCart(Request $request)
     {
-//        dd($request->all());
-//        die;
         \Cart::add([
             'id' => $request->id,
             'name' => $request->name,

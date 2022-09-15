@@ -170,7 +170,6 @@
                                 <ul class="nav nav-tabs more-info-tab">
                                     <li class="active"><a href="#moreinfo" data-toggle="tab">Thông tin</a></li>
                                     <li><a href="#datasheet" data-toggle="tab">Thông số</a></li>
-                                    <li><a href="#review" data-toggle="tab">Đánh giá</a></li>
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
@@ -199,35 +198,6 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="review">
-                                        <div class="row tab-review-row">
-                                            <div class="col-xs-5 col-sm-4 col-md-4 col-lg-3 padding-5">
-                                                <div class="tab-rating-box">
-                                                    <span>Grade</span>
-                                                    <div class="rating-box">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-half-empty"></i>
-                                                    </div>
-                                                    <div class="review-author-info">
-                                                        <strong>write A REVIEW</strong>
-                                                        <span>06/22/2015</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-7 col-sm-8 col-md-8 col-lg-9 padding-5">
-                                                <div class="write-your-review">
-                                                    <p><strong>write A REVIEW</strong></p>
-                                                    <p>write A REVIEW</p>
-                                                    <span class="usefull-comment">Was this comment useful to you? <span>Yes</span><span>No</span></span>
-                                                    <a href="#">Report abuse </a>
-                                                </div>
-                                            </div>
-                                            <a href="#" class="write-review-btn">Write your review!</a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -237,7 +207,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="left-title-area">
-                                <h2 class="left-title">related products</h2>
+                                <h2 class="left-title">Sản phẩm liên quan</h2>
                             </div>
                         </div>
                         <div class="related-product-area featured-products-area">
@@ -246,31 +216,36 @@
                                     <!-- RELATED-CAROUSEL START -->
                                     <div class="related-product">
                                         <!-- SINGLE-PRODUCT-ITEM START -->
-                                        <div class="item">
-                                            <div class="single-product-item">
-                                                <div class="product-image">
-                                                    <a href="#"><img src="img/product/sale/3.jpg" alt="product-image" /></a>
-                                                </div>
-                                                <div class="product-info">
-                                                    <div class="customar-comments-box">
-                                                        <div class="rating-box">
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star-half-empty"></i>
+                                        @if($product_related)
+                                            @foreach($product_related as $product)
+                                                <div class="item">
+                                                    <div class="single-product-item">
+                                                        <div class="product-image">
+                                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
+                                                                @if($product->image && file_exists(public_path($product->image)))
+                                                                    <img src="{{ asset($product->image) }}" height="80px" width="80px" >
+                                                                @else
+                                                                    <img src="{{ asset('upload/404.png') }}" height="80px" width="80px" >
+                                                                @endif
+                                                            </a>
                                                         </div>
-                                                        <div class="review-box">
-                                                            <span>1 Review(s)</span>
+                                                        <div class="product-info">
+                                                            <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" >
+                                                                {{ $product->name}}
+                                                            </a>
+                                                            <div class="price-box">
+                                                                @if($product->is_hot)
+                                                                    <span class="price">{{ number_format($product->sale, 0, ".", ",") }} Đ</span>
+                                                                @else
+                                                                    <span class="price">{{ number_format($product->price, 0, ".", ",") }} Đ</span>
+                                                                @endif
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <a href="#">Faded Short T-sh...</a>
-                                                    <div class="price-box">
-                                                        <span class="price">$16.51</span>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            @endforeach
+                                        @endif
+
                                         <!-- SINGLE-PRODUCT-ITEM END -->
                                     </div>
                                     <!-- RELATED-CAROUSEL END -->
@@ -286,13 +261,27 @@
                     <div class="single-product-right-sidebar">
                         <h2 class="left-title">Các sản phẩm đã xem</h2>
                         <ul>
-                            <li>
-                                <a href="#"><img src="img/product/sidebar_product/2.jpg" alt="" /></a>
-                                <div class="r-sidebar-pro-content">
-                                    <h5><a href="#">Faded Short ...</a></h5>
-                                    <p>Faded short sleeves t-shirt with high...</p>
-                                </div>
-                            </li>
+                            @if($product_recently_viewed)
+                                @foreach($product_recently_viewed as $product)
+                                    <li>
+                                        <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}">
+                                            @if($product->image && file_exists(public_path($product->image)))
+                                                <img src="{{ asset($product->image) }}" height="80px" width="80px" >
+                                            @else
+                                                <img src="{{ asset('upload/404.png') }}" height="80px" width="80px" >
+                                            @endif
+                                        </a>
+                                        <div class="r-sidebar-pro-content">
+                                            <h5>
+                                                <a href="{{ route('product',['id'=>$product->id,'product'=>$product->slug]) }}" >
+                                                    {{ substr($product->name,0,20) }}...
+                                                </a>
+                                            </h5>
+
+                                        </div>
+                                    </li>
+                                @endforeach
+                            @endif
                         </ul>
                     </div>
                     <!-- SINGLE SIDE BAR END -->
@@ -318,8 +307,4 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript">
-        $( document ).ready(function() {
-        });
-    </script>
 @endsection
