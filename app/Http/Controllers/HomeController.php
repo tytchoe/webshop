@@ -175,11 +175,10 @@ class HomeController extends Controller
     public function category(Request $request,$slug)
     {
         $sort = '';
+        $price = '';
         if($request->sort != null){
             $sort = $request->sort;
         }
-        $price = '';
-
         $category = Category::where('slug',$slug)->where('is_active',1)->first();
         if($category == null){
             dd(404);
@@ -189,13 +188,6 @@ class HomeController extends Controller
         $products = Product::query();
         $products->where('is_active',1)
             ->wherein('category_id',$ids);
-        if($request->searchByPrice != null){
-            $price = explode(',',$request->searchByPrice);
-//            dd($price);
-            if($price[0] === 1){
-                $products->where('price','<',10000000);
-            }
-        }
         if($sort!= ''){
             if ($sort == 'priceAsc'){
                 $products->orderBy('price');

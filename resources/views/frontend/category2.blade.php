@@ -65,11 +65,11 @@
                                     <select  name="searchByPrice" id='searchByPrice'  multiple
                                              style="width: 300px;float: left;margin: 0"
                                              data-search="true" data-silent-initial-value-set="true"  >
-                                        <option value="10000000">Dưới 10 triệu</option>
-                                        <option value="10000000-20000000">Từ 10 - 20 triệu</option>
-                                        <option value="2-5">Từ 20 - 50 triệu</option>
-                                        <option value="5-10">Từ 50 - 100 triệu</option>
-                                        <option value="10">Trên 100 triệu</option>
+                                        <option value="duoi-10-trieu">Dưới 10 triệu</option>
+                                        <option value="tu-10-20-trieu">Từ 10 - 20 triệu</option>
+                                        <option value="tu-20-50-trieu">Từ 20 - 50 triệu</option>
+                                        <option value="tu-50-100-trieu">Từ 50 - 100 triệu</option>
+                                        <option value="tren-20-trieu">Trên 100 triệu</option>
                                     </select>
                                 </li>
                             </ul>
@@ -184,7 +184,7 @@
         $('.filter').click(function () {
             var price = $('#searchByPrice').val();
 
-            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?searchByPrice="+price;
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?p="+price;
         });
     </script>
 
