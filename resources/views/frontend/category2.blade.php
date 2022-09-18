@@ -57,7 +57,7 @@
                         <!-- SINGLE SIDEBAR PROPERTIES END -->
                     </div>
                     <br>
-                    <form>
+                    <div>
                         <div class="product-left-sidebar" >
                             <span class="sidebar-title">Giá</span>
                             <ul>
@@ -83,18 +83,18 @@
                                              style="width: 300px;float: left;margin: 0"
                                              data-search="true" data-silent-initial-value-set="true"  >
                                         <option value="0">Không</option>
-                                        @foreach($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @foreach($brands as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </li>
                             </ul>
                         </div>
                         <br>
-                        <button class="btn-primary filter" style="width: 50px; height: 50px" type="submit" >
+                        <button class="btn-primary filter" style="width: 50px; height: 50px" type="" >
                             <i class="fa fa-search"></i>
                         </button>
-                    </form>
+                    </div>
                     <!-- SINGLE SIDEBAR TAG END -->
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12" id="dataTable">
@@ -178,17 +178,10 @@
     </script>
     <script>
         $('.filter').click(function () {
+            var sort = $('#sortby').val();
             var price = $('#price').val();
             var brand = $('#brand').val();
-            var param = window.location.href;
-            if(price){
-                param = param+"&price="+price;
-            }
-            if(brand){
-                param = param+"&brand="+brand;
-            }
-            alert(param);
-            window.location.href =  param;
-        });
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort+'&price='+price+'&brand='+brand;
+        })
     </script>
 @endsection
