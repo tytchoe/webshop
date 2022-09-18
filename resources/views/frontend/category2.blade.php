@@ -62,39 +62,35 @@
                             <span class="sidebar-title">Giá</span>
                             <ul>
                                 <li style="position: absolute; height: 100%; width: 100%">
-                                    <select  name="searchByPrice" id='searchByPrice'  multiple
+                                    <select  name="price" id='price'  multiple
                                              style="width: 300px;float: left;margin: 0"
                                              data-search="true" data-silent-initial-value-set="true"  >
-                                        <option value="duoi-10-trieu">Dưới 10 triệu</option>
-                                        <option value="tu-10-20-trieu">Từ 10 - 20 triệu</option>
-                                        <option value="tu-20-50-trieu">Từ 20 - 50 triệu</option>
-                                        <option value="tu-50-100-trieu">Từ 50 - 100 triệu</option>
-                                        <option value="tren-20-trieu">Trên 100 triệu</option>
+                                        <option value="0-10000000">Dưới 10 triệu</option>
+                                        <option value="10000000-20000000">Từ 10 - 20 triệu</option>
+                                        <option value="20000000-50000000">Từ 20 - 50 triệu</option>
+                                        <option value="50000000-100000000">Từ 50 - 100 triệu</option>
+                                        <option value="100000000">Trên 100 triệu</option>
                                     </select>
                                 </li>
                             </ul>
                         </div>
                         <br>
-                        <div class="product-left-sidebar">
-                            <span class="sidebar-title">Chất liệu</span>
+                        <div class="product-left-sidebar" >
+                            <span class="sidebar-title">Thương hiệu</span>
                             <ul>
-                                <li>
-                                    <label class="checked">
-                                        <input type="checkbox" name="compositions"/>
-                                        <span></span>
-                                    </label>
-                                    <a href="">Cotton<span>(8)</span></a>
+                                <li style="position: absolute; height: 100%; width: 100%">
+                                    <select  name="brand" id='brand'  multiple
+                                             style="width: 300px;float: left;margin: 0"
+                                             data-search="true" data-silent-initial-value-set="true"  >
+                                        <option value="0">Không</option>
+                                        @foreach($brands as $brand)
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </li>
                             </ul>
                         </div>
-                        <!-- PRODUCT-LEFT-SIDEBAR END -->
-                        <!-- SINGLE SIDEBAR TAG START -->
-                        <div class="product-left-sidebar">
-                            <h2 class="left-title">Tags </h2>
-                            <div class="category-tag">
-                                <a href="#">fashion</a>
-                            </div>
-                        </div>
+                        <br>
                         <button class="btn-primary filter" style="width: 50px; height: 50px" type="submit" >
                             <i class="fa fa-search"></i>
                         </button>
@@ -169,7 +165,7 @@
 
     <script type="text/javascript">
         VirtualSelect.init({
-            ele: '#searchByPrice'
+            ele: '#price,#brand'
         });
     </script>
 
@@ -182,11 +178,17 @@
     </script>
     <script>
         $('.filter').click(function () {
-            var price = $('#searchByPrice').val();
-
-            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?p="+price;
+            var price = $('#price').val();
+            var brand = $('#brand').val();
+            var param = window.location.href;
+            if(price){
+                param = param+"&price="+price;
+            }
+            if(brand){
+                param = param+"&brand="+brand;
+            }
+            alert(param);
+            window.location.href =  param;
         });
     </script>
-
-
 @endsection
