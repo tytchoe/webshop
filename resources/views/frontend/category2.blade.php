@@ -65,11 +65,16 @@
                                     <select  name="price" id='price'  multiple
                                              style="width: 300px;float: left;margin: 0"
                                              data-search="true" data-silent-initial-value-set="true"  >
-                                        <option value="0-10000000">Dưới 10 triệu</option>
-                                        <option value="10000000-20000000">Từ 10 - 20 triệu</option>
-                                        <option value="20000000-50000000">Từ 20 - 50 triệu</option>
-                                        <option value="50000000-100000000">Từ 50 - 100 triệu</option>
-                                        <option value="100000000">Trên 100 triệu</option>
+                                        <option @if(isset($_GET['price'])) @if(in_array("0-10000000",explode(',',$_GET['price']))) selected @endif @endif value="0-10000000">
+                                            Dưới 10 triệu</option>
+                                        <option @if(isset($_GET['price'])) @if(in_array("10000000-20000000",explode(',',$_GET['price']))) selected @endif @endif value="10000000-20000000">
+                                            Từ 10 - 20 triệu</option>
+                                        <option @if(isset($_GET['price'])) @if(in_array("20000000-50000000",explode(',',$_GET['price']))) selected @endif @endif value="20000000-50000000">
+                                            Từ 20 - 50 triệu</option>
+                                        <option @if(isset($_GET['price'])) @if(in_array("50000000-100000000",explode(',',$_GET['price']))) selected @endif @endif value="50000000-100000000">
+                                            Từ 50 - 100 triệu</option>
+                                        <option @if(isset($_GET['price'])) @if(in_array("100000000",explode(',',$_GET['price']))) selected @endif @endif value="100000000">
+                                            Trên 100 triệu</option>
                                     </select>
                                 </li>
                             </ul>
@@ -125,7 +130,7 @@
                         <div class="product-category-title">
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <div class="short-select-option">
-                                <select name="sortby" id="sortby">
+                                <select name="sortby" id="sortby"  >
                                     <option @if($sort == "") selected @endif value ="" >Mặc định</option>
                                     <option @if($sort == "priceAsc") selected @endif value="priceAsc">Giá: Tăng dần</option>
                                     <option @if($sort == "priceDesc") selected @endif value="priceDesc">Giá: Giảm dần</option>
@@ -172,7 +177,6 @@
     <script>
         $('#sortby').change(function () {
             var sort = $('#sortby').val();
-
             window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort;
         });
     </script>

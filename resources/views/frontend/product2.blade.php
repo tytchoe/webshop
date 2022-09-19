@@ -51,63 +51,17 @@
                                                 <span class="btn large-btn">Xem ảnh lớn <i class="fa fa-search-plus"></i></span></a>
                                         </div>
                                     </div>
-                                    <div class="tab-pane" id="thumbnail_2">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/3.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/3.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_3">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/9.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/9.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_4">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/13.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/13.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_5">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/7.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/7.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="thumbnail_6">
-                                        <div class="single-product-image">
-                                            <img src="img/product/sale/12.jpg" alt="single-product-image" />
-                                            <a class="new-mark-box" href="#">new</a>
-                                            <a class="fancybox" href="img/product/sale/12.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div class="select-product">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs select-product-tab bxslider">
                                     <li class="active">
-                                        <a href="#thumbnail_1" data-toggle="tab"><img src="img/product/sidebar_product/1.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_2" data-toggle="tab"><img src="img/product/sidebar_product/2.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_3" data-toggle="tab"><img src="img/product/sidebar_product/3.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_4" data-toggle="tab"><img src="img/product/sidebar_product/4.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_5" data-toggle="tab"><img src="img/product/sidebar_product/5.jpg" alt="pro-thumbnail" /></a>
-                                    </li>
-                                    <li>
-                                        <a href="#thumbnail_6" data-toggle="tab"><img src="img/product/sidebar_product/6.jpg" alt="pro-thumbnail" /></a>
+                                        <a href="#thumbnail_1" data-toggle="tab">@if($product->image && file_exists(public_path($product->image)))
+                                                <img width="" height="" alt="single-product-image" src="{{ asset($product->image) }}">
+                                            @else
+                                                <img width="" height="" alt="single-product-image" src="{{ asset('upload/404.png') }}">
+                                            @endif</a>
                                     </li>
                                 </ul>
                             </div>

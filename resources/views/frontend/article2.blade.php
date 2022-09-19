@@ -20,60 +20,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <!-- PRODUCT-LEFT-SIDEBAR START -->
-                    <div class="product-left-sidebar">
-                        <h2 class="left-title pro-g-page-title">Tin tức</h2>
-                    <!-- SINGLE SIDEBAR ENABLED FILTERS START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">ENABLED FILTERS:</span>
-                            <ul class="filtering-menu">
-                                <li>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR ENABLED FILTERS END -->
-                        <!-- SINGLE SIDEBAR CATEGORIES START -->
-                        <div class="product-single-sidebar">
-                            <span class="sidebar-title">Danh mục</span>
-                            <ul style="height: 50px">
-                                <li style="position: absolute; height: 100%; width: 100%">
-                                    <select  name="searchByParent_id" id='searchByParent_id'  multiple
-                                             style="width: 300px;float: left;margin: 0"
-                                             data-search="true" data-silent-initial-value-set="true"  >
-                                        @php
-                                            function showCategories($categories, $parent_id = 0, $char = '') {
-                                                foreach ($categories as $key => $item) {
-                                                    if ($item['parent_id'] == $parent_id)
-                                                    {
-                                                        echo '<option value="'.$item['id'].'">';
-                                                            echo $char . $item['name'];
-                                                        echo '</option>';
-                                                        unset($categories[$key]);
-                                                        showCategories($categories, $item['id'], $char.'|---');
-                                                    }
-                                                }
-                                            }
-                                            showCategories($categories);
-                                        @endphp
-                                    </select>
-                                </li>
-                            </ul>
-                        </div>
-                        <!-- SINGLE SIDEBAR PROPERTIES END -->
-                    </div>
-                    <!-- PRODUCT-LEFT-SIDEBAR END -->
-                    <!-- SINGLE SIDEBAR TAG START -->
-                    <div class="product-left-sidebar">
-                        <h2 class="left-title">Tags </h2>
-                        <div class="category-tag">
-                            <a href="#">fashion</a>
-                        </div>
-                    </div>
-                    <!-- SINGLE SIDEBAR TAG END -->
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="right-all-product">
                         <!-- PRODUCT-CATEGORY-HEADER START -->
                         <div class="product-category-header">
@@ -84,28 +31,15 @@
                                 <img src="{{ asset('upload/404.png') }}" alt="single-product-image" height="250px" width="100%">
                             @endif
 {{--                                                                <img src="{{ asset('upload/404.png') }}" alt="category-header" />--}}
-                                <div class="category-header-text">
-                                    <h2>Tin tức</h2>
-                                    <strong >Bạn sẽ tìm thấy tất cả đồ  tại đây.</strong>
-                                    <p style="color: white;" class="-bold">Danh mục này bao gồm những đồ cơ bản và cả:
-                                        <br />
-                                    </p>
-                                </div>
                             </div>
                         </div>
                         <!-- PRODUCT-CATEGORY-HEADER END -->
                         <div class="product-category-title">
                             <!-- PRODUCT-CATEGORY-TITLE START -->
                             <h1>
-                                <span class="cat-name">tin tức</span>
                                 <span class="count-product">Có {{ $count }} bài viết.</span>
                             </h1>
                             <!-- PRODUCT-CATEGORY-TITLE END -->
-                        </div>
-                        <div class="product-shooting-area">
-                            <div class="product-shooting-bar">
-
-                            </div>
                         </div>
                     </div>
                     <!-- ALL GATEGORY-PRODUCT START -->
@@ -141,7 +75,7 @@
                     </div>
                     <!-- ALL GATEGORY-PRODUCT END -->
                     <!-- PRODUCT-SHOOTING-RESULT START -->
-                    <div class="product-shooting-result product-shooting-result-border">
+                    <div class="product-shooting-result">
                         <div class="showing-next-prev">
                             <ul class="pagination-bar">
                                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">

@@ -34,7 +34,7 @@
 </div>
 <!-- ALL GATEGORY-PRODUCT END -->
 <!-- PRODUCT-SHOOTING-RESULT START-->
-<div class="product-shooting-result product-shooting-result-border">
+<div class="product-shooting-result ">
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     </div>
     <div class="showing-next-prev col-lg-4 col-md-4 col-sm-6 col-xs-12">

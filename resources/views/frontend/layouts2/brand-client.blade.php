@@ -4,7 +4,7 @@
             <!-- BRAND-CLIENT-ROW START -->
             <div class="brand-client-row">
                 <div class="center-title-area">
-                    <h2 class="center-title">BRAND</h2>
+                    <h2 class="center-title">THƯƠNG HIỆU</h2>
                 </div>
                 <div class="col-xs-12">
                     <div class="row">

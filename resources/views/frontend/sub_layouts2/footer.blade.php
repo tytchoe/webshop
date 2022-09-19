@@ -7,30 +7,29 @@
                     <div class="footer-top-left">
                         <!-- NEWSLETTER-AREA START -->
                         <div class="newsletter-area">
-                            <h2>Newsletter</h2>
-                            <p>Subscribe to our mailing list to receive updates on new arrivals, special offers and other discount information.</p>
+                            <h2>Nhận tin mới</h2>
+                            <p>Để nhận được những khuyến mãi, sản phẩm mới nhất</p>
                             <form action="#">
                                 <div class="form-group newsletter-form-group">
-                                    <input type="text" class="form-control newsletter-form" placeholder="Enter your e-mail">
-                                    <input type="submit" class="newsletter-btn" name="submit" value="Subscribe" />
+                                    <input type="text" class="form-control newsletter-form" placeholder="Nhập email của bạn">
+                                    <input type="submit" class="newsletter-btn" name="submit" value="Gửi" />
                                 </div>
                             </form>
                         </div>
                         <!-- NEWSLETTER-AREA END -->
                         <!-- ABOUT-US-AREA START -->
                         <div class="about-us-area">
-                            <h2>About Us</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                            <h2>Về chúng tôi</h2>
+                            <p>Nếu bạn yêu thích và quan tâm tới chúng tôi hãy</p>
                         </div>
                         <!-- ABOUT-US-AREA END -->
                         <!-- FLLOW-US-AREA START -->
                         <div class="fllow-us-area">
-                            <h2>Follow us</h2>
+                            <h2>Theo dõi chúng tôi</h2>
                             <ul class="flow-us-link">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="{{ $setting->facebook }}"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="{{ $setting->twitter }}"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="{{ $setting->email }}"><i class="fa fa-google-plus"></i></a></li>
                             </ul>
                         </div>
                         <!-- FLLOW-US-AREA END -->

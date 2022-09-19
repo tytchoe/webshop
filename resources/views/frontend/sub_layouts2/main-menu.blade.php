@@ -7,7 +7,7 @@
                     <div class="shopping-cart">
                         <a class="shop-link" href="{{ route('cart.list') }}" title="View my shopping cart">
                             <i class="fa fa-shopping-cart cart-icon"></i>
-                            <b>My Cart</b>
+                            <b>Giỏ hàng</b>
                             <span class="ajax-cart-quantity">{{ count(Cart::getContent()) }}</span>
                         </a>
                         <div class="shipping-cart-overly">
@@ -25,16 +25,17 @@
                             @endforeach
                             <div class="shipping-total-bill">
                                 <div class="cart-prices">
-                                    <span class="shipping-cost">$2.00</span>
-                                    <span>Shipping</span>
+                                    <span class="shipping-cost">@if (Cart::getTotal() > 100000000) 0Đ @else 50.000Đ @endif</span>
+                                    <span>Ship</span>
                                 </div>
                                 <div class="total-shipping-prices">
-                                    <span class="shipping-total">{{ number_format(Cart::getTotal(), 0, ".", ",") }} Đ</span>
-                                    <span>Total</span>
+                                    <span class="shipping-total">@if (Cart::getTotal() > 100000000) {{ number_format(Cart::getTotal(), 0, ".", ",") }}
+                                        @else {{ number_format(Cart::getTotal()+50000, 0, ".", ",") }} @endif Đ</span>
+                                    <span>Tổng</span>
                                 </div>
                             </div>
                             <div class="shipping-checkout-btn">
-                                <a href="checkout.html">Check out <i class="fa fa-chevron-right"></i></a>
+                                <a href="checkout.html">Thanh toán <i class="fa fa-chevron-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -48,26 +49,6 @@
                         <ul class="list-inline mega-menu">
                             <li class="active"><a href="{{ route('homeindex') }}">Trang chủ</a>
                             </li>
-{{--                            @foreach($categories as $item)--}}
-{{--                                @if ($item->parent_id == 0)--}}
-{{--                                    <li>--}}
-{{--                                        <a class="mega-menu-title" href="{{ route('category',['category'=>$item->slug]) }}">--}}
-{{--                                            {{ $item->name }}</a>--}}
-{{--                                        <div class="drodown-mega-menu">--}}
-{{--                                            @foreach($categories as $children)--}}
-{{--                                                @if($children->parent_id == $item->id)--}}
-{{--                                                    <div class="left-mega col-xs-6">--}}
-{{--                                                        <div class="mega-menu-list">--}}
-{{--                                                            <a class="mega-menu-title" href="{{ route('category',['category'=>$children->slug]) }}">--}}
-{{--                                                                {{ $children->name }}</a>--}}
-{{--                                                        </div>--}}
-{{--                                                    </div>--}}
-{{--                                                @endif--}}
-{{--                                            @endforeach--}}
-{{--                                        </div>--}}
-{{--                                    </li>--}}
-{{--                                @endif--}}
-{{--                            @endforeach--}}
                             <li><a href="{{ route('articles') }}">Tin tức</a></li>
                             <li><a href="{{ route('contact') }}#form">Liên hệ</a></li>
                             <li><a href="{{ route('introduce') }}#form">Về chúng tôi</a></li>

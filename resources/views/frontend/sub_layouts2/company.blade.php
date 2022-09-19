@@ -9,8 +9,8 @@
                             <i class="fa fa-rocket"></i>
                         </div>
                         <div class="facality-text">
-                            <h3 class="facality-heading-text">FREE SHIPPING</h3>
-                            <span>on order over $100</span>
+                            <h3 class="facality-heading-text">MIỄN PHÍ SHIP</h3>
+                            <span>trên đơn hàng vượt quá 100tr</span>
                         </div>
                     </div>
                 </div>
@@ -22,8 +22,8 @@
                             <i class="fa fa-umbrella"></i>
                         </div>
                         <div class="facality-text">
-                            <h3 class="facality-heading-text">24/7 SUPPORT</h3>
-                            <span>online consultations</span>
+                            <h3 class="facality-heading-text">HỖ TRỢ 24/7</h3>
+                            <span>xử lý online</span>
                         </div>
                     </div>
                 </div>
@@ -35,8 +35,8 @@
                             <i class="fa fa-calendar"></i>
                         </div>
                         <div class="facality-text">
-                            <h3 class="facality-heading-text">DAILY UPDATES</h3>
-                            <span>Check out store for latest</span>
+                            <h3 class="facality-heading-text">CẬP NHẬT MỖI NGÀY</h3>
+                            <span>Kiểm tra những điều mới</span>
                         </div>
                     </div>
                 </div>
@@ -48,8 +48,8 @@
                             <i class="fa fa-refresh"></i>
                         </div>
                         <div class="facality-text">
-                            <h3 class="facality-heading-text">30-DAY RETURNS</h3>
-                            <span>moneyback guarantee</span>
+                            <h3 class="facality-heading-text">30 NGÀY HOÀN TRẢ</h3>
+                            <span>hoàn tiền 100%</span>
                         </div>
                     </div>
                 </div>

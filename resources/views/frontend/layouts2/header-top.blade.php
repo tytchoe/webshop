@@ -15,7 +15,7 @@
                 <div class="header-right-menu">
                     <nav>
                         <ul class="list-inline">
-                            <li><a href="{{ route('cart.list') }}">My Cart</a></li>
+                            <li><a href="{{ route('cart.list') }}">Giỏ hàng của tôi</a></li>
                         </ul>
                     </nav>
                 </div>

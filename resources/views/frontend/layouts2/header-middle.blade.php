@@ -17,7 +17,7 @@
                 <div class="categorys-product-search">
                     <form action="{{ route('search') }}" method="get" class="search-form-cat">
                         <div class="search-product form-group">
-                            <input type="text" class="form-control search-form" name="kwd" id="kwd" placeholder="Enter your search key ... " />
+                            <input type="text" class="form-control search-form" name="kwd" id="kwd" placeholder="Nhập từ khóa bạn muốn tìm ... " />
                             <button class="search-button" type="" >
                                 <i class="fa fa-search"></i>
                             </button>
