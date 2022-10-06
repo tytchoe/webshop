@@ -177,15 +177,20 @@
     <script>
         $('#sortby').change(function () {
             var sort = $('#sortby').val();
-            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort;
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('sort', sort);
+
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?"+urlParams;
         });
     </script>
     <script>
         $('.filter').click(function () {
-            var sort = $('#sortby').val();
             var price = $('#price').val();
             var brand = $('#brand').val();
-            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?sort="+sort+'&price='+price+'&brand='+brand;
+            const urlParams = new URLSearchParams(window.location.search);
+            urlParams.set('price', price);
+            urlParams.set('brand', brand);
+            window.location.href = "{{ route('category',['category'=>$category->slug]) }}?"+urlParams;
         })
     </script>
 @endsection

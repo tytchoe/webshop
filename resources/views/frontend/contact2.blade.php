@@ -44,16 +44,25 @@
                                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                                             <div class="form-group primary-form-group">
                                                 <label>Tên</label>
+                                                @error('name')
+                                                <p style="color: red;">{{ $message }}</p>
+                                                @enderror
                                                 <input type="text" class="form-control input-feild" id="name" name="name" value="{{ old('name') }}">
                                             </div>
 
                                             <div class="form-group primary-form-group">
                                                 <label>Email</label>
+                                                @error('email')
+                                                <p style="color: red;">{{ $message }}</p>
+                                                @enderror
                                                 <input type="text" class="form-control input-feild" id="email" name="email" value="{{ old('email') }}">
                                             </div>
 
                                             <div class="form-group primary-form-group">
                                                 <label>Số điện thoại</label>
+                                                @error('phone')
+                                                <p style="color: red;">{{ $message }}</p>
+                                                @enderror
                                                 <input type="text" class="form-control input-feild" id="phone" name="phone" value="{{ old('phone') }}">
                                             </div>
 
@@ -64,6 +73,9 @@
                                             <div class="type-of-text">
                                                 <div class="form-group primary-form-group">
                                                     <label>Nội dung</label>
+                                                    @error('content')
+                                                    <p style="color: red;">{{ $message }}</p>
+                                                    @enderror
                                                     <textarea class="contact-text" name="content" id="content">{{ old('content') }}</textarea>
                                                 </div>
                                             </div>

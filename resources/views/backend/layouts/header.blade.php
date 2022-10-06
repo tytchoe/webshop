@@ -16,8 +16,8 @@
                     $user = \Illuminate\Support\Facades\Auth::user();
                 @endphp
                 <ul class="nav navbar-nav">
-                    <li class="dropdown user user-menu open">
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                    <li class="dropdown user user-menu open" >
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
                             <span class="hidden-xs">{{ $user->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
@@ -48,4 +48,5 @@
 
     </nav>
 </header>
+
 

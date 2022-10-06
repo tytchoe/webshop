@@ -71,8 +71,13 @@
                                 <h2>{{ $product->name }}</h2>
 
                                 <div class="single-product-price">
-                                    <h2><del>{{ number_format($product->price, 0, ".", ",") }} Đ</del></h2>
-                                    <h2>{{ number_format($product->sale, 0, ".", ",") }} Đ</h2>
+                                    @if($product->is_hot)
+                                        <h2 style=" color:red">{{ number_format($product->sale, 0, ".", ",") }} Đ</h2>
+                                        <h3 style=" color:red"><del>{{ number_format($product->price, 0, ".", ",") }} Đ</del></h3>
+                                    @else
+                                        <h2 style=" color:red">{{ number_format($product->price, 0, ".", ",") }} Đ</h2>
+                                        @endif
+
                                 </div>
                                 <div class="single-product-desc">
                                     <div class="product-in-stock">
@@ -88,28 +93,28 @@
                                         @csrf
                                         <input type="hidden" value="{{ $product->id }}" name="id">
                                         <input type="hidden" value="{{ $product->name }}" name="name">
-                                        <input type="hidden" value="{{ $product->price }}" name="price">
+                                        @if($product->is_hot)
+                                            <input type="hidden" value="{{ $product->sale }}" name="price">
+                                        @else
+                                            <input type="hidden" value="{{ $product->price }}" name="price">
+                                        @endif
                                         <input type="hidden" value="{{ $product->image }}"  name="image">
-                                        <div>
-                                            <h3 class="col-sm-6">Số lượng</h3>
-                                            <div class="cart-quantity col-sm-6">
-                                                <div class="">
-                                                    <input class="" max="{{$product->stock}}" min="0" type="number"
-                                                           name="quantity" value="0" id="quantity" >
+                                        <div class="single-product-quantity">
+                                            <p class="small-title">Số lượng</p>
+                                            <div class="cart-quantity">
+                                                <div class="cart-plus-minus-button single-qty-btn">
+                                                    <input class="cart-plus-minus sing-pro-qty" type="text" id="quantity" name="quantity" value="1">
                                                 </div>
                                             </div>
                                         </div>
                                         <br>
                                         <br>
                                         <br>
-                                        <div class="single-product-add-cart col-sm-3">
-
-                                        </div>
+                                        <div class="single-product-add-cart col-sm-3"></div>
                                         <div class="single-product-add-cart col-sm-6">
                                             <button class="add-cart-text" title="Add to cart" >Thêm vào giỏ hàng</button>
-                                        </div><div class="single-product-add-cart col-sm-3">
-
                                         </div>
+                                        <div class="single-product-add-cart col-sm-3"></div>
                                     </form>
                                 </div>
                             </div>
@@ -238,20 +243,8 @@
                             @endif
                         </ul>
                     </div>
-                    <!-- SINGLE SIDE BAR END -->
-                    <!-- SINGLE SIDE BAR START -->
-                    <div class="single-product-right-sidebar clearfix">
-                        <h2 class="left-title">Tags </h2>
-                        <div class="category-tag">
-                            <a href="#">fashion</a>
-                        </div>
-                    </div>
-                    <!-- SINGLE SIDE BAR END -->
-                    <!-- SINGLE SIDE BAR START -->
                     <div class="single-product-right-sidebar">
-                        <div class="slider-right zoom-img">
-                            <a href="#"><img class="img-responsive" src="img/product/cms11.jpg" alt="sidebar left" /></a>
-                        </div>
+                        <!-- right side banner -->
                     </div>
                 </div>
                 <!-- SINGLE SIDE BAR END -->

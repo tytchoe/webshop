@@ -55,7 +55,7 @@ class HomeController extends Controller
             ->get();
         $brands = Brand::where('is_active','1')
             ->orderBy('created_at')
-            ->orderBy('id')
+            ->orderBy('position')
             ->get();
         View::share('categories',$this->categories);
         View::share('setting',$setting);
@@ -260,6 +260,7 @@ class HomeController extends Controller
         $ids = [];
         $ids = $this->FindFather($ids,$product->category_id);
         $product_related = Product::where('is_active',1)
+            ->where('id','!=',$id)
             ->whereIn('category_id',$ids)
             ->orderBy('category_id')
             ->limit(10)
@@ -283,36 +284,32 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-
         $keyword = $request->input('kwd');
 
-//        $slug = Str::slug($keyword);
+        //$slug = Str::slug($keyword);
 
-//        $sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
+        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
 
-//        $products = Product::where([
-//        ['slug', 'like', '%' . $slug . '%'],
-//        ['is_active', '=', 1]
-//        ])->orderByDesc('id')->paginate(5);
+        //$products = Product::where([
+        //['slug', 'like', '%' . $slug . '%'],
+        //['is_active', '=', 1]
+        //])->orderByDesc('id')->paginate(5);
 
-//        $totalResult = $products->total(); // số lượng kết quả tìm kiếm
-        $all = Product::searchByQuery(['match' => ['name' => $keyword]]);
-//        dd($all);
-        $totalResult = $all->totalHits();
-//        dd($totalResult);
+        //$totalResult = $products->total(); // số lượng kết quả tìm kiếm
+
+        $page = $request->input('page') ?? 1;
+        $paginate = 6;
+        $offSet = ($page * $paginate) - $paginate;
+
+        $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $offSet);
+        $totalResult = $products->totalHits();
         $totalResult = $totalResult['value'];
 
-        $page = $request->input('page', 1);
-        $paginate = 6;
-
-        $products = Product::searchByQuery(['match' => ['name' => $keyword]], null, null, $paginate, $page);
-
-//        dd($totalResult);
-        // $offSet = ($page * $paginate) - $paginate;
-        $itemsForCurrentPage = $products->toArray();
-        $products = new \Illuminate\Pagination\LengthAwarePaginator($itemsForCurrentPage, $totalResult, $paginate, $page);
+        $products = new \Illuminate\Pagination\LengthAwarePaginator($products, $totalResult, $paginate, $page);
         $products->setPath('tim-kiem');
-//        dd($products);
+
+
+
         return view('frontend.search', [
             'products' => $products,
             'totalResult' => $totalResult ?? 0,
@@ -325,7 +322,8 @@ class HomeController extends Controller
     {
         $cartItems = \Cart::getContent();
         // dd($cartItems);
-        return view('frontend.cart', compact('cartItems'));
+        $product = count($cartItems);
+        return view('frontend.cart', compact('cartItems','product'));
     }
 
     public function addToCart(Request $request)
@@ -339,11 +337,15 @@ class HomeController extends Controller
                 'image' => $request->image,
             )
         ]);
-        session()->flash('success', 'Product is Added to Cart Successfully !');
+        session()->flash('success', 'Sản phẩm đã được thêm vào giỏ hàng!');
 
         return redirect()->route('cart.list');
     }
 
+    public function updateCart(Request $request)
+    {
+        dd($request);
+    }
 
 
 }

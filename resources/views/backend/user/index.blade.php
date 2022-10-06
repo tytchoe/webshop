@@ -82,13 +82,14 @@
                 var id = $(this).attr('data-id');
 
                 Swal.fire({
-                    title: 'Bạn có chắc chắn  xóa?',
-                    text: "Bạn không thể khôi phục lại.",
+                    title: 'Bạn có muốn xóa?',
+                    text: "Bạn sẽ không thể khôi phục được!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Đồng ý'
+                    confirmButtonText: 'Có , xóa nó đi!',
+                    cancelButtonText: 'Không',
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

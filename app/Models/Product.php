@@ -12,7 +12,7 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes,ElasticquentTrait,Filterable;
 
-    public $fillable = ['slug','description'];
+    public $fillable = ['slug','description','name'];
 
     private static $whiteListFilter = [
         'name',
