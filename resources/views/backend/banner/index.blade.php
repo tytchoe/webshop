@@ -47,13 +47,15 @@
                                 <td>{{ $item->title }}</td>
                                 <td>
                                     @if($item->type == 1)
-                                        Banner home
+                                        Banner home left
                                     @elseif($item->type == 2)
-                                        Banner left
+                                        Banner home right
                                     @elseif($item->type ==3)
-                                        Banner right
+                                        Banner middle left
                                     @elseif($item->type == 4)
-                                        Background
+                                        Banner middle right
+                                    @elseif($item->type == 5)
+                                        Banner bottom
                                     @else
                                         None
                                     @endif

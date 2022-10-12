@@ -44,21 +44,21 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputEmail1">Tên</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $contact->name }}" id="name" name="name" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputPassword1">Số điện thoại</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $contact->phone }}"type="text" class="form-control" id="phone" name="phone" placeholder="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputPassword1">Email</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $contact->email }}"type="text" class="form-control" id="email" name="email" placeholder="">
                                 </div>
                             </div>
@@ -66,7 +66,7 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2" id="label-summary">Nội dung</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="content" name="content" class="form-control" rows="3" placeholder="Enter ...">{{ $contact->content }}</textarea>
                                 </div>
                             </div>

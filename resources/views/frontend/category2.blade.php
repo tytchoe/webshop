@@ -178,18 +178,34 @@
         $('#sortby').change(function () {
             var sort = $('#sortby').val();
             const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('sort', sort);
+            urlParams.delete('page');
+            if(sort != ""){
+                urlParams.set('sort', sort);
+            }else{
+                urlParams.delete('sort');
+            }
+
 
             window.location.href = "{{ route('category',['category'=>$category->slug]) }}?"+urlParams;
         });
     </script>
     <script>
         $('.filter').click(function () {
+
             var price = $('#price').val();
             var brand = $('#brand').val();
             const urlParams = new URLSearchParams(window.location.search);
-            urlParams.set('price', price);
-            urlParams.set('brand', brand);
+            urlParams.delete('page');
+            if(price != ""){
+                urlParams.set('price', price);
+            }else{
+                urlParams.delete('price');
+            }
+            if(brand != ""){
+                urlParams.set('brand', brand);
+            }else{
+                urlParams.delete('brand');
+            }
             window.location.href = "{{ route('category',['category'=>$category->slug]) }}?"+urlParams;
         })
     </script>

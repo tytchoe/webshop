@@ -4,7 +4,7 @@
             <div class="col-sm-12">
                 <!-- LOGO START -->
                 <div class="logo">
-                    <a href="{{ route('homeindex') }}"><img src="{{asset('frontend')}}/img/logo.png" alt="bstore logo" /></a>
+                    <a href="{{ route('homeindex') }}"><img src="{{ asset($setting->image) }}" height="100px" alt="logo" /></a>
                 </div>
                 <!-- LOGO END -->
                 <!-- HEADER-RIGHT-CALLUS START -->

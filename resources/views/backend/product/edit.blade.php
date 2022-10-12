@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên sản phẩm</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->name }}" type="text" class="form-control" id="name" name="name" placeholder="">
                                 </div>
                             </div>
@@ -53,13 +53,13 @@
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
                                 <div class="col-sm-4">
-                                    <input style="padding: 5px;" type="file" name="image" id="image"  >
+                                    <input style="padding: 5px;" type="file" name="image[]" id="image"  multiple="multiple" >
                                 </div>
                                 <div class="col-sm-6">
                                     @if($product->image && file_exists(public_path($product->image)))
-                                        <img src="{{ asset($product->image) }}" width="100" height="75" alt="">
+                                        <img src="{{ asset($product->image) }}" width="100" height="75" style="padding-bottom: 10px" alt="">
                                     @else
-                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" style="padding-bottom: 10px" alt="">
                                     @endif
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Số lượng</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->stock }}" id="stock" name="stock" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Giá</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->price }}" id="price" name="price" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
@@ -84,7 +84,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Giá sale</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->sale }}" id="sale" name="sale" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="0">---Chọn---</option>
                                         @php
@@ -125,7 +125,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nhà cung cấp</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="vendor_id" id="vendor_id">
                                         <option value="0">---Chọn---</option>
                                         @foreach($mergeData['vendor'] as $item)
@@ -138,7 +138,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Thương hiệu</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="brand_id" id="brand_id">
                                         <option value="0">---Chọn---</option>
                                         @foreach($mergeData['brand']  as $item)
@@ -151,28 +151,28 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Kích thước</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->size }}" type="text" class="form-control" id="size" name="size" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Chất liệu</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->material }}" type="text" class="form-control" id="material" name="material" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Bộ sưu tập</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->collection }}" type="text" class="form-control" id="collection" name="collection" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Nhập khẩu</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $product->import }}" type="text" class="form-control" id="import" name="import" placeholder="">
                                 </div>
                             </div>
@@ -180,7 +180,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input  value="{{ $product->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>
@@ -204,7 +204,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-summary">Tóm tắt</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 350px">
                                     <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $product->summary }}</textarea>
                                 </div>
                             </div>
@@ -212,7 +212,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 350px">
                                     <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->description }}</textarea>
                                 </div>
                             </div>
@@ -220,7 +220,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-meta_title">META tiêu đề</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_title }}</textarea>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $product->meta_description }}</textarea>
                                 </div>
                             </div>

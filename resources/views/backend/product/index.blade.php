@@ -32,20 +32,19 @@
                                     style="width: 300px;float: left;margin: 0"
                                     data-search="true" data-silent-initial-value-set="true"  >
                                 @php
-                                    function showCategories($categories , $parent_id = 0, $char = '') {
-
+                                    function showCategories($categories , $parent_id = 0, $char = '', $id) {
                                         foreach ($categories as $key => $item) {
                                             if ($item['parent_id'] == $parent_id)
                                             {
-                                                echo '<option value="'.$item['id'].'">';
+                                                echo '<option  '.($id == $item['id'] ? 'selected' :' ').'value="'.$item['id'].'">';
                                                     echo $char . $item['name'];
                                                 echo '</option>';
                                                 unset($categories[$key]);
-                                                showCategories($categories, $item['id'], $char.'|---');
+                                                showCategories($categories, $item['id'], $char.'|---',$id);
                                             }
                                         }
                                     }
-                                    showCategories($categories);
+                                    showCategories($categories,0,'',$category_id);
                                 @endphp
                             </select>
                         <button class="btn btn-primary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
@@ -188,19 +187,6 @@
                     }
                 });
             });
-            {{--$('#filter_type').change(function () {--}}
-            {{--    var deleted_at = $('#filter_type').val();--}}
-            {{--    var category_id = $('#searchByParent_id').val();--}}
-            {{--    var name = $('#searchByName').val();--}}
-            {{--    var param = '?deleted_at='+deleted_at;--}}
-            {{--    if(name){--}}
-            {{--        param = param+"&name="+name;--}}
-            {{--    }--}}
-            {{--    if(category_id){--}}
-            {{--        param = param+"&category_id="+category_id;--}}
-            {{--    }--}}
-            {{--    window.location.href = "{{ route('admin.product.index') }}"+param;--}}
-            {{--});--}}
             $('.btn-search').click(function () {
                 var deleted_at = $('#filter_type').val();
                 var category_id = $('#searchByParent_id').val();

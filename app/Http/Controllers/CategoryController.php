@@ -10,6 +10,20 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+
+    public function FindChild(array $ids, int $id)
+    {
+        $categories = Category::all();
+        foreach ($categories as $childs){
+            if($childs->parent_id == $id){
+                $ids[] = $childs->id;
+//                dd($arr);
+                $ids = $this->FindChild($ids ,$childs->id);
+//                dd($this->FindChild(9));
+            }
+        }
+        return $ids;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,30 +32,40 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $params = $request->all();
-        $filter_type = 2;
-        if($request->has('filter_type'))  {
-            $filter_type = $params['filter_type'];
+        $filter_type = "null";
+        $name = "";
+        $category_id = 0;
+        $data = Category::query();
+        if($request->has('deleted_at'))  {
+            $filter_type = $params['deleted_at'];
         }
-
-
-
-        // if check admin
         if (Auth::user()->role_id == 1) {
-            if ($filter_type == 1) {
-                $data = Category::withTrashed()->sortable()->latest()->paginate(10);
-            } elseif ($filter_type == 2) {
-                $data = Category::sortable()->latest()->paginate(10);
-            } elseif ($filter_type == 3){
-                $data = Category::onlyTrashed()->sortable()->latest()->paginate(10);
+            if ($filter_type == "") {
+                $data = Product::withTrashed();
+            } elseif ($filter_type == "null") {
+            } elseif ($filter_type == "not null"){
+                $data = Product::onlyTrashed();
             }
-
         } else {
-            $data = Category::sortable()->latest()->paginate(10);
         }
-
-
-
-        return view('backend.category.index', ['data' => $data, 'filter_type' => $filter_type]);
+        if ($request->has('name')) {
+            $name = $params['name'];
+//            dd($name);+
+            $data->where('slug', 'like' ,'%'.$name.'%');
+            $data->where('name', 'like' ,'%'.$name.'%');
+        }
+        if($request->has('category_id')){
+            $category_id = explode(',',$request->input('category_id'));
+//            dd($category_id);
+            $ids = $category_id;
+            foreach ($category_id as $id){
+                $ids = $this->FindChild($category_id ,$id);
+            }
+            $data->whereIn('id', $ids);
+        }
+        $data = $data->latest()->paginate(10);
+        $categories = Category::all();
+        return view('backend.category.index', ['data' => $data, 'filter_type' => $filter_type,'categories'=>$categories,'name'=>$name,'category_id'=>$category_id]);
     }
 
     /**

@@ -46,14 +46,14 @@
                                 <label for="exampleInputEmail1" class="col-sm-2 control-label">
                                     Tên nhà cung cấp
                                 </label>
-                                <div class="col-sm-10" >
+                                <div class="col-sm-10" style="height: 40px" >
                                     <input id="name" name="name" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
                             </div>
@@ -61,28 +61,28 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Điện thoại</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="text" class="form-control" id="phone" name="phone" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="email" class="form-control" id="email" name="email" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="text" class="form-control" id="website" name="website" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Địa chỉ</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="text" class="form-control" id="address" name="address" placeholder="">
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>

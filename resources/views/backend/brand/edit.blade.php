@@ -47,7 +47,7 @@
                                 <label for="exampleInputEmail1" class="col-sm-2 control-label">
                                     Tên thương hiệu
                                 </label>
-                                <div class="col-sm-10" >
+                                <div class="col-sm-10" style="height: 40px" >
                                     <input id="name" name="name" type="text" class="form-control" placeholder="" value="{{ $brand->name }}">
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Website</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $brand->website }}" type="text" class="form-control" id="website" name="website" placeholder="website">
                                 </div>
                             </div>
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $brand->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>

@@ -44,23 +44,22 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
-
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px" >
                                     <input type="text" class="form-control" id="name" name="name" placeholder="Tên">
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            <br>
+                            <div class=" form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            <br>
+                            <div class=" form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Chọn Danh Mục Cha</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option value="0">-- Chọn --</option>
                                         @php
@@ -81,15 +80,15 @@
                                     </select>
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            <br>
+                            <div class=" form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>
-
+                            <br>
                             <div class="col-sm-offset-2 col-sm-4">
                                 <div class="checkbox">
                                     <label>
@@ -97,7 +96,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div class="col-sm-offset-1 col-sm-5">
                                 <div class="checkbox">
                                     <label>
@@ -105,7 +103,6 @@
                                     </label>
                                 </div>
                             </div>
-
                         </div>
                         <!-- /.box-body -->
 

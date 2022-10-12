@@ -26,7 +26,28 @@
                                 </select>
                             </div>
                         @endif
+                            <input style="width: 150px; height: 34px;margin: 0px" value="{{ $name }}" type='text' id='searchByName' name="searchByName" placeholder='Enter name'>
+                            <select  name="searchByParent_id" id='searchByParent_id'  multiple
+                                     style="width: 300px;float: left;margin: 0"
+                                     data-search="true" data-silent-initial-value-set="true"  >
+                                @php
+                                    function showCategories($categories , $parent_id = 0, $char = '') {
 
+                                        foreach ($categories as $key => $item) {
+                                            if ($item['parent_id'] == $parent_id)
+                                            {
+                                                echo '<option value="'.$item['id'].'">';
+                                                    echo $char . $item['name'];
+                                                echo '</option>';
+                                                unset($categories[$key]);
+                                                showCategories($categories, $item['id'], $char.'|---');
+                                            }
+                                        }
+                                    }
+                                    showCategories($categories);
+                                @endphp
+                            </select>
+                            <button class="btn btn-primary btn-search"><i class="fa fa-search" aria-hidden="true"></i></button>
                         <a href="{{ route('admin.category.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
                     </div>
                     <!-- /.box-header -->
@@ -35,10 +56,10 @@
                             <tr>
                                 <th style="width: 10px">TT</th>
                                 <th>Hình ảnh</th>
-                                <th>@sortablelink('name')</th>
-                                <th>@sortablelink('parent_id')</th>
+                                <th>Tên</th>
+                                <th>Danh mục cha</th>
                                 <th>Trạng thái</th>
-                                <th>@sortablelink('position')</th>
+                                <th>Vị trí</th>
                                 <th>Hành động</th>
                             </tr>
                             @foreach($data as $key => $item)
@@ -92,7 +113,12 @@
 @endsection
 
 @section('js')
+    <script src="{{ asset('backend/js/virtual-select.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('backend/js/virtual-select.min.css') }}" />
     <script type="text/javascript">
+        VirtualSelect.init({
+            ele: '#searchByParent_id'
+        });
         $( document ).ready(function() {
 
             $('.deleteItem').click(function () {
@@ -170,9 +196,18 @@
                     }
                 });
             });
-            $('#filter_type').change(function () {
-                var filter_type = $('#filter_type').val();
-                window.location.href = "{{ route('admin.category.index') }}?filter_type="+filter_type;
+            $('.btn-search').click(function () {
+                var deleted_at = $('#filter_type').val();
+                var category_id = $('#searchByParent_id').val();
+                var name = $('#searchByName').val();
+                var param = '?deleted_at='+deleted_at;
+                if(name){
+                    param = param+"&name="+name;
+                }
+                if(category_id != ""){
+                    param = param+"&category_id="+category_id;
+                }
+                window.location.href = "{{ route('admin.category.index') }}"+param;
             });
 
         });

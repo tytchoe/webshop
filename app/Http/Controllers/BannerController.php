@@ -138,13 +138,10 @@ class BannerController extends Controller
         // xác thực dữ liệu - validate
         $request->validate([
             'title' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'target' => 'required',
             'description' => 'required',
         ],[
             'title.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.required' => 'Bạn chưa chọn file ảnh',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'target.required' => 'Bạn cần phải target',
             'description.required' => 'Bạn cần phải nhập vào mô tả',
         ]);

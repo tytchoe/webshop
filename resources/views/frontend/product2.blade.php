@@ -39,7 +39,7 @@
                             <div class="single-product-view">
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="thumbnail_1">
+                                    <div class="tab-pane active" id="0">
                                         <div class="single-product-image">
                                             @if($product->image && file_exists(public_path($product->image)))
                                                 <img width="" height="" alt="single-product-image" src="{{ asset($product->image) }}">
@@ -51,18 +51,49 @@
                                                 <span class="btn large-btn">Xem ảnh lớn <i class="fa fa-search-plus"></i></span></a>
                                         </div>
                                     </div>
+                                    @if(!empty($product->images))
+                                        @foreach($product->images as $images)
+                                            <div class="tab-pane" id="{{ $images->position }}">
+                                                <div class="single-product-image">
+                                                    @if($images->image && file_exists(public_path($images->image)))
+                                                        <img width="" height="" alt="single-product-image" src="{{ asset($images->image) }}">
+                                                    @else
+                                                        <img width="" height="" alt="single-product-image" src="{{ asset('upload/404.png') }}">
+                                                    @endif
+                                                    <a class="new-mark-box" href="#">new</a>
+                                                    <a class="fancybox" href="{{ asset($images->image) }}" data-fancybox-group="gallery">
+                                                        <span class="btn large-btn">Xem ảnh lớn <i class="fa fa-search-plus"></i></span></a>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                             <div class="select-product">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs select-product-tab bxslider">
-                                    <li class="active">
-                                        <a href="#thumbnail_1" data-toggle="tab">@if($product->image && file_exists(public_path($product->image)))
+                                    <li  class="active">
+                                        <a href="#0" data-toggle="tab">
+                                            @if($product->image && file_exists(public_path($product->image)))
                                                 <img width="" height="" alt="single-product-image" src="{{ asset($product->image) }}">
                                             @else
                                                 <img width="" height="" alt="single-product-image" src="{{ asset('upload/404.png') }}">
-                                            @endif</a>
+                                            @endif
+                                        </a>
                                     </li>
+                                    @if(!empty($product->images))
+                                        @foreach($product->images as $images)
+                                            <li class="">
+                                                <a href="#{{ $images->position }}" data-toggle="tab">
+                                                    @if($images->image && file_exists(public_path($images->image)))
+                                                        <img width="" height="" alt="single-product-image" src="{{ asset($images->image) }}">
+                                                    @else
+                                                        <img width="" height="" alt="single-product-image" src="{{ asset('upload/404.png') }}">
+                                                    @endif
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                         </div>

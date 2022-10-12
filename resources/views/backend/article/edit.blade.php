@@ -44,7 +44,7 @@
                         <div class="box-body">
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputEmail1">Tiêu đề</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $model->title }}" id="title" name="title" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputPassword1">Liên kết</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $model->url }}" type="text" class="form-control" id="url" name="url" placeholder="">
                                 </div>
 
@@ -72,7 +72,7 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2" >Chọn Danh Mục</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="0">-- Chọn --</option>
                                         @foreach($categories as $item)
@@ -87,7 +87,7 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2" for="exampleInputPassword1">Vị trí</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input value="{{ $model->position }}" min="0" type="number" class="form-control" id="position" name="position" placeholder="">
                                 </div>
                             </div>
@@ -102,28 +102,28 @@
 
                             <div class="form-group">
                                 <label class="col-sm-2" id="label-summary">Tóm tắt</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ...">{{ $model->summary }}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2" id="label-description">Mô tả</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 350px">
                                     <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->description }}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2" id="label-description">Meta Title</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_title }}</textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2" id="label-description">Meta Description</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ...">{{ $model->meta_description }}</textarea>
                                 </div>
                             </div>

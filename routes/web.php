@@ -26,9 +26,9 @@ Route::get('/tim-kiem', [\App\Http\Controllers\HomeController::class, 'search'])
 
 Route::get('/gio-hang', [\App\Http\Controllers\HomeController::class, 'cartList'])->name('cart.list');
 Route::post('/gio-hang', [\App\Http\Controllers\HomeController::class, 'addToCart'])->name('cart.store');
-Route::post('/update-gio-hang', [\App\Http\Controllers\HomeController::class, 'updateCart'])->name('cart.update');
-Route::post('/remove', [\App\Http\Controllers\HomeController::class, 'removeCart'])->name('cart.remove');
-Route::post('/clear', [\App\Http\Controllers\HomeController::class, 'clearAllCart'])->name('cart.clear');
+Route::get('/update-gio-hang', [\App\Http\Controllers\HomeController::class, 'updateCart'])->name('cart.update');
+Route::get('/xoa-san-pham', [\App\Http\Controllers\HomeController::class, 'removeToCart'])->name('cart.remove');
+Route::post('/xoa-gio-hang', [\App\Http\Controllers\HomeController::class, 'clearAllCart'])->name('cart.clear');
 
 Route::get('/danh-muc/{category}', [\App\Http\Controllers\HomeController::class, 'category'])->name('category');
 Route::get('/chi-tiet-san-pham/{id}-{product}', [\App\Http\Controllers\HomeController::class, 'product'])->name('product');

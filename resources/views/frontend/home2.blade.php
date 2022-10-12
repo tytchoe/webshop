@@ -45,7 +45,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                         <div class="slider-right zoom-img m-top">
                             @foreach($banners as $key => $banner)
-                                @if($banner->type == 3)
+                                @if($banner->type == 2)
                                     @if($banner->image && file_exists(public_path($banner->image)))
                                         <img src="{{ asset($banner->image) }}" alt="left slider"  >
                                     @else
@@ -74,7 +74,7 @@
                                     <div class="new-pro-carousel">
                                         @foreach($list as $item)
                                             @foreach($item['products'] as $product)
-                                                @if(strtotime($product->created_at) >= strtotime(date("y-m-d"))-24*60*60*30 )
+                                                @if(strtotime($product->created_at) > strtotime(date("y-m-d"))-24*60*60*30 )
                                                     <div class="item">
                                                         <div class="new-product">
                                                             <div class="single-product-item">
@@ -180,14 +180,30 @@
             <div class="row">
                 <!-- ADD-TWO-BY-ONE-COLUMN START -->
                 <div class="add-two-by-one-column">
-                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                         <div class="tow-column-add zoom-img">
-                            <a href="#"><img src="{{asset('frontend')}}/img/product/shope-add1.jpg" alt="shope-add" /></a>
+                            @foreach($banners as $key => $banner)
+                                @if($banner->type == 3)
+                                    @if($banner->image && file_exists(public_path($banner->image)))
+                                        <img src="{{ asset($banner->image) }}" height="200px" alt="left slider"  >
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}" height="200px" alt="left slider"  >
+                                    @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6  col-xs-12">
                         <div class="one-column-add zoom-img">
-                            <a href="#"><img src="{{asset('frontend')}}/img/product/shope-add2.jpg" alt="shope-add" /></a>
+                            @foreach($banners as $key => $banner)
+                                @if($banner->type == 4)
+                                    @if($banner->image && file_exists(public_path($banner->image)))
+                                        <img src="{{ asset($banner->image) }}" height="200px" alt="left slider"  >
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}" height="200px" alt="left slider"  >
+                                    @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -256,20 +272,29 @@
             <div class="row">
                 <!-- IMAGE-ADD-AREA START -->
                 <div class="image-add-area">
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <!-- ONEHALF-ADD START -->
-                        <div class="onehalf-add-shope zoom-img">
-                            <a href="#"><img src="{{asset('frontend')}}/img/product/one-helf1.jpg" alt="shope-add" /></a>
-                        </div>
-                        <!-- ONEHALF-ADD END -->
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                        <!-- ONEHALF-ADD START -->
-                        <div class="onehalf-add-shope zoom-img">
-                            <a href="#"><img src="{{asset('frontend')}}/img/product/one-helf2.jpg" alt="shope-add" /></a>
-                        </div>
-                        <!-- ONEHALF-ADD END -->
-                    </div>
+                    @foreach($banners as $key => $banner)
+                        @if($banner->type == 5)
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- ONEHALF-ADD START -->
+                                <div class="onehalf-add-shope zoom-img">
+                                    @if($banner->image && file_exists(public_path($banner->image)))
+                                        <img src="{{ asset($banner->image) }}" alt="left slider"  >
+                                    @else
+                                        <img src="{{ asset('upload/404.png') }}"alt="left slider"  >
+                                    @endif
+                                </div>
+                                <!-- ONEHALF-ADD END -->
+                            </div>
+                        @endif
+                    @endforeach
+
+{{--                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">--}}
+{{--                        <!-- ONEHALF-ADD START -->--}}
+{{--                        <div class="onehalf-add-shope zoom-img">--}}
+{{--                            <a href="#"><img src="{{asset('frontend')}}/img/product/one-helf2.jpg" alt="shope-add" /></a>--}}
+{{--                        </div>--}}
+{{--                        <!-- ONEHALF-ADD END -->--}}
+{{--                    </div>--}}
                 </div>
                 <!-- IMAGE-ADD-AREA END -->
             </div>

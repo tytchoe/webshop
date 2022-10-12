@@ -196,29 +196,32 @@ class HomeController extends Controller
         }
         $ids[] = $category->id;
         $ids = $this->FindChild($ids ,$category->id);
+//        dd($ids);
         $products = Product::query();
-        $products->where('is_active',1)
-            ->wherein('category_id',$ids);
-        if($price != ''){
-            foreach ($price as $key => $value){
-                if($key == 0){
-                    if(count($value) == 1){
-                        $products->where('price','>',$value[0]);
-                    }else{
-                        $products->WhereBetween('price',[$value[0],$value[1]]);
-                    }
-                }else{
-                    if(count($value) == 1){
-                        $products->orWhere('price','>',$value[0]);
-                    }else{
-                        $products->orWhereBetween('price',[$value[0],$value[1]]);
-                    }
-                }
-            }
-        }
+        $products->where('is_active','=','1');
+        $products->wherein('category_id',$ids);
         if($brand != ''){
             $products->whereIn('brand_id',$brand);
         }
+        $products->where(function($query) use ($price) {
+            if($price != ''){
+                foreach ($price as $key => $value){
+                    if($key == 0){
+                        if(count($value) == 1){
+                            $query->where('price','>',$value[0]);
+                        }else{
+                            $query->WhereBetween('price',[$value[0],$value[1]]);
+                        }
+                    }else{
+                        if(count($value) == 1){
+                            $query->orWhere('price','>',$value[0]);
+                        }else{
+                            $query->orWhereBetween('price',[$value[0],$value[1]]);
+                        }
+                    }
+                }
+            }
+        });
 //        dd($products->toSql());
 
         switch ($sort)
@@ -344,7 +347,36 @@ class HomeController extends Controller
 
     public function updateCart(Request $request)
     {
-        dd($request);
+        $id = (int) $request->id;
+        $qty = (int) $request->qty;
+
+        \Cart::update($id,array(
+           'quantity' => array(
+               'relative' => false,
+               'value' => $qty
+           )
+        ));
+        $cartItems = \Cart::getContent();
+
+        $product = count($cartItems);
+
+        return view('frontend._cart', compact('cartItems','product'));
+
+    }
+
+    public function removeToCart(Request $request)
+    {
+        $id = (int) $request->id;
+        if(!empty($id)){
+            \Cart::remove($id);
+
+            $cartItems = \Cart::getContent();
+
+            $product = count($cartItems);
+
+            return view('frontend._cart', compact('cartItems','product'));
+        }
+
     }
 
 

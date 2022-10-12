@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Tên</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}">
                                 </div>
                             </div>
@@ -41,9 +41,9 @@
                                 </div>
                                 <div class="col-sm-6">
                                     @if($category->image && file_exists(public_path($category->image)))
-                                        <img src="{{ asset($category->image) }}" width="100" height="75" alt="">
+                                        <img src="{{ asset($category->image) }}" width="100" height="75" style="padding-bottom: 10px" alt="">
                                     @else
-                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" alt="">
+                                        <img src="{{ asset('upload/404.png') }}" width="100" height="75" style="padding-bottom: 10px" alt="">
                                     @endif
                                 </div>
 
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Chọn Danh Mục Cha</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="parent_id" id="parent_id">
                                         <option value="0">-- Chọn --</option>
                                         @php
@@ -77,7 +77,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Vị trí</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input min="0" type="number" class="form-control" id="position" name="position" value="{{ $category->position }}">
                                 </div>
                             </div>

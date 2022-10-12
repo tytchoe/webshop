@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product_image;
 use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -102,10 +103,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-//        dd($request);
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
+            'image' => 'required',
             'category_id' => 'required',
             'vendor_id' => 'required',
             'brand_id' => 'required',
@@ -116,7 +116,6 @@ class ProductController extends Controller
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
             'image.required' => 'Bạn chưa chọn file ảnh',
-            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
             'vendor_id.required' => 'Bạn cần phải chọn nhà cung cấp',
             'brand_id.required' => 'Bạn cần phải chọn thương hiệu',
@@ -130,17 +129,31 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->slug = Str::slug($request->input('name')); //slug
 
+        $filenames = [];
+
         if($request->hasFile('image')) { // Kiem tra xem co image duoc chon khong
             //get File
-            $file = $request->file('image');
-            // Dat ten cho file image
-            $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
-            //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/product/';  //upload/brand; upload/vendor
-            // Thuc hien upload file
-            $file->move($path_upload,$filename);
-            // Luu lai ten
-            $product->image = $path_upload.$filename;
+            $allowedfileExtension=['jpg','png','jpeg','gif','svg'];
+            $exe_flg = true;
+            $path_upload = 'upload/product/';
+            $files = $request->file('image');
+            foreach($files as $file) {
+                $filename = time().'_'.$file->getClientOriginalName();
+                $check=in_array($filename,$allowedfileExtension);
+                if($check) {
+                    // nếu có file nào không đúng đuôi mở rộng thì đổi flag thành false
+                    $exe_flg = false;
+                    break;
+                }
+                $file->move($path_upload,$filename);
+                $filenames[] = $path_upload.$filename;
+            }
+
+            if($exe_flg) {
+                $product->image = $filenames[0];
+            } else {
+                return back()->withErrors('File ảnh phải có dạng jpeg,png,jpg,gif,svg');
+            }
         }
 
         $product->stock = (int)$request->input('stock');
@@ -187,9 +200,24 @@ class ProductController extends Controller
         $product->meta_description = $request->input('meta_description');
         //Luu
         $product->save();
+        $int = 0;
+        foreach ($filenames as $filename)
+        {
+            if($filename != $filenames[0]) {
+                $productImage = new Product_image();
+                $productImage->product_id = $product->id;
+                $productImage->image = $filename;
+                $productImage->is_active = true;
+                $productImage->position = $product->id.$int;
+                $int ++;
+                $productImage->save();
+            }
+        }
 
 //        Product::addAllToIndex();
         $product->addToIndex();
+
+
 
         //Chuyen huong ve trang danh sach
         return redirect()->route('admin.product.index');
@@ -234,10 +262,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-//        dd($request);
+//        dd($request->hasFile('image'));
         $request->validate([
             'name' => 'required|max:255',
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
             'category_id' => 'required',
             'vendor_id' => 'required',
             'brand_id' => 'required',
@@ -247,8 +274,6 @@ class ProductController extends Controller
             'meta_description' => 'required',
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
-//            'image.required' => 'Bạn chưa chọn file ảnh',
-//            'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
             'category_id.required' => 'Bạn cần phải chọn danh mục',
             'vendor_id.required' => 'Bạn cần phải chọn nhà cung cấp',
             'brand_id.required' => 'Bạn cần phải chọn thương hiệu',
@@ -258,22 +283,54 @@ class ProductController extends Controller
             'meta_description.required' => 'Bạn cần phải nhập vào mô tả chi tiết',
         ]);
 
+        $filenames = [];
+        $images = Product_image::where('is_active',1)->where('product_id',$id)->get();
+//        dd($images);
         $product = Product::findOrFail($id);
-//        dd($product);
         $product->name = $request->input('name');
         $product->slug = Str::slug($request->input('name')); //slug
 
         if($request->hasFile('image')) { // Kiem tra xem co image duoc chon khong
             //get File
-            $file = $request->file('image');
-            // Dat ten cho file image
-            $filename = time().'_'.$file->getClientOriginalName();  //$file->getClientOriginalName() == ten anh
-            //Dinh nghia duong dan se upload file len
-            $path_upload = 'upload/product/';  //upload/brand; upload/vendor
-            // Thuc hien upload file
-            $file->move($path_upload,$filename);
-            // Luu lai ten
-            $product->image = $path_upload.$filename;
+            $allowedfileExtension=['jpg','png','jpeg','gif','svg'];
+            $exe_flg = true;
+            $path_upload = 'upload/product/';
+            $files = $request->file('image');
+            foreach($files as $file) {
+                $filename = time().'_'.$file->getClientOriginalName();
+                $check=in_array($filename,$allowedfileExtension);
+                if($check) {
+                    // nếu có file nào không đúng đuôi mở rộng thì đổi flag thành false
+                    $exe_flg = false;
+                    break;
+                }
+                $file->move($path_upload,$filename);
+                $filenames[] = $path_upload.$filename;
+            }
+
+            if($exe_flg) {
+                @unlink(public_path($product->image));
+                foreach ($images as $image){
+//                    dd($image);
+                    Product_image::destroy($image->id);
+                }
+                $product->image = $filenames[0];
+                $int = 0;
+                foreach ($filenames as $filename)
+                {
+                    if($filename != $filenames[0]) {
+                        $productImage = new Product_image();
+                        $productImage->product_id = $product->id;
+                        $productImage->image = $filename;
+                        $productImage->is_active = true;
+                        $productImage->position = $product->id.$int;
+                        $int ++;
+                        $productImage->save();
+                    }
+                }
+            } else {
+                return back()->withErrors('File ảnh phải có dạng jpeg,png,jpg,gif,svg');
+            }
         }
 
         $product->sale = (int)Str::remove(',',$request->input('sale'));

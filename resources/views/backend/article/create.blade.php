@@ -45,14 +45,14 @@
                                 <label for="exampleInputEmail1" class="col-sm-2 control-label">
                                     Tiêu đề
                                 </label>
-                                <div class="col-sm-10" >
+                                <div class="col-sm-10" style="height: 40px" >
                                     <input id="title" name="title" type="text" class="form-control" placeholder="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="exampleInputFile" class="col-sm-2 control-label">Chọn ảnh</label>
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input style="padding: 5px;" type="file" name="image" id="image">
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Liên kết</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <input type="text" class="form-control" id="url" name="url" placeholder="Tên">
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label">Chọn Danh Mục</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 40px">
                                     <select class="form-control" name="category_id" id="category_id">
                                         <option value="0">-- Chọn --</option>
                                         @foreach($data as $item)
@@ -91,7 +91,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-summary">Tóm tắt</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="summary" name="summary" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">Chi tiết mô tả</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 350px">
                                     <textarea id="description" name="description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                             </div>
@@ -107,7 +107,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-meta_title">META tiêu đề</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_title" name="meta_title" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label" id="label-description">META mô tả</label>
 
-                                <div class="col-sm-10">
+                                <div class="col-sm-10" style="height: 90px">
                                     <textarea id="meta_description" name="meta_description" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                                 </div>
                             </div>

@@ -44,36 +44,46 @@
                         @csrf
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Tên</label>
-                                <input id="name" name="name" type="text" class="form-control" placeholder="">
+                                <label class="col-sm-2" for="exampleInputEmail1">Tên</label>
+                                <div class="col-sm-10" style="height: 40px">
+                                    <input id="name" name="name" type="text" class="form-control" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputFile">Avatar</label>
-                                <input type="file" name="avatar" id="avatar">
+                                <label class="col-sm-2" for="exampleInputFile">Avatar</label>
+                                <div class="col-sm-10" style="height: 40px">
+                                    <input type="file" name="avatar" id="avatar">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Email</label>
-                                <input type="text" class="form-control" id="email" name="email" placeholder="">
+                                <label class="col-sm-2" for="exampleInputPassword1">Email</label>
+                                <div class="col-sm-10" style="height: 40px">
+                                    <input type="text" class="form-control" id="email" name="email" placeholder="">
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword1">Mật khẩu</label>
-                                <input type="text" class="form-control" id="password" name="password" placeholder="">
+                                <label class="col-sm-2" for="exampleInputPassword1">Mật khẩu</label>
+                                <div class="col-sm-10" style="height: 40px">
+                                    <input type="text" class="form-control" id="password" name="password" placeholder="">
+                                </div>
                             </div>
 
                             <div class="form-group">
-                                <label>Vai trò</label>
-                                <select class="form-control" name="role_id" id="role_id">
-                                    <option value="">-- Chọn --</option>
-                                    @foreach($role as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label class="col-sm-2">Vai trò</label>
+                                <div class="col-sm-10" style="height: 40px">
+                                    <select class="form-control" name="role_id" id="role_id">
+                                        <option value="">-- Chọn --</option>
+                                        @foreach($role as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
 
-                            <div class="checkbox">
-                                <label>
+                            <div class="col-sm-offset-2 col-sm-4" class="checkbox">
+                                <label >
                                     <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
                                 </label>
                             </div>
