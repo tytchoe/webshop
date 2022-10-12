@@ -84,7 +84,7 @@
 
                             <div class="col-sm-offset-2 col-sm-4" class="checkbox">
                                 <label >
-                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input value="1" type="checkbox" name="is_active" id="is_active"> Kích hoạt
                                 </label>
                             </div>
 

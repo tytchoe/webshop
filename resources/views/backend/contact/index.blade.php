@@ -16,9 +16,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
-                    <div class="box-header with-border">
-                        <a href="{{ route('admin.contact.create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus" aria-hidden="true"></i></a>
-                    </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                         <table class="table table-bordered">
@@ -28,21 +25,10 @@
                                 <th>Số điện thoại</th>
                                 <th>Mail</th>
                                 <th>Nội dung</th>
+                                <th>Ghi chú của nhân viên</th>
                                 <th>Hành động</th>
                             </tr>
-                            @foreach($contact as $key => $item)
-                                <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key + 1 }}</td>
-                                    <td>{{ $item->name }}</td>
-                                    <td>{{ $item->phone }}</td>
-                                    <td>{{ $item->email }}</td>
-                                    <td>{{ substr($item->content,0,30) }}</td>
-                                    <td width="100px" >
-                                        <a href="{{ route('admin.contact.edit', ['contact' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                                        <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            @include('backend.contact._contact')
                         </table>
                     </div>
                     <!-- /.box-body -->
@@ -62,33 +48,23 @@
     <script type="text/javascript">
         $( document ).ready(function() {
 
-            $('.deleteItem').click(function () {
+            $('.saveItem').click(function () {
                 var id = $(this).attr('data-id');
+                var ghichu = $('.ghichu-'+id).val();
 
-                Swal.fire({
-                    title: 'Bạn có muốn xóa?',
-                    text: "Bạn sẽ không thể khôi phục được!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Có , xóa nó đi!',
-                    cancelButtonText: 'Không',
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url : '/admin/contact/'+id,
-                            type: 'DELETE',
-                            data: {},
-                            success: function (res) {
-                                if(res.status) {
-                                    $('.item-'+id).remove();
-                                }
-                            },
-                            error: function (res) {
+                $.ajax({
+                    url : '/admin/contact/updateNote',
+                    type: 'post',
+                    data: {
+                        ghichu : ghichu,
+                        id : id
+                    },
+                    dataType : "HTML",
+                    success: function (res) {
 
-                            }
-                        });
+                    },
+                    error: function (res) {
+
                     }
                 });
             });

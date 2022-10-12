@@ -54,10 +54,12 @@ Route::prefix('admin')->name('admin.')
     Route::resource('banner', \App\Http\Controllers\BannerController::class);
     Route::resource('category', \App\Http\Controllers\CateGoryController::class);
     Route::post('category/restore/{category}', [\App\Http\Controllers\CategoryController::class, 'restore'])->name('category.restore');
+    Route::post('product/restore/{category}', [\App\Http\Controllers\ProductController::class, 'restore'])->name('product.restore');
     Route::resource('vendor', \App\Http\Controllers\VendorController::class);
     Route::resource('brand', \App\Http\Controllers\BrandController::class);
     Route::resource('article', \App\Http\Controllers\ArticleController::class);
     Route::resource('contact', \App\Http\Controllers\ContactController::class);
+    Route::post('contact/updateNote', [\App\Http\Controllers\ContactController::class, 'updateNote'])->name('contact.updateNote');
     Route::resource('user', \App\Http\Controllers\UserController::class);
     Route::resource('setting', \App\Http\Controllers\SettingController::class);
     Route::resource('role', \App\Http\Controllers\RoleController::class);

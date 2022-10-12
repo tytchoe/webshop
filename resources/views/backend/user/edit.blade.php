@@ -14,6 +14,11 @@
     <section class="content">
         <div class="row">
             <div class="col-md-6">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
                 @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
@@ -34,7 +39,9 @@
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <a href="{{ route('admin.user.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        @if(Auth::user()->role_id == 1)
+                            <a href="{{ route('admin.user.index') }}" class="btn btn-info pull-right"><i class="fa fa-list" aria-hidden="true"></i> Danh Sách</a>
+                        @endif
                     </div>
                     <!-- /.box-header -->
                     <!-- form start -->
@@ -66,19 +73,20 @@
                                 <label for="exampleInputPassword1">Mật khẩu mới(*)</label>
                                 <input value="" type="text" class="form-control" id="password" name="password" placeholder="">
                             </div>
-
-                            <div class="form-group">
-                                <label>Chọn Danh Mục</label>
-                                <select class="form-control" name="role_id" id="role_id">
-                                    <option value="0">-- Chọn --</option>
-                                    @foreach($role as $item)
-                                        <option {{ $model->role_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            @if(Auth::user()->role_id == 1)
+                                <div class="form-group">
+                                    <label>Chọn Danh Mục</label>
+                                    <select class="form-control" name="role_id" id="role_id">
+                                        <option value="0">-- Chọn --</option>
+                                        @foreach($role as $item)
+                                            <option {{ $model->role_id ==  $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
                             <div class="checkbox">
                                 <label>
-                                    <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Hiển thị
+                                    <input @if($model->is_active == 1) checked @endif value="1" type="checkbox" name="is_active" id="is_active"> Kích hoạt
                                 </label>
                             </div>
 

@@ -32,8 +32,18 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-
             <form action="{{ route('admin.loginPost') }}" method="post"  class="login100-form validate-form">
+                @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-warning"></i> Lỗi !</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 @csrf
 					<span class="login100-form-title p-b-43">
 						Đăng nhập

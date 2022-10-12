@@ -151,12 +151,16 @@ class UserController extends Controller
 
         $user->email = $request->input('email');
 
-        $new_password = $request->input('password');
+        if($request->has('password')){
+            $new_password = $request->input('password');
+            $user->password = bcrypt($request->input('password'));
+        }
 
-        $user->password = bcrypt($request->input('password'));
 
         // Loai
-        $user->role_id = $request->input('role_id');
+        if($request->has('role_id')){
+            $user->role_id = $request->input('role_id');
+        }
         //Trang thai
         $is_active = 0;
         if($request->has('is_active')) { //Kiem tra xem is_active co ton tai khong
@@ -167,8 +171,11 @@ class UserController extends Controller
         //Luu
         $user->save();
 
-        //Chuyen huong ve trang danh sach
-        return redirect()->route('admin.user.index');
+        if($user->role_id == 1){
+            return redirect()->route('admin.user.index');
+        }else{
+            return redirect()->back()->with('message', 'Thay đổi thông tin thành công!!!');
+        }
     }
 
     /**

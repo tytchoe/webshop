@@ -75,9 +75,6 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        $contact = Contact::findOrFail($id);
-
-        return view('backend.contact.edit', ['contact' => $contact]);
     }
 
     /**
@@ -89,22 +86,7 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'name' => 'required|max:255',
-        ],[
-            'name.required' => 'Bạn cần phải nhập vào tiêu đề',
-        ]);
-        $Contact = Contact::findOrFail($id);
 
-        $Contact->name = $request->input('name');
-        $Contact->phone = $request->input('phone');
-        $Contact->email = $request->input('email');
-        $Contact->content = $request->input('content');
-        //Luu
-        $Contact->save();
-
-        //Chuyen huong ve trang danh sach
-        return redirect()->route('admin.contact.index');
     }
 
     /**
@@ -115,13 +97,21 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contact::findOrFail($id);
 
-        $contact::destroy($id);
-
-        return response()->json([
-            'status' => true,
-            'msg' => 'Xóa thành công'
-        ]);
     }
+
+    public function updateNote(Request $request){
+
+        $id = $request->id;
+        $ghichu = $request->ghichu;
+        $Contact = Contact::findOrFail($id);
+
+        $Contact->note = $ghichu;
+        //Luu
+        $Contact->save();
+
+        $contact = Contact::latest()->paginate(10);
+        return view('backend.contact.index', ['contact' => $contact]);
+
+        }
 }

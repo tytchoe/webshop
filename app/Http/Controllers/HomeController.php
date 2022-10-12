@@ -253,7 +253,7 @@ class HomeController extends Controller
     //chi tiết sản phẩm
     public function product(Request $request,$id,$slug)
     {
-        $product_recently_viewed_id = [0,0];
+        $product_recently_viewed_id = array();
         $product = Product::where('is_active',1)
             ->where('slug',$slug)
             ->first();
@@ -268,37 +268,23 @@ class HomeController extends Controller
             ->orderBy('category_id')
             ->limit(10)
             ->get();
-//        dd(session()->get('products.recently_viewed'));
         if(session()->has('products.recently_viewed')) {
             $product_recently_viewed_id = session()->get('products.recently_viewed');
             $product_recently_viewed_id = array_unique($product_recently_viewed_id);
             unset($product_recently_viewed_id[array_search($product->id,$product_recently_viewed_id)]);
         }
-//        dd($product_recently_viewed_id);
         $product_recently_viewed = Product::where('is_active',1)
                 ->whereIn('id',$product_recently_viewed_id)
                 ->limit(5)
                 ->get();
 
         session()->push('products.recently_viewed',$product->getKey());
-//        dd($product_recently_viewed);
         return view(    'frontend.product2',['product'=>$product,'ids'=>$ids,'product_recently_viewed'=>$product_recently_viewed,'product_related'=>$product_related]);
     }
 
     public function search(Request $request)
     {
         $keyword = $request->input('kwd');
-
-        //$slug = Str::slug($keyword);
-
-        //$sql = "SELECT * FROM products WHERE is_active = 1 AND slug like '%$keyword%'";
-
-        //$products = Product::where([
-        //['slug', 'like', '%' . $slug . '%'],
-        //['is_active', '=', 1]
-        //])->orderByDesc('id')->paginate(5);
-
-        //$totalResult = $products->total(); // số lượng kết quả tìm kiếm
 
         $page = $request->input('page') ?? 1;
         $paginate = 6;
@@ -324,7 +310,6 @@ class HomeController extends Controller
     public function cartList()
     {
         $cartItems = \Cart::getContent();
-        // dd($cartItems);
         $product = count($cartItems);
         return view('frontend.cart', compact('cartItems','product'));
     }

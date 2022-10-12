@@ -87,10 +87,12 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.product.edit', ['product' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                                        @if($item->deleted_at == null)
-                                        <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
-                                        @else
-                                        <span data-id="{{ $item->id }}" title="Khôi phục" class="btn btn-flat btn-danger refeshItem"><i class="fa fa-refesh"></i></span>
+                                        @if(\Auth::user()->role_id == 1)
+                                            @if($item->deleted_at == null)
+                                                <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                                            @else
+                                                <span data-id="{{ $item->id }}" title="Khôi phục" class="btn btn-flat btn-danger refeshItem"><i class="fa fa-refesh"></i></span>
+                                            @endif
                                         @endif
                                     </td>
                                 </tr>

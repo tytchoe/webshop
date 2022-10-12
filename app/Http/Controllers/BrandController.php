@@ -129,10 +129,8 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10000',
         ],[
             'name.required' => 'Bạn cần phải nhập vào tiêu đề',
-            'image.required' => 'Bạn chưa chọn file ảnh',
             'image.image' => 'File ảnh phải có dạng jpeg,png,jpg,gif,svg',
         ]);
 

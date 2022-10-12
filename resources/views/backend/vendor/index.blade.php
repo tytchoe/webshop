@@ -52,7 +52,15 @@
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.vendor.edit', ['vendor' => $item->id]) }}"><span title="Chỉnh sửa" type="button" class="btn btn-flat btn-primary"><i class="fa fa-edit"></i></span></a>
-                                    <span data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                                    @if(\Auth::user()->role_id == 1)
+                                        @if($item->deleted_at == null)
+                                            <span  data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                                            <span style="display:none;" data-id="{{ $item->id }}" title="Khôi phục" class="btn btn-flat btn-warning restoreItem"><i class="fa fa-refresh"></i></span>
+                                        @else
+                                            <span style="display:none;" data-id="{{ $item->id }}" title="Xóa" class="btn btn-flat btn-danger deleteItem"><i class="fa fa-trash"></i></span>
+                                            <span  data-id="{{ $item->id }}" title="Khôi phục" class="btn btn-flat btn-warning restoreItem"><i class="fa fa-refresh"></i></span>
+                                        @endif
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -90,7 +98,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url : '/admin/category/'+id,
+                            url : '/admin/vendor/'+id,
                             type: 'DELETE',
                             data: {},
                             success: function (res) {
@@ -99,7 +107,11 @@
                                 }
                             },
                             error: function (res) {
-
+                                Swal.fire(
+                                    'Thông báo !',
+                                    res.msg,
+                                    'error'
+                                )
                             }
                         });
                     }

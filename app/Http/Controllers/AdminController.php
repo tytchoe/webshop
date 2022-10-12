@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Article;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +13,14 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        return view('backend.admin.dashboard');
+        $numberCategory = count(Category::all());
+        $numberProduct = count(Product::all());
+        $numberUser = count(User::all());
+        $numberArticle = count(Article::all());
+        return view('backend.admin.dashboard',['numberCategory'=>$numberCategory,
+            'numberProduct'=>$numberProduct,
+            'numberArticle'=>$numberArticle,
+            'numberUser'=>$numberUser]);
     }
     //
     public function login()
@@ -24,7 +35,7 @@ class AdminController extends Controller
             'password' => ['required']
         ]);
 
-        // $credentials['is_active'] = 1; // trạng thái kích hoạt = 1
+//         $credentials['is_active'] = 1; // trạng thái kích hoạt = 1
 
         if (Auth::attempt($credentials)) { // SELECT * FROM users WHERE email = ? AND password = ?
             $user = Auth::user();

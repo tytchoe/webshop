@@ -4,8 +4,11 @@
     <section class="main-content-section">
         <div class="container">
             @if ($message = Session::get('success'))
-                <div class="p-4 mb-3 bg-green-400 rounded">
-                    <p class="text-green-800">{{ $message }}</p>
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <div class="p-4 mb-3 bg-green-400 rounded">
+                        <p class="text-green-800">{{ $message }}</p>
+                    </div>
                 </div>
             @endif
             <div class="row">
