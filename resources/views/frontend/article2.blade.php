@@ -47,7 +47,7 @@
                         <div class="row">
                             <ul class="gategory-product">
                                 @foreach($articles as $item)
-                                    <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                    <li class="gategory-product-list col-lg-4 col-md-4 col-sm-6 col-xs-12" style="height: 400px">
                                         <div class="single-product-item">
                                             <div class="product-image">
                                                 <a href="{{ route('detail-article',['slug'=>$item->slug]) }}">
@@ -61,7 +61,7 @@
                                         </div>
                                         <div class="product-info">
                                             <a href="{{ route('detail-article',['slug'=>$item->slug]) }}">{{ $item->title }}</a>
-                                            <p>{{ substr($item->summary,0,100) }}</p>
+                                            <p>{{ substr($item->summary,0,80) }}</p>
                                             <div class="customar-comments-box">
                                                 <a class="col-lg-5 col-md-5" href="#">{{ !empty($item->user->name) ? $item->user->name : '' }}</a>
                                                 <a class="col-lg-7 col-md-7" href="#">{{ date('d-m-Y', strtotime($item->created_at))  }}</a>

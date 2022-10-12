@@ -100,6 +100,7 @@
                         <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
                             <div class="single-product-descirption">
                                 <h2>{{ $product->name }}</h2>
+                                <h3>{!! $product->summary  !!}</h3>
 
                                 <div class="single-product-price">
                                     @if($product->is_hot)
