@@ -111,7 +111,6 @@ class ContactController extends Controller
         $Contact->save();
 
         $contact = Contact::latest()->paginate(10);
-        return view('backend.contact.index', ['contact' => $contact]);
-
+        return view('backend.contact._contact', compact('contact'));
         }
 }

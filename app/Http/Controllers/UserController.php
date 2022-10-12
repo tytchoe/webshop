@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -151,8 +152,9 @@ class UserController extends Controller
 
         $user->email = $request->input('email');
 
-        if($request->has('password')){
-            $new_password = $request->input('password');
+        $new_password = $request->input('password');
+
+        if($new_password != null){
             $user->password = bcrypt($request->input('password'));
         }
 
@@ -171,7 +173,7 @@ class UserController extends Controller
         //Luu
         $user->save();
 
-        if($user->role_id == 1){
+        if(Auth::user()->role_id == 1){
             return redirect()->route('admin.user.index');
         }else{
             return redirect()->back()->with('message', 'Thay đổi thông tin thành công!!!');

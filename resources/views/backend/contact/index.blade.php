@@ -15,21 +15,15 @@
     <section class="content">
         <div class="row">
             <div class="col-md-12">
+                @if(session()->has('message'))
+                    <div class="alert alert-success">
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
                 <div class="box">
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <table class="table table-bordered">
-                            <tr>
-                                <th style="width: 10px">TT</th>
-                                <th>Tên</th>
-                                <th>Số điện thoại</th>
-                                <th>Mail</th>
-                                <th>Nội dung</th>
-                                <th>Ghi chú của nhân viên</th>
-                                <th>Hành động</th>
-                            </tr>
-                            @include('backend.contact._contact')
-                        </table>
+                        @include('backend.contact._contact')
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
@@ -60,8 +54,13 @@
                         id : id
                     },
                     dataType : "HTML",
-                    success: function (res) {
-
+                    success: function (response) {
+                        $('#box-body').html(response);
+                        Swal.fire(
+                            'Thông báo !',
+                            'Thay đổi ghi chú thành công',
+                            'success'
+                        )
                     },
                     error: function (res) {
 

@@ -20,9 +20,9 @@
                         @if(\Auth::user()->role_id == 1)
                             <div class="form-group" style="width: 150px;float: left;margin: 0">
                                 <select class="form-control" id="filter_type" name="filter_type">
-                                    <option {{ $filter_type == 1 ? 'selected' : '' }} value="1">Tất cả</option>
-                                    <option {{ $filter_type == 2 ? 'selected' : '' }} value="2">Đang Sử Dụng</option>
-                                    <option {{ $filter_type == 3 ? 'selected' : '' }} value="3">Đã Bị Xóa</option>
+                                    <option {{ $filter_type == '' ? 'selected' : '' }} value="">Tất cả</option>
+                                    <option {{ $filter_type == 'null' ? 'selected' : '' }} value="null">Đang Sử Dụng</option>
+                                    <option {{ $filter_type == 'not null' ? 'selected' : '' }} value="not null">Đã Bị Xóa</option>
                                 </select>
                             </div>
                         @endif
