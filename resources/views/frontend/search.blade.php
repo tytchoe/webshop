@@ -61,18 +61,6 @@
                                             <a href="{{ route('product',['id'=>$product['id'],'product'=>$product['slug']]) }}" class="new-mark-box"></a>
                                         </div>
                                         <div class="product-info">
-                                            <div class="customar-comments-box">
-                                                <div class="rating-box">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-empty"></i>
-                                                </div>
-                                                <div class="review-box">
-                                                    <span>1 Review(s)</span>
-                                                </div>
-                                            </div>
                                             <a href="{{ route('product',['id'=>$product['id'],'product'=>$product['slug']]) }}">{{ $product['name'] }}</a>
                                             <div class="price-box">
                                                 @if($product['is_hot'])

@@ -63,10 +63,9 @@
                                             <a href="{{ route('detail-article',['slug'=>$item->slug]) }}">{{ $item->title }}</a>
                                             <p>{{ substr($item->summary,0,80) }}</p>
                                             <div class="customar-comments-box">
-                                                <a class="col-lg-5 col-md-5" href="#">{{ !empty($item->user->name) ? $item->user->name : '' }}</a>
-                                                <a class="col-lg-7 col-md-7" href="#">{{ date('d-m-Y', strtotime($item->created_at))  }}</a>
+                                                <a class="col-lg-8 col-md-8" href="{{ $item->url }}"><i class="fa fa-comments" title="Chi tiết"></i>Xem chi tiết</a>
+                                                <a class="col-lg-4 col-md-4" href="#">{{ date('d-m-Y', strtotime($item->created_at))  }}</a>
                                             </div>
-                                            <a href="{{ $item->url }}"><i class="fa fa-comments" title="Chi tiết"></i>Xem chi tiết</a>
                                         </div>
                                     </li>
                                 @endforeach
